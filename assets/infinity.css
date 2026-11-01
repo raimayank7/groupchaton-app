@@ -462,3 +462,8 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-.03em;font-weight:700}
 
 /* Infinity's mark is purple (matches the app icon); overrides the colour still inside older uploaded themes */
 .brand-mark [fill='#5FB34C']{fill:#A04CB3}
+
+/* Header logo picture (wordmark + purple infinity sign); the light or dark version follows the theme */
+.brand-logo{display:block;height:38px;width:auto;max-width:none}
+html[data-theme='light'] .brand-logo.is-dark,html:not([data-theme='light']) .brand-logo.is-light{display:none}
+@media (max-width:520px){.brand-logo{height:30px}}
