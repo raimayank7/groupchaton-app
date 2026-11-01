@@ -1,0 +1,26 @@
+{
+ "name": "Text to PDF · Infinity",
+ "short_name": "Text to PDF",
+ "id": "/t/text-to-pdf/",
+ "description": "Type or paste text and save it as a PDF.",
+ "start_url": "/t/text-to-pdf/",
+ "scope": "/t/text-to-pdf/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

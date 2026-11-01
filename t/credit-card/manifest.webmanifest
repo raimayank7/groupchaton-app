@@ -1,0 +1,26 @@
+{
+ "name": "Credit Card Payoff Calculator · Infinity",
+ "short_name": "Credit",
+ "id": "/t/credit-card/",
+ "description": "Months to clear a card balance and the interest you will pay.",
+ "start_url": "/t/credit-card/",
+ "scope": "/t/credit-card/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

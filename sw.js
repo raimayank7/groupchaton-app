@@ -3,17 +3,17 @@
    - data/tools.json: fresh from the network when online, the saved copy when offline
    - libraries and fonts from CDNs (PDF, QR, ZIP…): saved the first time they are used
    Designed & Developed by Nivesh Sahayak. See LICENSE. */
-var VERSION = '2026-11-02.5-39523c02';
+var VERSION = '2026-11-02.6-3ff4ec8f';
 var CORE = 'gco-app-' + VERSION, EXT = 'gco-app-ext';
 var FILES = [
  "./",
  "index.html",
- "app.js?v=2026-11-02.5-39523c02",
- "app.css?v=2026-11-02.5-39523c02",
+ "app.js?v=2026-11-02.6-3ff4ec8f",
+ "app.css?v=2026-11-02.6-3ff4ec8f",
  "manifest.webmanifest",
  "data/tools.json",
- "assets/infinity.css?v=2026-11-02.5-39523c02",
- "assets/tools/kit.js?v=2026-11-02.5-39523c02",
+ "assets/infinity.css?v=2026-11-02.6-3ff4ec8f",
+ "assets/tools/kit.js?v=2026-11-02.6-3ff4ec8f",
  "assets/tools/tools.css",
  "assets/brand/favicon-32.png",
  "assets/brand/favicon-192.png",
@@ -42,9 +42,14 @@ self.addEventListener('fetch', function (e) {
   var req = e.request, url = new URL(req.url);
   if (req.method !== 'GET') return;
   if (url.origin === location.origin) {
-    if (req.mode === 'navigate') {   // any page address opens the app shell
-      var shell = function () { return caches.match('./', { ignoreSearch: true }).then(function (r) { return r || caches.match('index.html'); }); };
-      e.respondWith(fetch(req).then(function (r) { return r.ok ? r : shell().then(function (c) { return c || r; }); }, shell));
+    if (req.mode === 'navigate') {   // pages: fresh when online; offline, the saved copy of that page (a single-tool app), else the app shell
+      var shell = function () {
+        return caches.match(req, { ignoreSearch: true }).then(function (r) { return r || caches.match('./', { ignoreSearch: true }); }).then(function (r) { return r || caches.match('index.html'); });
+      };
+      e.respondWith(fetch(req).then(function (r) {
+        if (r.ok) { var copy = r.clone(); caches.open(EXT).then(function (c) { c.put(req.url.split('?')[0], copy); }); return r; }
+        return shell().then(function (c) { return c || r; });
+      }, shell));
       return;
     }
     if (/\/data\/tools\.json$/.test(url.pathname)) {   // the tool list: network first

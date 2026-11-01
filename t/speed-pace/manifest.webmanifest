@@ -1,0 +1,26 @@
+{
+ "name": "Pace ↔ Speed Converter · Infinity",
+ "short_name": "Pace",
+ "id": "/t/speed-pace/",
+ "description": "Convert running pace and speed, with 5K, 10K, half and full marathon times.",
+ "start_url": "/t/speed-pace/",
+ "scope": "/t/speed-pace/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

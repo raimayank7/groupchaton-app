@@ -1,0 +1,26 @@
+{
+ "name": "Waist-to-hip Ratio Calculator · Infinity",
+ "short_name": "Waist-to-hip",
+ "id": "/t/waist-hip/",
+ "description": "Your waist-to-hip ratio and what it means for health risk.",
+ "start_url": "/t/waist-hip/",
+ "scope": "/t/waist-hip/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

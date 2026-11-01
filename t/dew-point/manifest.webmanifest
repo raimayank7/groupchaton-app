@@ -1,0 +1,26 @@
+{
+ "name": "Dew Point Calculator · Infinity",
+ "short_name": "Dew",
+ "id": "/t/dew-point/",
+ "description": "The dew point and how humid it feels, from temperature and relative humidity.",
+ "start_url": "/t/dew-point/",
+ "scope": "/t/dew-point/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "name": "Rent vs Buy Calculator · Infinity",
+ "short_name": "Rent",
+ "id": "/t/rent-vs-buy/",
+ "description": "Compare buying a home with renting and investing the difference.",
+ "start_url": "/t/rent-vs-buy/",
+ "scope": "/t/rent-vs-buy/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

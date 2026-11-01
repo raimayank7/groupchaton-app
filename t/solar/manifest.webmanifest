@@ -1,0 +1,26 @@
+{
+ "name": "Solar Panel Calculator · Infinity",
+ "short_name": "Solar",
+ "id": "/t/solar/",
+ "description": "Panels and system size for your electricity use, savings and payback time.",
+ "start_url": "/t/solar/",
+ "scope": "/t/solar/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

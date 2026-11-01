@@ -1,0 +1,26 @@
+{
+ "name": "Triangle Calculator · Infinity",
+ "short_name": "Triangle",
+ "id": "/t/triangle/",
+ "description": "Solve a triangle from three sides, two sides and an angle, or two angles and a side.",
+ "start_url": "/t/triangle/",
+ "scope": "/t/triangle/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

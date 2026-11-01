@@ -1,0 +1,26 @@
+{
+ "name": "Lump Sum Investment Calculator · Infinity",
+ "short_name": "Lump",
+ "id": "/t/lumpsum/",
+ "description": "What a one-time investment grows to at a yearly return.",
+ "start_url": "/t/lumpsum/",
+ "scope": "/t/lumpsum/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

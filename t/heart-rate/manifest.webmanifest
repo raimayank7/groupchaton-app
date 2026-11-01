@@ -1,0 +1,26 @@
+{
+ "name": "Heart Rate Zone Calculator · Infinity",
+ "short_name": "Heart",
+ "id": "/t/heart-rate/",
+ "description": "Your maximum heart rate and training zones 1–5, with the Karvonen method.",
+ "start_url": "/t/heart-rate/",
+ "scope": "/t/heart-rate/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

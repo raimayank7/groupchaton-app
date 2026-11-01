@@ -1,0 +1,26 @@
+{
+ "name": "Online Ruler · Infinity",
+ "short_name": "Online Ruler",
+ "id": "/t/ruler/",
+ "description": "A real-size ruler on your screen, calibrated with a bank card or your screen size.",
+ "start_url": "/t/ruler/",
+ "scope": "/t/ruler/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

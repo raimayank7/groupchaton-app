@@ -1,0 +1,26 @@
+{
+ "name": "Money Manager · Infinity",
+ "short_name": "Money Manager",
+ "id": "/t/money-manager/",
+ "description": "Track daily expenses and income, monthly budget and spending by category. Private: saved only in your browser.",
+ "start_url": "/t/money-manager/",
+ "scope": "/t/money-manager/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

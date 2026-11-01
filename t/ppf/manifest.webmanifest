@@ -1,0 +1,26 @@
+{
+ "name": "PPF Calculator · Infinity",
+ "short_name": "PPF Calculator",
+ "id": "/t/ppf/",
+ "description": "PPF maturity value, deposits and tax-free interest over 15+ years.",
+ "start_url": "/t/ppf/",
+ "scope": "/t/ppf/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

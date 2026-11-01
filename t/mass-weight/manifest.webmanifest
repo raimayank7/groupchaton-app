@@ -1,0 +1,26 @@
+{
+ "name": "Mass to Weight Calculator · Infinity",
+ "short_name": "Mass",
+ "id": "/t/mass-weight/",
+ "description": "Weight in newtons on Earth, the Moon and every planet.",
+ "start_url": "/t/mass-weight/",
+ "scope": "/t/mass-weight/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

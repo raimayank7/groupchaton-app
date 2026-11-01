@@ -1,0 +1,26 @@
+{
+ "name": "Dog and Cat Age Calculator · Infinity",
+ "short_name": "Dog",
+ "id": "/t/dog-age/",
+ "description": "Your pet’s age in human years by size.",
+ "start_url": "/t/dog-age/",
+ "scope": "/t/dog-age/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

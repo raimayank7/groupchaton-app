@@ -1,0 +1,26 @@
+{
+ "name": "Cooking Measurement Converter · Infinity",
+ "short_name": "Cooking",
+ "id": "/t/cooking/",
+ "description": "Cups, spoons, mL and grams for 17 everyday ingredients.",
+ "start_url": "/t/cooking/",
+ "scope": "/t/cooking/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

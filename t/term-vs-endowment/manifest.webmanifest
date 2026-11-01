@@ -1,0 +1,26 @@
+{
+ "name": "Term vs Endowment Calculator · Infinity",
+ "short_name": "Term",
+ "id": "/t/term-vs-endowment/",
+ "description": "Compare an endowment policy with a term plan plus investing the difference.",
+ "start_url": "/t/term-vs-endowment/",
+ "scope": "/t/term-vs-endowment/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

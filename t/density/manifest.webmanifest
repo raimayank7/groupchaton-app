@@ -1,0 +1,26 @@
+{
+ "name": "Density Calculator · Infinity",
+ "short_name": "Density",
+ "id": "/t/density/",
+ "description": "Find density, mass or volume from the other two.",
+ "start_url": "/t/density/",
+ "scope": "/t/density/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

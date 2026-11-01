@@ -1,0 +1,26 @@
+{
+ "name": "Permutation and Combination Calculator · Infinity",
+ "short_name": "Permutation",
+ "id": "/t/permutation/",
+ "description": "Permutations and combinations of n items taken r at a time, even for big numbers.",
+ "start_url": "/t/permutation/",
+ "scope": "/t/permutation/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

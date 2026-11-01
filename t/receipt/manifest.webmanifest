@@ -1,0 +1,26 @@
+{
+ "name": "Receipt Maker · Infinity",
+ "short_name": "Receipt Maker",
+ "id": "/t/receipt/",
+ "description": "Make a payment receipt with amount in words, payment mode and reference.",
+ "start_url": "/t/receipt/",
+ "scope": "/t/receipt/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "name": "Find and Replace · Infinity",
+ "short_name": "Find",
+ "id": "/t/find-replace/",
+ "description": "Replace words or patterns across any text, with a count of changes.",
+ "start_url": "/t/find-replace/",
+ "scope": "/t/find-replace/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

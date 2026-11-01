@@ -1,0 +1,26 @@
+{
+ "name": "Steps to Distance Calculator · Infinity",
+ "short_name": "Steps",
+ "id": "/t/steps-distance/",
+ "description": "How far your steps take you, and the calories burned.",
+ "start_url": "/t/steps-distance/",
+ "scope": "/t/steps-distance/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "name": "Digital Storage Calculator · Infinity",
+ "short_name": "Digital",
+ "id": "/t/data-size/",
+ "description": "Convert bits to petabytes, see real drive size, what fits and download time.",
+ "start_url": "/t/data-size/",
+ "scope": "/t/data-size/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "name": "Hash Generator (MD5, SHA-256) · Infinity",
+ "short_name": "Hash",
+ "id": "/t/hash/",
+ "description": "Get MD5 and SHA hashes of text or files; check a download.",
+ "start_url": "/t/hash/",
+ "scope": "/t/hash/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

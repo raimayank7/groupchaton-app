@@ -1,0 +1,26 @@
+{
+ "name": "Sleep Calculator · Infinity",
+ "short_name": "Sleep",
+ "id": "/t/sleep/",
+ "description": "Bedtimes or wake-up times that fit 90-minute sleep cycles.",
+ "start_url": "/t/sleep/",
+ "scope": "/t/sleep/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

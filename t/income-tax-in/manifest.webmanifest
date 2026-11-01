@@ -1,0 +1,26 @@
+{
+ "name": "Income Tax Calculator (India) · Infinity",
+ "short_name": "Income",
+ "id": "/t/income-tax-in/",
+ "description": "Compare your tax in the old and new regimes with the latest slabs, rebate and cess.",
+ "start_url": "/t/income-tax-in/",
+ "scope": "/t/income-tax-in/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

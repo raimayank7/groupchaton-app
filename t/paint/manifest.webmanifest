@@ -1,0 +1,26 @@
+{
+ "name": "Paint Calculator · Infinity",
+ "short_name": "Paint",
+ "id": "/t/paint/",
+ "description": "Litres of paint and primer for a room’s walls (and ceiling).",
+ "start_url": "/t/paint/",
+ "scope": "/t/paint/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

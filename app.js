@@ -5,6 +5,7 @@
   'use strict';
   var T = window.GCOTools, h = T.h, app = document.getElementById('app');
   var embed = document.documentElement.classList.contains('is-embed');
+  var only = window.GCO.only || '';   // app.groupchaton.com/t/<id>/: one tool, installable on its own
 
   // ---- offline: the service worker keeps every file of the app on the device ----
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
@@ -66,12 +67,14 @@
     if (!t) return home();
     document.title = t.name + ' · Infinity App';
     app.innerHTML = '';
-    if (!embed) app.appendChild(h('nav', { 'class': 'app-crumb' }, [h('a', { href: '#', text: '← All toolkits' })]));
+    if (!embed && !only) app.appendChild(h('nav', { 'class': 'app-crumb' }, [h('a', { href: '#', text: '← All toolkits' })]));
     if (!embed) app.appendChild(h('h1', { 'class': 'app-title', text: t.icon + ' ' + t.name }));
+    if (only && !standalone) app.appendChild(h('p', { 'class': 'app-hint' }, [ios ? 'Install this tool: tap Share, then “Add to Home Screen”.' : 'Install this tool as its own app: use the Install button above, or your browser menu → “Install app”. It opens straight to ' + t.name + ' and works offline.']));
+    if (only) app.appendChild(h('p', { 'class': 'app-more' }, [h('a', { href: window.GCO.infinity + '/', target: '_blank', rel: 'noopener', text: 'More free tools on Infinity →' })]));
     app.appendChild(h('div', { 'class': 'gco-page', 'data-gco-tool': id }, [h('div', { 'class': 'gco-tool-mount' })]));
     T.scan();
     scrollTo(0, 0);
   }
-  function route() { var id = location.hash.replace(/^#\/?/, ''); if (id) tool(id); else home(); }
+  function route() { if (only) return tool(only); var id = location.hash.replace(/^#\/?/, ''); if (id) tool(id); else home(); }
   T.ready.then(function () { route(); addEventListener('hashchange', route); });
 })();

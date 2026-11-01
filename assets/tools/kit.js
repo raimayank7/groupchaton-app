@@ -9,7 +9,7 @@
   var C = window.GCO || {};
   var BASE = C.base || '';
   // EDIT: bump this after changing any file in assets/tools/, so browsers fetch the new version straight away
-  var VERSION = '2026-11-02.5';
+  var VERSION = '2026-11-02.6';
   var doc = document;
   var T = window.GCOTools = window.GCOTools || {};
 
@@ -70,7 +70,8 @@
     marked: ['https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js', 'marked'],
     purify: ['https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js', 'DOMPurify'],
     yaml: ['https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js', 'jsyaml'],
-    terser: ['https://cdn.jsdelivr.net/npm/terser@5.31.0/dist/bundle.min.js', 'Terser']
+    terser: ['https://cdn.jsdelivr.net/npm/terser@5.31.0/dist/bundle.min.js', 'Terser'],
+    leaflet: [CDN + 'leaflet/1.9.4/leaflet.min.js', 'L']
   };
   var loading = {};
   T.loadScript = function (src) {
@@ -566,6 +567,7 @@
     var id = page.getAttribute('data-gco-tool');
     var spot = page.querySelector('.gco-tool-mount') || page.insertBefore(h('div', { 'class': 'gco-tool-mount' }), page.firstChild);
     spot.innerHTML = '';
+    if (id !== 'hub') { toolbar(page, spot, id); T.used(id); }
     try { registry[id](spot, T, page); } catch (e) {
       spot.appendChild(h('p', { 'class': 'tstatus is-error', text: 'This tool could not start: ' + e.message }));
       if (window.console) console.error(e);
@@ -580,6 +582,18 @@
     }
     });
   }
+  // above every tool: favourite, and install just this tool as an app
+  function toolbar(page, spot, id) {
+    if (page.querySelector('.tbar') || doc.documentElement.classList.contains('is-embed') || C.only) return;
+    var fav = T.isFav(id);
+    var star = h('button', { type: 'button', 'class': 'tbtn tbtn-sm tbar-fav', 'data-id': id, 'aria-pressed': String(fav), onclick: function () { T.toggleFav(id); } },
+      [h('span', { 'aria-hidden': 'true', text: '★' }), h('span', { text: fav ? ' Favourite' : ' Add to favourites' })]);
+    var kids = [star];
+    var appBase = C.isApp ? location.origin + '/' : C.appUrl ? C.appUrl.replace(/\/?$/, '/') : '';
+    if (appBase) kids.push(h('a', { 'class': 'tbtn tbtn-sm', href: appBase + 't/' + id + '/', target: C.isApp ? null : '_blank', rel: 'noopener',
+      title: 'Opens this tool on its own, ready to install on your phone or computer' }, [h('span', { 'aria-hidden': 'true', text: '⬇' }), ' Install as app']));
+    spot.parentNode.insertBefore(h('div', { 'class': 'tbar' }, kids), spot);
+  }
   function related(page, info) {
     var same = T.list.filter(function (t) { return t.id !== info.id && t.cat === info.cat; });
     var other = T.list.filter(function (t) { return t.id !== info.id && t.cat !== info.cat; });
@@ -590,11 +604,53 @@
       h('p', { 'class': 'trelated-all' }, [h('a', { href: '/', text: 'See all ' + T.list.length + ' tools →' })])]));
   }
   function card(t) {
-    var c = T.cat(t.cat);
-    return h('a', { 'class': 'thub-card', href: t.path, 'data-tool-link': t.id, 'data-cat': t.cat, style: '--cc:' + c.color }, [
+    var c = T.cat(t.cat), fav = T.isFav(t.id);
+    var star = h('button', { type: 'button', 'class': 'thub-fav', 'aria-pressed': String(fav), title: fav ? 'Remove from favourites' : 'Add to favourites',
+      'aria-label': (fav ? 'Remove ' : 'Add ') + t.name + (fav ? ' from' : ' to') + ' favourites', text: fav ? '★' : '☆',
+      onclick: function (e) { e.preventDefault(); e.stopPropagation(); T.toggleFav(t.id); } });
+    return h('div', { 'class': 'thub-cell', 'data-id': t.id }, [h('a', { 'class': 'thub-card', href: t.path, 'data-tool-link': t.id, 'data-cat': t.cat, style: '--cc:' + c.color }, [
       h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }),
-      h('span', {}, [h('b', {}, [t.name, t.isNew ? h('em', { 'class': 'thub-new', text: 'NEW' }) : null]), h('small', { text: t.desc })])]);
+      h('span', {}, [h('b', {}, [t.name, t.isNew ? h('em', { 'class': 'thub-new', text: 'NEW' }) : null]), h('small', { text: t.desc })])]), star]);
   }
+  /* ---------- favourites, recently used and popular (favourites and usage stay on this device) ---------- */
+  T.favs = function () { var f = T.store.get('favs', []); return Array.isArray(f) ? f : []; };
+  T.isFav = function (id) { return T.favs().indexOf(id) >= 0; };
+  T.toggleFav = function (id) {
+    var f = T.favs(), i = f.indexOf(id);
+    if (i >= 0) f.splice(i, 1); else f.unshift(id);
+    T.store.set('favs', f.slice(0, 200));
+    // every star for this tool on the page follows
+    $all('.thub-cell[data-id="' + id + '"] .thub-fav, .tbar-fav[data-id="' + id + '"]').forEach(function (b) {
+      var on = i < 0; b.setAttribute('aria-pressed', String(on));
+      if (b.classList.contains('thub-fav')) { b.textContent = on ? '★' : '☆'; b.title = on ? 'Remove from favourites' : 'Add to favourites'; }
+      else b.lastChild.textContent = on ? ' Favourite' : ' Add to favourites';
+    });
+    doc.dispatchEvent(new CustomEvent('gco-favs'));
+    return i < 0;
+  };
+  T.used = function (id) {
+    var u = T.store.get('use', {}), r = u[id] || [0, 0];
+    u[id] = [r[0] + 1, Date.now()];
+    var ids = Object.keys(u);
+    if (ids.length > 150) ids.sort(function (a, b) { return u[a][1] - u[b][1]; }).slice(0, ids.length - 150).forEach(function (k) { delete u[k]; });
+    T.store.set('use', u);
+  };
+  T.recent = function (n) {
+    var u = T.store.get('use', {});
+    return Object.keys(u).sort(function (a, b) { return u[b][1] - u[a][1]; }).map(T.find).filter(Boolean).slice(0, n || 8);
+  };
+  // the most-visited tools across the site: Blogger's Popular Posts gadget (#gco-popular), topped up with everyday favourites
+  var STARTER = ['image-compress', 'pdf-merge', 'emi', 'qr', 'invoice', 'percentage', 'age', 'gst', 'scientific', 'word-count', 'money-manager', 'income-tax-in'];
+  T.popular = function (n) {
+    var out = [];
+    function add(t) { if (t && out.indexOf(t) < 0) out.push(t); }
+    $all('#gco-popular a[href]').forEach(function (a) {
+      var m = a.getAttribute('href').match(/\/([a-z0-9-]+)\.html(?:$|[?#])/);
+      if (m) add(T.list.filter(function (x) { return x.slug === m[1]; })[0]);
+    });
+    STARTER.forEach(function (id) { add(T.find(id)); });
+    return out.slice(0, n || 8);
+  };
   T.toolCard = card;
   function structured(info) {
     var s = h('script', { type: 'application/ld+json' });
@@ -604,42 +660,82 @@
     doc.head.appendChild(s);
   }
 
-  // the tool hub (home page and category pages): search + category chips + cards
+  /* the tool hub (home page and category pages).
+     Home: your favourites, recently used, popular, then each category with its most-used tools and "See all".
+     Searching or picking a category shows a grid, drawn 48 cards at a time so a phone never builds hundreds at once. */
   T.register('hub', function (spot) {
     T.ready.then(function () {
       var label = (location.pathname.match(/^\/search\/label\/([^/?#]+)/) || [])[1];
       label = label ? decodeURIComponent(label).replace(/\+/g, ' ') : '';
       var cat = (T.cats.filter(function (c) { return c.label === label; })[0] || {}).id || 'all';
-      var q = h('input', { type: 'search', 'class': 'thub-search', placeholder: 'Search ' + T.list.length + ' free tools…', 'aria-label': 'Search tools' });
+      var q = h('input', { type: 'search', 'class': 'thub-search', placeholder: 'Search ' + T.list.length + ' free tools…', 'aria-label': 'Search tools', enterkeyhint: 'search' });
       var startQ = new URLSearchParams(location.search).get('q');
       if (startQ && !label) q.value = startQ;
       var chips = h('div', { 'class': 'thub-cats', role: 'tablist', 'aria-label': 'Categories' });
-      var grid = h('div', { 'class': 'thub-grid' });
+      var body = h('div', { 'class': 'thub-body' });
       var count = h('p', { 'class': 'thub-count', role: 'status', 'aria-live': 'polite' });
+      var PAGE = 48, limit = PAGE, timer = 0, popIds = {};
       function chip(id, name, icon, color, n) {
         return h('button', { type: 'button', role: 'tab', 'class': 'thub-chip', 'data-cat': id, style: color ? '--cc:' + color : null,
-          'aria-selected': String(cat === id), onclick: function () { cat = id; draw(); } }, [h('span', { 'aria-hidden': 'true', text: icon }), name, h('em', { text: String(n) })]);
+          'aria-selected': String(cat === id), onclick: function () { pickCat(id); } }, [h('span', { 'aria-hidden': 'true', text: icon }), name, h('em', { text: String(n) })]);
       }
-      function draw() {
-        var s = q.value.trim().toLowerCase();
+      function pickCat(id) { cat = id; limit = PAGE; draw(); if (id !== 'all' && spot.scrollIntoView) spot.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      function drawChips() {
         chips.innerHTML = '';
         chips.appendChild(chip('all', 'All', '∞', '', T.list.length));
+        var favN = T.favs().filter(T.find).length;
+        if (favN) chips.appendChild(chip('fav', 'Favourites', '★', '#FBBF24', favN));
         T.cats.forEach(function (c) {
           var n = T.list.filter(function (t) { return t.cat === c.id; }).length;
           if (n) chips.appendChild(chip(c.id, c.name, c.icon, c.color, n));
         });
-        grid.innerHTML = '';
-        var words = s.split(/\s+/).filter(Boolean);
-        var shown = T.list.filter(function (t) {
-          var hay = (t.name + ' ' + t.desc + ' ' + T.cat(t.cat).name + ' ' + (t.keywords || []).join(' ')).toLowerCase();
-          return (cat === 'all' || t.cat === cat) && words.every(function (w) { return hay.indexOf(w) >= 0; });
-        });
-        shown.forEach(function (t) { grid.appendChild(card(t)); });
-        count.textContent = shown.length + (shown.length === 1 ? ' tool' : ' tools');
-        if (!shown.length) grid.appendChild(h('p', { 'class': 'tstatus', html: 'No tool matches “' + h('b', { text: q.value }).outerHTML + '” yet. <a href="/p/ask-for-a-tool.html" data-feedback="tool">Ask for it</a> and we’ll build it.' }));
       }
-      q.addEventListener('input', draw);
-      spot.appendChild(h('div', { 'class': 'thub' }, [q, chips, count, grid]));
+      function section(icon, title, tools, more, cls) {
+        if (!tools.length) return null;
+        return h('section', { 'class': 'thub-sec' + (cls ? ' ' + cls : '') }, [
+          h('div', { 'class': 'thub-sec-head' }, [h('h2', {}, [h('span', { 'aria-hidden': 'true', text: icon }), ' ' + title]),
+            more ? h('button', { type: 'button', 'class': 'thub-more', onclick: more[1], text: more[0] }) : null]),
+          h('div', { 'class': 'thub-grid' }, tools.map(card))]);
+      }
+      function home() {
+        var favs = T.favs().map(T.find).filter(Boolean), recent = T.recent(3), pop = T.popular(6);
+        pop.forEach(function (t, i) { popIds[t.id] = i + 1; });
+        [section('★', 'Your favourites', favs.slice(0, 6), favs.length > 6 ? ['See all ' + favs.length + ' →', function () { pickCat('fav'); }] : null, 'is-fav'),
+          section('🕘', 'Recently used', recent, null, 'is-recent'),
+          section('🔥', 'Popular right now', pop, null, 'is-pop')].forEach(function (x) { if (x) body.appendChild(x); });
+        if (!favs.length) body.appendChild(h('p', { 'class': 'thub-tip', text: 'Tip: tap ☆ on any tool to keep it at the top of this page.' }));
+        T.cats.forEach(function (c) {
+          var all = T.list.filter(function (t) { return t.cat === c.id; });
+          if (!all.length) return;
+          // the tools people use most lead each row
+          var ranked = all.slice().sort(function (a, b) { return (popIds[a.id] || 99) - (popIds[b.id] || 99); });
+          body.appendChild(section(c.icon, c.name, ranked.slice(0, 6), all.length > 6 ? ['See all ' + all.length + ' →', function () { pickCat(c.id); }] : null, 'is-cat'));
+        });
+        count.textContent = '';
+      }
+      function draw() {
+        var s = q.value.trim().toLowerCase();
+        drawChips();
+        body.innerHTML = '';
+        if (!s && cat === 'all') return home();
+        var words = s.split(/\s+/).filter(Boolean), favs = T.favs();
+        var shown = T.list.filter(function (t) {
+          if (cat === 'fav' ? favs.indexOf(t.id) < 0 : cat !== 'all' && t.cat !== cat) return false;
+          if (!words.length) return true;
+          var hay = (t.name + ' ' + t.desc + ' ' + T.cat(t.cat).name + ' ' + (t.keywords || []).join(' ')).toLowerCase();
+          return words.every(function (w) { return hay.indexOf(w) >= 0; });
+        });
+        if (words.length) shown.sort(function (a, b) { var x = a.name.toLowerCase().indexOf(words[0]) >= 0, y = b.name.toLowerCase().indexOf(words[0]) >= 0; return x === y ? 0 : x ? -1 : 1; });
+        var grid = h('div', { 'class': 'thub-grid' });
+        shown.slice(0, limit).forEach(function (t) { grid.appendChild(card(t)); });
+        body.appendChild(grid);
+        if (shown.length > limit) body.appendChild(h('p', { 'class': 'thub-pager' }, [T.button('Show ' + Math.min(PAGE, shown.length - limit) + ' more (' + (shown.length - limit) + ' left)', { onclick: function () { limit += PAGE; draw(); } })]));
+        count.textContent = shown.length + (shown.length === 1 ? ' tool' : ' tools') + (cat !== 'all' ? ' in ' + (cat === 'fav' ? 'Favourites' : T.cat(cat).name) : '');
+        if (!shown.length) body.appendChild(h('p', { 'class': 'tstatus', html: cat === 'fav' && !s ? 'No favourites yet: tap ☆ on any tool card.' : 'No tool matches “' + h('b', { text: q.value }).outerHTML + '” yet. <a href="/p/ask-for-a-tool.html" data-feedback="tool">Ask for it</a> and we’ll build it.' }));
+      }
+      q.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { limit = PAGE; draw(); }, 120); });
+      doc.addEventListener('gco-favs', function () { clearTimeout(timer); timer = setTimeout(draw, 600); });
+      spot.appendChild(h('div', { 'class': 'thub' }, [q, chips, count, body]));
       draw();
     });
   });
@@ -649,10 +745,22 @@
   function inline(page, id) {
     if (registry[id]) return mount(page);
     if (!/^[a-z0-9-]+$/.test(id)) return;
+    showLoading(page, id);
     T.loadScript(BASE + 'assets/tools/' + id + '.js?v=' + VERSION).catch(function (e) {
       var spot = page.querySelector('.gco-tool-mount');
-      if (spot) spot.appendChild(h('p', { 'class': 'tstatus is-error', text: e.message }));
+      if (spot) { spot.innerHTML = ''; spot.appendChild(h('p', { 'class': 'tstatus is-error' }, [e.message + ' ', T.button('Try again', { small: true, onclick: function () { location.reload(); } })])); }
     });
+  }
+  // every post shows a loading panel until its tool starts; after 10 s it offers a reload in case the connection stalled
+  function showLoading(page, id) {
+    var spot = page.querySelector('.gco-tool-mount');
+    if (!spot || id === 'hub') return;
+    var box = spot.querySelector('.tload');
+    if (!box) { box = h('div', { 'class': 'tload', role: 'status', 'aria-live': 'polite' }, [h('span', { 'class': 'tload-bar' }, [h('i')]), h('code', { text: 'loading tool' })]); spot.appendChild(box); }
+    setTimeout(function () {
+      if (!box.isConnected || box.querySelector('.tload-slow')) return;
+      box.appendChild(h('p', { 'class': 'tload-slow' }, ['Taking longer than usual: your connection may be slow. ', T.button('Reload', { small: true, onclick: function () { location.reload(); } })]));
+    }, 10000);
   }
   /* A tool that keeps records (money manager, khata, invoices…) is shown from the Infinity app (C.appUrl) in a frame.
      app.groupchaton.com and this blog are the same site to the browser, so the frame and the installed app share one set of records.
@@ -670,6 +778,7 @@
     }
     window.addEventListener('message', onMsg);
     spot.innerHTML = '';
+    toolbar(page, spot, info.id); T.used(info.id);
     spot.appendChild(frame);
     spot.appendChild(h('p', { 'class': 'tapp-note' }, ['🔒 Your records are saved only on this device. ',
       h('a', { href: C.appUrl.replace(/\/?$/, '/') + '#' + info.id, target: '_blank', rel: 'noopener', text: 'Open it as an app (works offline) →' })]));

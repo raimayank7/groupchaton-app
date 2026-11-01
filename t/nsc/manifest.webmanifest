@@ -1,0 +1,26 @@
+{
+ "name": "NSC Calculator · Infinity",
+ "short_name": "NSC Calculator",
+ "id": "/t/nsc/",
+ "description": "Maturity value and yearly interest of a 5-year National Savings Certificate.",
+ "start_url": "/t/nsc/",
+ "scope": "/t/nsc/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

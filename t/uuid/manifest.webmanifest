@@ -1,0 +1,26 @@
+{
+ "name": "UUID / GUID Generator · Infinity",
+ "short_name": "UUID",
+ "id": "/t/uuid/",
+ "description": "Generate 1 to 10,000 random v4 UUIDs at once.",
+ "start_url": "/t/uuid/",
+ "scope": "/t/uuid/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

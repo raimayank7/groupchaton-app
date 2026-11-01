@@ -1,0 +1,26 @@
+{
+ "name": "Percentage Calculator · Infinity",
+ "short_name": "Percentage",
+ "id": "/t/percentage/",
+ "description": "Work out X% of Y, what percent one number is of another, and percentage change.",
+ "start_url": "/t/percentage/",
+ "scope": "/t/percentage/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

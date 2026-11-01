@@ -1,0 +1,26 @@
+{
+ "name": "Salary and Hourly Wage Calculator · Infinity",
+ "short_name": "Salary",
+ "id": "/t/salary/",
+ "description": "Turn any pay into hourly, daily, weekly, monthly and yearly figures.",
+ "start_url": "/t/salary/",
+ "scope": "/t/salary/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

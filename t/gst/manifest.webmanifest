@@ -1,0 +1,26 @@
+{
+ "name": "GST Calculator (India) · Infinity",
+ "short_name": "GST",
+ "id": "/t/gst/",
+ "description": "Add or remove GST at 0.25%, 3%, 5%, 12%, 18%, 28% or 40% with the CGST/SGST or IGST split.",
+ "start_url": "/t/gst/",
+ "scope": "/t/gst/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

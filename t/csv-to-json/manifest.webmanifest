@@ -1,0 +1,26 @@
+{
+ "name": "CSV to JSON · Infinity",
+ "short_name": "CSV to JSON",
+ "id": "/t/csv-to-json/",
+ "description": "Convert CSV or TSV to JSON, with headers and number types.",
+ "start_url": "/t/csv-to-json/",
+ "scope": "/t/csv-to-json/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

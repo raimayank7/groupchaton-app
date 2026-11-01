@@ -1,0 +1,26 @@
+{
+ "name": "Lens Calculator · Infinity",
+ "short_name": "Lens",
+ "id": "/t/lens/",
+ "description": "Image distance, magnification and lens power from focal length and object distance.",
+ "start_url": "/t/lens/",
+ "scope": "/t/lens/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "name": "Distance Converter · Infinity",
+ "short_name": "Distance",
+ "id": "/t/distance-convert/",
+ "description": "Kilometres, miles, nautical miles, feet and yards, with walking steps and time.",
+ "start_url": "/t/distance-convert/",
+ "scope": "/t/distance-convert/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

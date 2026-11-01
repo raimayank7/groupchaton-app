@@ -1,0 +1,26 @@
+{
+ "name": "Overtime Pay Calculator · Infinity",
+ "short_name": "Overtime",
+ "id": "/t/overtime/",
+ "description": "Regular and overtime pay at 1.25×, 1.5× or 2×.",
+ "start_url": "/t/overtime/",
+ "scope": "/t/overtime/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

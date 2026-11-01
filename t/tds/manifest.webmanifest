@@ -1,0 +1,26 @@
+{
+ "name": "TDS Calculator · Infinity",
+ "short_name": "TDS Calculator",
+ "id": "/t/tds/",
+ "description": "TDS to deduct on professional fees, contracts, commission, rent, interest and more.",
+ "start_url": "/t/tds/",
+ "scope": "/t/tds/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

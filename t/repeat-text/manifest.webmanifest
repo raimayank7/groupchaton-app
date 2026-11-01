@@ -1,0 +1,26 @@
+{
+ "name": "Text Repeater · Infinity",
+ "short_name": "Text Repeater",
+ "id": "/t/repeat-text/",
+ "description": "Repeat any text or emoji up to 10,000 times.",
+ "start_url": "/t/repeat-text/",
+ "scope": "/t/repeat-text/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

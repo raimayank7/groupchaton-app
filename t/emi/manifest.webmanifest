@@ -1,0 +1,26 @@
+{
+ "name": "Loan EMI Calculator · Infinity",
+ "short_name": "Loan",
+ "id": "/t/emi/",
+ "description": "Monthly EMI, total interest and a year-by-year repayment table for any loan.",
+ "start_url": "/t/emi/",
+ "scope": "/t/emi/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}
