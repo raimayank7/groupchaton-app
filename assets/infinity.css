@@ -422,3 +422,43 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-.03em;font-weight:700}
 .gco-tool-mount>.tool-app::after{content:'';position:absolute;left:0;right:0;top:40px;height:1px;background:var(--line)}
 @media (max-width:640px){.gco-tool-mount>.tool-app{padding-top:42px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* ---------- post lists as tool cards (site.js fills icon, category, description) ---------- */
+.post-list.is-cards{gap:12px}
+@media (min-width:860px){.post-list.is-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.is-cards .post-row{--cat:var(--accent);position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:14px;min-height:92px;padding:16px;
+  background:linear-gradient(var(--surface-solid),var(--surface-solid)) padding-box,linear-gradient(135deg,color-mix(in srgb,var(--cat) 55%,transparent),var(--line) 45%) border-box;
+  border:1px solid transparent;box-shadow:0 1px 2px rgba(0,0,0,.18);transition:transform .18s,box-shadow .18s}
+.is-cards .post-row:hover{transform:translateY(-2px);box-shadow:0 10px 28px -12px color-mix(in srgb,var(--cat) 60%,transparent)}
+.is-cards .post-row::before{content:'';grid-column:1;grid-row:1;width:52px;height:52px;border-radius:14px;background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.is-cards .post-row.is-rich::before,.is-plain .post-row::before{display:none}
+.is-cards .row-text{grid-column:2;grid-row:1;min-width:0}
+.is-cards .post-row.no-tool{grid-template-columns:minmax(0,1fr);min-height:0}
+.is-cards .no-tool .row-text{grid-column:1}
+.is-cards .post-row h3{font-size:16px;line-height:1.3}
+.is-cards .post-row h3 a::after{content:'';position:absolute;inset:0;border-radius:inherit}
+.is-cards .post-row h3 a:focus-visible{outline:none}
+.is-cards .post-row:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.row-ic{grid-column:1;grid-row:1;display:grid;place-items:center;width:52px;height:52px;border-radius:14px;font-size:26px;line-height:1;
+  background:color-mix(in srgb,var(--cat) 16%,var(--surface-solid));border:1px solid color-mix(in srgb,var(--cat) 35%,transparent)}
+.row-cat{display:inline-block;margin:0 0 4px;padding:2px 8px;border-radius:999px;font:700 11px/1.5 var(--ui,inherit);letter-spacing:.04em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--cat) 75%,var(--ink));background:color-mix(in srgb,var(--cat) 14%,transparent)}
+.row-desc{margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.row-desc:empty{display:none}
+.row-go{grid-column:3;grid-row:1;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;font:600 13.5px/1 var(--ui,inherit);
+  color:var(--accent-ink,#fff);background:var(--accent);box-shadow:0 2px 10px color-mix(in srgb,var(--accent) 35%,transparent);white-space:nowrap}
+.row-go svg{width:15px;height:15px}
+.post-row:hover .row-go{filter:brightness(1.08)}
+/* while the details load: a soft shimmer where the description will be */
+.is-cards:not(.is-plain) .post-row:not(.is-rich) .row-text::after{content:'';display:block;height:12px;width:70%;margin-top:10px;border-radius:6px;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--ink) 7%,transparent) 0%,color-mix(in srgb,var(--ink) 15%,transparent) 50%,color-mix(in srgb,var(--ink) 7%,transparent) 100%);background-size:200% 100%;animation:rowShim 1.2s linear infinite}
+@keyframes rowShim{to{background-position:-200% 0}}
+@media (max-width:520px){
+  .is-cards .post-row{grid-template-columns:46px minmax(0,1fr);gap:12px;padding:14px}
+  .is-cards .post-row::before,.row-ic{width:46px;height:46px;font-size:23px}
+  .row-go{display:none}
+}
+@media (prefers-reduced-motion:reduce){.is-cards .post-row{transition:none}.is-cards .post-row:hover{transform:none}}
+
+/* Infinity's mark is purple (matches the app icon); overrides the colour still inside older uploaded themes */
+.brand-mark [fill='#5FB34C']{fill:#A04CB3}
