@@ -1,0 +1,41 @@
+{
+ "name": "Crop PDF · Infinity",
+ "short_name": "Crop PDF",
+ "id": "/t/pdf-crop/",
+ "description": "Cut the margins off PDF pages by millimetres, by dragging a box on the page, or automatically to the content.",
+ "start_url": "/t/pdf-crop/",
+ "scope": "/t/pdf-crop/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

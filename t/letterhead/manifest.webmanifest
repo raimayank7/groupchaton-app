@@ -1,0 +1,41 @@
+{
+ "name": "Letterhead and Business Card Maker · Infinity",
+ "short_name": "Letterhead",
+ "id": "/t/letterhead/",
+ "description": "Make a company letterhead (A4, PDF or Word) and a matching 3.5 × 2 inch business card with your logo and details.",
+ "start_url": "/t/letterhead/",
+ "scope": "/t/letterhead/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

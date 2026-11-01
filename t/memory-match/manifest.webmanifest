@@ -1,0 +1,41 @@
+{
+ "name": "Memory Matching Game · Infinity",
+ "short_name": "Memory",
+ "id": "/t/memory-match/",
+ "description": "Turn over two cards at a time to find matching pairs. Animals, fruit, vehicles, space or letters; 6 to 15 pairs.",
+ "start_url": "/t/memory-match/",
+ "scope": "/t/memory-match/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

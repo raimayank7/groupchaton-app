@@ -1,0 +1,41 @@
+{
+ "name": "Countdown to a Date · Infinity",
+ "short_name": "Countdown",
+ "id": "/t/countdown/",
+ "description": "See exactly how many days, hours, minutes and seconds are left until any date, and save several countdowns.",
+ "start_url": "/t/countdown/",
+ "scope": "/t/countdown/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

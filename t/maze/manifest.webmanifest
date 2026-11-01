@@ -1,0 +1,41 @@
+{
+ "name": "Maze Generator and Solver · Infinity",
+ "short_name": "Maze",
+ "id": "/t/maze/",
+ "description": "Make a new maze in any size, play it with arrows or swipes, see the way out, and print it.",
+ "start_url": "/t/maze/",
+ "scope": "/t/maze/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

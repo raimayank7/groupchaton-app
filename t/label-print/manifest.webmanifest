@@ -1,0 +1,41 @@
+{
+ "name": "Address Label Printer · Infinity",
+ "short_name": "Address",
+ "id": "/t/label-print/",
+ "description": "Print addresses on standard label sheets (A4 21, 14, 8, 24, 65; Letter 30, 10, 6) or straight onto DL, C5, C6 and #10 envelopes.",
+ "start_url": "/t/label-print/",
+ "scope": "/t/label-print/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

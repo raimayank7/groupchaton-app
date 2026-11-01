@@ -53,16 +53,43 @@
   function used(id) { var r = recent().filter(function (x) { return x !== id; }); r.unshift(id); try { localStorage.setItem('gco-app-recent', JSON.stringify(r.slice(0, 6))); } catch (e) {} }
 
   function appTools() { return T.list.filter(function (t) { return t.app; }); }
-  function tile(t) {
-    var cat = T.cat(t.cat);
-    return h('a', { 'class': 'thub-card app-tile', href: '#' + t.id, style: '--cc:' + cat.color, title: t.desc }, [
+  // the app's own sections (the site files every record tool under one category); a new app tool lands in "More" until listed here
+  var GROUPS = [
+    { id: 'bill', name: 'Billing', color: '#8B7CFF', ids: ['invoice', 'quotation', 'receipt', 'proforma-invoice', 'credit-note', 'delivery-challan', 'purchase-order', 'gst-register'] },
+    { id: 'shop', name: 'Shop & staff', color: '#22D3EE', ids: ['book-keeper', 'customer-book', 'stock-register', 'attendance', 'salary-register', 'milk-hisab'] },
+    { id: 'money', name: 'Money', color: '#4ADE80', ids: ['money-manager', 'lend-borrow', 'bill-reminders', 'rent-tracker', 'portfolio', 'kitty-tracker', 'shagun-register'] },
+    { id: 'life', name: 'Personal', color: '#F472B6', ids: ['health-log', 'medicine-schedule', 'workout-log', 'diary', 'reading-log', 'study-planner', 'recipe-book', 'vehicle-log', 'my-data'] }];
+  var MORE = { id: 'more', name: 'More', color: '#FBBF24', ids: [] };
+  function groupOf(t) { return GROUPS.filter(function (g) { return g.ids.indexOf(t.id) >= 0; })[0] || MORE; }
+  function grouped(tools) {   // [{g, tools}] in section order, each section in its listed order, empty ones left out
+    return GROUPS.concat([MORE]).map(function (g) {
+      var mine = tools.filter(function (t) { return groupOf(t) === g; });
+      mine.sort(function (a, b) { return (g.ids.indexOf(a.id) + 1 || 99) - (g.ids.indexOf(b.id) + 1 || 99); });
+      return { g: g, tools: mine };
+    }).filter(function (x) { return x.tools.length; });
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tile(t, i) {
+    return h('a', { 'class': 'thub-card app-tile', href: '#' + t.id, style: '--cc:' + groupOf(t).color, title: t.desc }, [
+      typeof i === 'number' ? h('i', { 'class': 'app-idx', 'aria-hidden': 'true', text: pad(i + 1) }) : null,
       h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }), h('b', { text: t.name.replace(/ (Generator|and Statement Generator|Maker)$/, '') })]);
   }
   function row(t) {
-    var cat = T.cat(t.cat);
-    return h('a', { 'class': 'thub-card app-row', href: '#' + t.id, style: '--cc:' + cat.color }, [
-      h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }), h('span', {}, [h('b', { text: t.name }), h('small', { text: t.desc })]),
+    var g = groupOf(t);
+    return h('a', { 'class': 'thub-card app-row', href: '#' + t.id, style: '--cc:' + g.color }, [
+      h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }),
+      h('span', {}, [h('b', { text: t.name }), h('small', { text: t.desc }), h('em', { 'class': 'app-tag', text: g.name })]),
       h('i', { 'class': 'app-chev', 'aria-hidden': 'true', text: '›' })]);
+  }
+  // the console-style panel at the top of Home: what the app is, in numbers
+  function hero(hi) {
+    function stat(v, k) { return h('div', { 'class': 'app-stat' }, [h('b', { text: v }), h('span', { text: k })]); }
+    return h('section', { 'class': 'app-hero' }, [
+      h('div', { 'class': 'app-hero-bar', 'aria-hidden': 'true' }, [h('i'), h('i'), h('i'), h('code', { text: '~/infinity · ' + (online() ? 'online' : 'offline') })]),
+      h('p', { 'class': 'app-hero-hi' }, [h('span', { 'class': 'app-prompt', 'aria-hidden': 'true', text: '>_' }), h('span', { text: hi })]),
+      h('h2', {}, ['Your business and ', h('span', { 'class': 'app-grad', text: 'money toolkit' })]),
+      h('div', { 'class': 'app-stats' }, [stat(String(appTools().length), 'toolkits'), stat('0 KB', 'uploaded'), stat('100%', 'on device')]),
+      chip()]);
   }
   function chip() { return h('span', { 'class': 'app-chip' + (online() ? '' : ' is-off'), text: online() ? '● Online' : '● Offline: everything still works' }); }
   function installCard() {
@@ -86,26 +113,40 @@
 
   function home() {
     var hr = new Date().getHours(), hi = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
-    var r = recent().map(T.find).filter(function (t) { return t && t.app; });
-    screen('home', 'Infinity', [
-      h('div', { 'class': 'app-hello' }, [h('p', { text: hi }), h('h2', { text: 'Your business and money toolkit' }), chip()]),
+    var r = recent().map(T.find).filter(function (t) { return t && t.app; }), n = 0;
+    var kids = [hero(hi),
       r.length ? h('h3', { 'class': 'app-h3', text: 'Recent' }) : null,
-      r.length ? h('div', { 'class': 'app-strip' }, r.map(tile)) : null,
-      h('h3', { 'class': 'app-h3', text: 'Toolkits' }),
-      h('div', { 'class': 'app-grid' }, appTools().map(tile)),
-      installCard(),
-      h('p', { 'class': 'app-note', text: '🔒 Records are saved only on this device. Nothing is uploaded.' })]);
+      r.length ? h('div', { 'class': 'app-strip' }, r.map(function (t) { return tile(t); })) : null];
+    grouped(appTools()).forEach(function (x) {   // one titled grid per section, numbered across sections
+      kids.push(h('h3', { 'class': 'app-h3', style: '--cc:' + x.g.color, text: x.g.name }),
+        h('div', { 'class': 'app-grid' }, x.tools.map(function (t) { return tile(t, n++); })));
+    });
+    kids.push(installCard(), h('p', { 'class': 'app-note', text: '🔒 Records are saved only on this device. Nothing is uploaded.' }));
+    screen('home', 'Infinity', kids);
   }
   function all() {
     var q = h('input', { type: 'search', 'class': 'app-search', placeholder: 'Search toolkits', 'aria-label': 'Search toolkits' }), list = h('div', { 'class': 'app-list' });
+    var tools = appTools(), pick = '', count = h('p', { 'class': 'app-count' });
+    var chips = h('div', { 'class': 'app-chips', 'aria-label': 'Filter by section' }), sections = grouped(tools);
+    function chipBtn(id, label, n) {
+      return h('button', { type: 'button', 'class': 'app-fchip', 'aria-pressed': String(pick === id), onclick: function () { pick = id; draw(); } }, [label, h('small', { text: String(n) })]);
+    }
     function draw() {
       var s = q.value.trim().toLowerCase();
+      chips.innerHTML = '';
+      [chipBtn('', 'All', tools.length)].concat(sections.map(function (x) { return chipBtn(x.g.id, x.g.name, x.tools.length); }))
+        .forEach(function (b) { chips.appendChild(b); });
       list.innerHTML = '';
-      appTools().filter(function (t) { return !s || (t.name + ' ' + t.desc + ' ' + (t.keywords || []).join(' ')).toLowerCase().indexOf(s) >= 0; }).forEach(function (t) { list.appendChild(row(t)); });
-      if (!list.childNodes.length) list.appendChild(h('p', { 'class': 'app-muted', text: 'No toolkit matches “' + q.value + '”.' }));
+      var hits = tools.filter(function (t) { return (!pick || groupOf(t).id === pick) && (!s || (t.name + ' ' + t.desc + ' ' + (t.keywords || []).join(' ')).toLowerCase().indexOf(s) >= 0); });
+      grouped(hits).forEach(function (x) {
+        list.appendChild(h('h3', { 'class': 'app-h3', style: '--cc:' + x.g.color, text: x.g.name + ' · ' + x.tools.length }));
+        x.tools.forEach(function (t) { list.appendChild(row(t)); });
+      });
+      count.textContent = hits.length + ' of ' + tools.length + ' toolkits · all run on this device';
+      if (!hits.length) list.appendChild(h('p', { 'class': 'app-muted', text: 'No toolkit matches “' + q.value + '”.' }));
     }
     q.addEventListener('input', draw);
-    screen('all', 'All tools', [q, list,
+    screen('all', 'All tools', [h('div', { 'class': 'app-searchbox' }, [q]), chips, count, list,
       h('a', { 'class': 'app-card app-link', href: window.GCO.infinity + '/', target: '_blank', rel: 'noopener' }, [h('b', { text: 'See all ' + T.list.length + ' free tools on Infinity' }), h('span', { text: 'PDF, image, calculators, converters and more  ›' })])]);
     draw();
   }

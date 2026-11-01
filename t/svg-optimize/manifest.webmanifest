@@ -1,0 +1,41 @@
+{
+ "name": "SVG Optimiser · Infinity",
+ "short_name": "SVG Optimiser",
+ "id": "/t/svg-optimize/",
+ "description": "Shrink SVG files with SVGO: remove editor junk and metadata, round numbers, merge paths, and compare before and after.",
+ "start_url": "/t/svg-optimize/",
+ "scope": "/t/svg-optimize/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

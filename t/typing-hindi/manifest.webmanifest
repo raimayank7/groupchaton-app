@@ -1,0 +1,41 @@
+{
+ "name": "Hindi Typing Practice · Infinity",
+ "short_name": "Hindi",
+ "id": "/t/typing-hindi/",
+ "description": "Practise Hindi typing on a normal keyboard: Inscript or Remington (GAIL), with the Hindi key map shown and the next key lit up. Or use your own Hindi keyboard.",
+ "start_url": "/t/typing-hindi/",
+ "scope": "/t/typing-hindi/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

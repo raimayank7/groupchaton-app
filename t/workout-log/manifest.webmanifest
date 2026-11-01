@@ -1,0 +1,41 @@
+{
+ "name": "Gym and Workout Log · Infinity",
+ "short_name": "Gym",
+ "id": "/t/workout-log/",
+ "description": "Log gym and home workouts: sets, reps, weight and cardio minutes; see personal bests, weekly volume and your streak.",
+ "start_url": "/t/workout-log/",
+ "scope": "/t/workout-log/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

@@ -3,31 +3,53 @@
    - data/tools.json: fresh from the network when online, the saved copy when offline
    - libraries and fonts from CDNs (PDF, QR, ZIP…): saved the first time they are used
    Designed & Developed by Nivesh Sahayak. See LICENSE. */
-var VERSION = '2026-11-02.7-506b7548';
+var VERSION = '2026-11-02.7-a0dc9af6';
 var CORE = 'gco-app-' + VERSION, EXT = 'gco-app-ext';
 var FILES = [
  "./",
  "index.html",
- "app.js?v=2026-11-02.7-506b7548",
- "app.css?v=2026-11-02.7-506b7548",
+ "app.js?v=2026-11-02.7-a0dc9af6",
+ "app.css?v=2026-11-02.7-a0dc9af6",
  "manifest.webmanifest",
  "data/tools.json",
- "assets/infinity.css?v=2026-11-02.7-506b7548",
- "assets/tools/kit.js?v=2026-11-02.7-506b7548",
+ "assets/infinity.css?v=2026-11-02.7-a0dc9af6",
+ "assets/tools/kit.js?v=2026-11-02.7-a0dc9af6",
  "assets/tools/tools.css",
  "assets/brand/favicon-32.png",
  "assets/brand/favicon-192.png",
  "assets/brand/favicon-512.png",
  "assets/brand/apple-touch-icon.png",
  "assets/tools/_invoice.js",
+ "assets/tools/attendance.js",
+ "assets/tools/bill-reminders.js",
  "assets/tools/book-keeper.js",
+ "assets/tools/credit-note.js",
+ "assets/tools/customer-book.js",
  "assets/tools/delivery-challan.js",
+ "assets/tools/diary.js",
+ "assets/tools/gst-register.js",
+ "assets/tools/health-log.js",
  "assets/tools/invoice.js",
+ "assets/tools/kitty-tracker.js",
+ "assets/tools/lend-borrow.js",
+ "assets/tools/medicine-schedule.js",
+ "assets/tools/milk-hisab.js",
  "assets/tools/money-manager.js",
+ "assets/tools/my-data.js",
+ "assets/tools/portfolio.js",
  "assets/tools/proforma-invoice.js",
  "assets/tools/purchase-order.js",
  "assets/tools/quotation.js",
- "assets/tools/receipt.js"
+ "assets/tools/reading-log.js",
+ "assets/tools/receipt.js",
+ "assets/tools/recipe-book.js",
+ "assets/tools/rent-tracker.js",
+ "assets/tools/salary-register.js",
+ "assets/tools/shagun-register.js",
+ "assets/tools/stock-register.js",
+ "assets/tools/study-planner.js",
+ "assets/tools/vehicle-log.js",
+ "assets/tools/workout-log.js"
 ];
 
 self.addEventListener('install', function (e) {

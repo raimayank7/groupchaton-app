@@ -1,0 +1,41 @@
+{
+ "name": "Keyboard Layout Practice · Infinity",
+ "short_name": "Keyboard",
+ "id": "/t/typing-layouts/",
+ "description": "Try or learn another keyboard layout on your own keyboard: the tool swaps the keys for you and shows the new layout, finger by finger.",
+ "start_url": "/t/typing-layouts/",
+ "scope": "/t/typing-layouts/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "name": "What Should I Eat? · Infinity",
+ "short_name": "What",
+ "id": "/t/what-to-eat/",
+ "description": "Can’t decide what to eat? Get a fair random pick from about 140 dishes, filtered by meal, diet, cuisine and effort, or from your own list.",
+ "start_url": "/t/what-to-eat/",
+ "scope": "/t/what-to-eat/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

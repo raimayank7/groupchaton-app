@@ -1,0 +1,41 @@
+{
+ "name": "Emoji Riddles · Infinity",
+ "short_name": "Emoji Riddles",
+ "id": "/t/emoji-riddles/",
+ "description": "75+ emoji puzzles: guess the word, the film (Bollywood and Hollywood), the place, the dish or the saying. Type your guess or open four choices.",
+ "start_url": "/t/emoji-riddles/",
+ "scope": "/t/emoji-riddles/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
+ "lang": "en",
+ "dir": "ltr",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
