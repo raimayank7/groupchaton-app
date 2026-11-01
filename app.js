@@ -34,8 +34,9 @@
 
   // ---- inside an infinity post: tell the page our height so the frame fits ----
   if (embed && window.parent !== window) {
-    var post = function () { parent.postMessage({ gcoApp: 'height', h: document.documentElement.scrollHeight }, '*'); };
-    if (window.ResizeObserver) new ResizeObserver(post).observe(document.body);
+    // the content's own height (the document is never shorter than the frame, so it cannot be used to shrink it)
+    var post = function () { parent.postMessage({ gcoApp: 'height', h: Math.ceil(app.getBoundingClientRect().height) + 8 }, '*'); };
+    if (window.ResizeObserver) new ResizeObserver(post).observe(app);
     addEventListener('load', post);
     parent.postMessage({ gcoApp: 'ready' }, '*');
   }
