@@ -9,7 +9,7 @@
   var C = window.GCO || {};
   var BASE = C.base || '';
   // EDIT: bump this after changing any file in assets/tools/, so browsers fetch the new version straight away
-  var VERSION = '2026-11-02.6';
+  var VERSION = '2026-11-02.7';
   var doc = document;
   var T = window.GCOTools = window.GCOTools || {};
 
@@ -793,6 +793,136 @@
     related(page, info);
     structured(info);
   }
+  /* ---------- button icons ----------
+     Every .tbtn gets a line icon picked from its words (Copy, Download, Share…) or from the emoji/glyph it starts with,
+     and every WhatsApp button gets WhatsApp's own mark. The button's text is never changed (tools read it back), the
+     glyph is only hidden, and a button whose label a tool rewrites is simply decorated again. */
+  var IC = {
+    copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+    upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>',
+    share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
+    trash: '<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>',
+    x: '<path d="M18 6 6 18M6 6l12 12"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    play: '<path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z" fill="currentColor" stroke="none"/>',
+    pause: '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>',
+    stop: '<rect x="5" y="5" width="14" height="14" rx="2"/>',
+    save: '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/>',
+    print: '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
+    reset: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+    undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
+    spark: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+    eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    next: '<path d="M5 12h14M12 5l7 7-7 7"/>',
+    left: '<path d="M15 18l-6-6 6-6"/>',
+    right: '<path d="M9 18l6-6-6-6"/>',
+    sound: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/>',
+    swap: '<path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/>',
+    shuffle: '<path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',
+    dice: '<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor"/>',
+    flip: '<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',
+    bulb: '<path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    open: '<path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/>',
+    qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v1M14 20h1M18 18h3v3h-3z"/>',
+    phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
+    mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/>',
+    edit: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+    pin: '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
+    camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>',
+    mic: '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/>',
+    full: '<path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M16 21h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>',
+    star: '<path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>',
+    erase: '<path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM18 9l-6 6M12 9l6 6"/>',
+    merge: '<path d="M8 6l4-4 4 4M12 2v10.3a4 4 0 0 1-1.17 2.83L4 22M20 22l-5-5"/>',
+    split: '<path d="M16 3h5v5M8 3H3v5M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3M21 3l-7.2 7.2"/>',
+    shrink: '<path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/>',
+    zin: '<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/>',
+    zout: '<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3M8 11h6"/>',
+    file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
+    link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+    wa: '<path fill="currentColor" stroke="none" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/>'
+  };
+  // the words a label starts with → its icon (first match wins; WhatsApp anywhere in the label beats them all)
+  var IC_WORDS = [
+    [/^(copied|done|finish|submit|verify|check|mark)/i, 'check'], [/^(copy)/i, 'copy'],
+    [/^(download|export|install|save as|get (the )?(file|pdf|picture|image))/i, 'download'], [/^save/i, 'save'],
+    [/^(upload|import|choose|browse|load|attach)/i, 'upload'], [/^(share|post|send)/i, 'share'], [/^print/i, 'print'],
+    [/^(clear|delete|remove|empty|erase)/i, 'trash'], [/^(reset|start over|restart|again|replay|redo)/i, 'reset'], [/^undo/i, 'undo'],
+    [/^(play|start|begin|resume|go\b)/i, 'play'], [/^pause/i, 'pause'], [/^(stop|end\b)/i, 'stop'],
+    [/^(add|new|\+\s)/i, 'plus'], [/^(try|example|sample|generate|make|create|surprise|random)/i, 'spark'],
+    [/^(show|reveal|preview|view|see)/i, 'eye'], [/^(next|convert|continue|calculate|skip)/i, 'next'], [/^(prev|previous|back)\b/i, 'left'],
+    [/^(hear|listen|speak|read( it)? aloud|say)/i, 'sound'], [/^swap/i, 'swap'], [/^shuffle/i, 'shuffle'], [/^roll/i, 'dice'],
+    [/^(flip|turn)/i, 'flip'], [/^hint/i, 'bulb'], [/^(open|test|visit)/i, 'open'], [/^(find|search|look up)/i, 'search'],
+    [/^(cancel|close)/i, 'x'], [/^qr/i, 'qr'], [/^call/i, 'phone'], [/^(e-?mail|mail)/i, 'mail'], [/^(edit|rename)/i, 'edit'],
+    [/^(today|pick (a )?date)/i, 'calendar'], [/^(use my location|locate|my location)/i, 'pin'], [/^(camera|take (a )?photo|scan)/i, 'camera'],
+    [/^(merge|combine|join)/i, 'merge'], [/^split/i, 'split'], [/^(compress|minify|shrink)/i, 'shrink'], [/^zoom in/i, 'zin'], [/^zoom out/i, 'zout'],
+    [/^restore/i, 'upload'], [/^backup/i, 'download'], [/^(rotate|reverse)/i, 'flip'], [/^read text/i, 'eye'], [/^use screen/i, 'full'], [/^(word|text|pdf|excel|csv|json) \(/i, 'file'],
+    [/^(record)/i, 'mic'], [/^full ?screen/i, 'full'], [/(favourite|favorite)/i, 'star'], [/^(link|shorten)/i, 'link']
+  ];
+  // a label that starts with one of these glyphs shows the icon in its place
+  var IC_GLYPH = { '▶': 'play', '⏵': 'play', '⏯': 'play', '⏸': 'pause', '■': 'stop', '⏹': 'stop', '🔊': 'sound', '🔈': 'sound', '✕': 'x', '×': 'x', '✖': 'x',
+    '🖨': 'print', '💾': 'save', '↺': 'reset', '⟲': 'reset', '🔄': 'reset', '↻': 'flip', '✓': 'check', '✔': 'check', '◀': 'left', '‹': 'left', '«': 'left', '›': 'right', '»': 'right',
+    '📷': 'camera', '📸': 'camera', '📍': 'pin', '📅': 'calendar', '📆': 'calendar', '💡': 'bulb', '🎤': 'mic', '⌫': 'erase', '⇅': 'swap', '⇄': 'swap', '↶': 'undo',
+    '⬇': 'download', '⤓': 'download', '⬆': 'upload', '📂': 'upload', '★': 'star', '☆': 'star', '📞': 'phone', '✉': 'mail', '📧': 'mail', '✎': 'edit', '✏': 'edit',
+    '🎲': 'dice', '📋': 'copy', '🔗': 'link', '📤': 'share', '🗑': 'trash', '➕': 'plus', '+': 'plus', '🔍': 'search', '🔎': 'search', '🔀': 'shuffle', '🎯': 'spark', '✨': 'spark' };
+  var IC_NAME = { play: 'Play', pause: 'Pause', stop: 'Stop', sound: 'Listen', x: 'Close', print: 'Print', save: 'Save', reset: 'Start again', flip: 'Flip',
+    check: 'Done', left: 'Previous', right: 'Next', camera: 'Camera', pin: 'My location', calendar: 'Date', bulb: 'Hint', mic: 'Record', erase: 'Delete',
+    swap: 'Swap', undo: 'Undo', download: 'Download', upload: 'Upload', star: 'Favourite', phone: 'Call', mail: 'Email', edit: 'Edit', dice: 'Roll',
+    copy: 'Copy', link: 'Link', share: 'Share', trash: 'Delete', plus: 'Add', search: 'Search', shuffle: 'Shuffle', spark: 'Go' };
+  function icSvg(k) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + IC[k] + '</svg>';
+  }
+  function icUndo(b) {
+    var old = b.querySelector(':scope > .t-ic'); if (old) old.remove();
+    Array.prototype.slice.call(b.querySelectorAll(':scope > .t-glyph')).forEach(function (g) { g.replaceWith(doc.createTextNode(g.textContent)); });
+    b.classList.remove('tbtn-wa', 'tbtn-ic-only'); b.removeAttribute('data-ic');
+  }
+  function icDecorate(b) {
+    var text = b.textContent.replace(/\s+/g, ' ').trim();
+    if (b.getAttribute('data-ic') === text) return;
+    if (b.hasAttribute('data-ic')) icUndo(b);
+    if (b.classList.contains('tbtn-noic') || b.querySelector('svg, img, canvas')) return;
+    var href = b.getAttribute('href') || '', k = null, glyph = null;
+    // the first visible character: an emoji or symbol at the start of the label
+    var walker = doc.createTreeWalker(b, NodeFilter.SHOW_TEXT), node;
+    while ((node = walker.nextNode()) && !node.nodeValue.trim()) {}
+    if (node) {
+      var m = /^\s*([^\s\wऀ-ൿ])(️)?\s?/.exec(node.nodeValue);
+      if (m && IC_GLYPH[m[1]] && !(m[1] === '+' && /^\s*\+\d/.test(node.nodeValue))) { k = IC_GLYPH[m[1]]; glyph = [node, m[0]]; }
+    }
+    var words = text.replace(/^[^\wऀ-ൿ]+/, '');
+    if (/whatsapp/i.test(text) || /(^|\/\/)(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com|chat\.whatsapp\.com)|^whatsapp:/i.test(href)) k = 'wa';
+    else if (!k) IC_WORDS.some(function (r) { if (r[0].test(words)) { k = r[1]; return true; } });
+    if (!k) { b.setAttribute('data-ic', text); return; }
+    if (glyph) {
+      // hide the glyph itself (it stays in the text, which some tools read back)
+      var n = glyph[0], cut = glyph[1].length, rest = n.splitText(cut);
+      var g = h('span', { 'class': 't-glyph', 'aria-hidden': 'true' }); n.replaceWith(g); g.appendChild(n);
+      if (!rest.nodeValue.trim() && !words) {
+        b.classList.add('tbtn-ic-only');
+        if (!b.getAttribute('aria-label') && !b.title) b.setAttribute('aria-label', IC_NAME[k] || '');
+      }
+    }
+    var ic = h('span', { 'class': 't-ic', 'aria-hidden': 'true' }); ic.innerHTML = icSvg(k);
+    b.insertBefore(ic, b.firstChild);
+    if (k === 'wa') b.classList.add('tbtn-wa');
+    if (!text) b.classList.add('tbtn-ic-only');
+    b.setAttribute('data-ic', text);
+  }
+  T.icons = function (root) { Array.prototype.slice.call((root || doc).querySelectorAll('.tbtn')).forEach(icDecorate); };
+  (function () {
+    var queued = false;
+    function run() { queued = false; T.icons(); }
+    function later() { if (!queued) { queued = true; setTimeout(run, 16); } }
+    if (!window.MutationObserver) return;
+    new MutationObserver(later).observe(doc.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['href'] });
+    later();
+  })();
+
   T.scan = function () { $all('[data-gco-tool]').forEach(function (page) {
     var id = page.getAttribute('data-gco-tool');
     if (page.__mounted || page.__waiting) return;

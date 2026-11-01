@@ -27,7 +27,7 @@ GCOTools.register('wa-link', function (spot, T) {
   spot.appendChild(T.card([T.field('Your WhatsApp number', num, 'with country code; spaces and + are fine'), T.field('Ready message', msg), T.field('Your chat link', out), qrBox,
     T.row([T.button('Copy link', { primary: true, onclick: function (e) { if (last.link) T.copy(last.link, e.currentTarget); } }),
       T.button('Download QR (PNG)', { onclick: function () { if (last.canvas) T.canvasBlob(last.canvas, 'image/png').then(function (b) { T.download(b, 'whatsapp-qr.png'); }); } }),
-      T.button('Test the link', { onclick: function () { if (last.link) window.open(last.link, '_blank', 'noopener'); } })]), status.el]));
+      T.button('Test on WhatsApp', { onclick: function () { if (last.link) window.open(last.link, '_blank', 'noopener'); } })]), status.el]));
   draw();
   T.tests['wa-link'] = function () {
     var k = [num.value, msg.value], fails = [];
