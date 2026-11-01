@@ -1,80 +1,158 @@
 /* Infinity App by GroupChatOn (app.groupchaton.com) — the installable, offline home for tools that keep records.
-   One page: #<tool-id> opens a tool, no hash shows the home screen. ?embed=1 is the view shown inside infinity.groupchaton.com posts.
+   An app shell: top bar (back, title, install, theme) + bottom tabs (Home, All tools, Settings); on wide screens the tabs become a side rail.
+   Routes: no hash = Home, #all = All tools, #settings = Settings, #<tool-id> = that tool.
+   /t/<id>/ is one tool installed on its own (no tabs). ?embed=1 is the view shown inside infinity.groupchaton.com posts (tool only).
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var T = window.GCOTools, h = T.h, app = document.getElementById('app');
-  var embed = document.documentElement.classList.contains('is-embed');
+  var T = window.GCOTools, h = T.h, app = document.getElementById('app'), root = document.documentElement;
+  var embed = root.classList.contains('is-embed');
   var only = window.GCO.only || '';   // app.groupchaton.com/t/<id>/: one tool, installable on its own
+  var $ = function (id) { return document.getElementById(id); };
+  var titleEl = $('app-title'), back = $('app-back'), tabs = $('app-tabs');
+  if (only) root.classList.add('is-single');
 
   // ---- offline: the service worker keeps every file of the app on the device ----
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('sw.js').catch(function () {});
-  }
-  var off = document.getElementById('app-offline');
-  function net() { if (off) off.textContent = navigator.onLine ? 'Online' : 'Offline: your tools still work'; }
-  addEventListener('online', net); addEventListener('offline', net); net();
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(function () {});
+  function online() { return navigator.onLine; }
+  addEventListener('online', function () { route(true); }); addEventListener('offline', function () { route(true); });
 
-  // ---- install button (Chrome, Edge, Android); iPhone users get a hint instead ----
-  var installBtn = document.getElementById('app-install'), deferred = null;
-  addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; installBtn.hidden = false; });
-  installBtn.addEventListener('click', function () {
+  // ---- install (Chrome, Edge, Android); iPhone users get the Share → Add to Home Screen hint ----
+  var installBtn = $('app-install'), deferred = null;
+  var standalone = root.classList.contains('is-installed'), ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; installBtn.hidden = false; route(true); });
+  addEventListener('appinstalled', function () { deferred = null; installBtn.hidden = true; standalone = true; root.classList.add('is-installed'); route(true); });
+  function install() {
     if (!deferred) return;
     deferred.prompt();
-    deferred.userChoice.then(function () { deferred = null; installBtn.hidden = true; });
-  });
-  var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    deferred.userChoice.then(function () { deferred = null; installBtn.hidden = true; route(true); });
+  }
+  installBtn.addEventListener('click', install);
 
   // ---- light / dark ----
-  document.getElementById('app-theme').addEventListener('click', function () {
-    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
+  function theme(t) {
+    root.setAttribute('data-theme', t);
     try { localStorage.setItem('gct-theme', t); } catch (e) {}
-  });
+  }
+  $('app-theme').addEventListener('click', function () { theme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+
+  // ---- back: to the screen you came from inside the app, else Home ----
+  var depth = 0;
+  back.addEventListener('click', function () { if (depth > 0) history.back(); else location.hash = ''; });
 
   // ---- inside an infinity post: tell the page our height so the frame fits ----
   if (embed && window.parent !== window) {
-    // the content's own height (the document is never shorter than the frame, so it cannot be used to shrink it)
     var post = function () { parent.postMessage({ gcoApp: 'height', h: Math.ceil(app.getBoundingClientRect().height) + 8 }, '*'); };
     if (window.ResizeObserver) new ResizeObserver(post).observe(app);
     addEventListener('load', post);
     parent.postMessage({ gcoApp: 'ready' }, '*');
   }
 
+  // ---- recently opened tools (this device only) ----
+  function recent() { try { return JSON.parse(localStorage.getItem('gco-app-recent')) || []; } catch (e) { return []; } }
+  function used(id) { var r = recent().filter(function (x) { return x !== id; }); r.unshift(id); try { localStorage.setItem('gco-app-recent', JSON.stringify(r.slice(0, 6))); } catch (e) {} }
+
   function appTools() { return T.list.filter(function (t) { return t.app; }); }
-  function home() {
-    document.title = 'Infinity App by GroupChatOn';
+  function tile(t) {
+    var cat = T.cat(t.cat);
+    return h('a', { 'class': 'thub-card app-tile', href: '#' + t.id, style: '--cc:' + cat.color, title: t.desc }, [
+      h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }), h('b', { text: t.name.replace(/ (Generator|and Statement Generator|Maker)$/, '') })]);
+  }
+  function row(t) {
+    var cat = T.cat(t.cat);
+    return h('a', { 'class': 'thub-card app-row', href: '#' + t.id, style: '--cc:' + cat.color }, [
+      h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }), h('span', {}, [h('b', { text: t.name }), h('small', { text: t.desc })]),
+      h('i', { 'class': 'app-chev', 'aria-hidden': 'true', text: '›' })]);
+  }
+  function chip() { return h('span', { 'class': 'app-chip' + (online() ? '' : ' is-off'), text: online() ? '● Online' : '● Offline: everything still works' }); }
+  function installCard() {
+    if (standalone) return null;
+    return h('div', { 'class': 'app-card app-install-card' }, [
+      h('b', { text: 'Install Infinity on this device' }),
+      h('p', { text: ios ? 'Tap Share, then “Add to Home Screen”. It opens like an app and works without internet.' : 'It opens like an app from your home screen and works without internet.' }),
+      deferred ? T.button('Install app', { primary: true, onclick: install }) : (ios ? null : h('p', { 'class': 'app-muted', text: 'Or use your browser menu → “Install app”.' }))]);
+  }
+
+  function screen(name, title, kids) {
+    document.title = title === 'Infinity' ? 'Infinity App by GroupChatOn' : title + ' · Infinity App';
+    titleEl.textContent = title;
+    back.hidden = name === 'home' || name === 'all' || name === 'settings' || !!only;
+    root.setAttribute('data-screen', name);
+    Array.prototype.forEach.call(tabs.querySelectorAll('a'), function (a) { a.classList.toggle('is-on', a.getAttribute('data-tab') === name); a.setAttribute('aria-current', a.getAttribute('data-tab') === name ? 'page' : 'false'); });
     app.innerHTML = '';
-    app.appendChild(h('section', { 'class': 'app-hero' }, [
-      h('h1', {}, ['Your business and money toolkit, ', h('span', { 'class': 'app-grad', text: 'in your pocket.' })]),
-      h('p', { text: 'Invoices, quotations, receipts, khata with statements and a money manager. Works offline once opened, and every record stays on this device.' }),
-      standalone ? null : h('p', { 'class': 'app-hint', text: ios ? 'Install: tap Share, then “Add to Home Screen”.' : 'Install it from the button above, or your browser menu → “Install app”.' })]));
-    var groups = {};
-    appTools().forEach(function (t) { (groups[t.cat] = groups[t.cat] || []).push(t); });
-    Object.keys(groups).forEach(function (c) {
-      var cat = T.cat(c);
-      app.appendChild(h('h2', { 'class': 'app-h2', text: cat.icon + ' ' + cat.name }));
-      app.appendChild(h('div', { 'class': 'thub-grid' }, groups[c].map(function (t) {
-        return h('a', { 'class': 'thub-card', href: '#' + t.id, style: '--cc:' + cat.color }, [h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }),
-          h('span', {}, [h('b', { text: t.name }), h('small', { text: t.desc })])]);
-      })));
-    });
-    app.appendChild(h('p', { 'class': 'app-more' }, [h('a', { href: window.GCO.infinity + '/', target: '_blank', rel: 'noopener', text: 'See all ' + T.list.length + ' free tools on Infinity →' })]));
+    var s = h('div', { 'class': 'app-screen' }, kids.filter(Boolean));
+    app.appendChild(s);
+  }
+
+  function home() {
+    var hr = new Date().getHours(), hi = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
+    var r = recent().map(T.find).filter(function (t) { return t && t.app; });
+    screen('home', 'Infinity', [
+      h('div', { 'class': 'app-hello' }, [h('p', { text: hi }), h('h2', { text: 'Your business and money toolkit' }), chip()]),
+      r.length ? h('h3', { 'class': 'app-h3', text: 'Recent' }) : null,
+      r.length ? h('div', { 'class': 'app-strip' }, r.map(tile)) : null,
+      h('h3', { 'class': 'app-h3', text: 'Toolkits' }),
+      h('div', { 'class': 'app-grid' }, appTools().map(tile)),
+      installCard(),
+      h('p', { 'class': 'app-note', text: '🔒 Records are saved only on this device. Nothing is uploaded.' })]);
+  }
+  function all() {
+    var q = h('input', { type: 'search', 'class': 'app-search', placeholder: 'Search toolkits', 'aria-label': 'Search toolkits' }), list = h('div', { 'class': 'app-list' });
+    function draw() {
+      var s = q.value.trim().toLowerCase();
+      list.innerHTML = '';
+      appTools().filter(function (t) { return !s || (t.name + ' ' + t.desc + ' ' + (t.keywords || []).join(' ')).toLowerCase().indexOf(s) >= 0; }).forEach(function (t) { list.appendChild(row(t)); });
+      if (!list.childNodes.length) list.appendChild(h('p', { 'class': 'app-muted', text: 'No toolkit matches “' + q.value + '”.' }));
+    }
+    q.addEventListener('input', draw);
+    screen('all', 'All tools', [q, list,
+      h('a', { 'class': 'app-card app-link', href: window.GCO.infinity + '/', target: '_blank', rel: 'noopener' }, [h('b', { text: 'See all ' + T.list.length + ' free tools on Infinity' }), h('span', { text: 'PDF, image, calculators, converters and more  ›' })])]);
+    draw();
+  }
+  function settings() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    function item(label, value, onclick, href) {
+      var kids = [h('span', { text: label }), value ? h('small', { text: value }) : null, h('i', { 'class': 'app-chev', 'aria-hidden': 'true', text: '›' })];
+      return href ? h('a', { 'class': 'app-item', href: href, target: '_blank', rel: 'noopener' }, kids) : h('button', { type: 'button', 'class': 'app-item', onclick: onclick }, kids);
+    }
+    screen('settings', 'Settings', [
+      h('h3', { 'class': 'app-h3', text: 'Appearance' }),
+      h('div', { 'class': 'app-group' }, [item('Theme', dark ? 'Dark' : 'Light', function () { theme(dark ? 'light' : 'dark'); settings(); })]),
+      h('h3', { 'class': 'app-h3', text: 'This device' }),
+      h('div', { 'class': 'app-group' }, [
+        h('div', { 'class': 'app-item is-static' }, [h('span', { text: 'Connection' }), h('small', { text: online() ? 'Online' : 'Offline: your tools still work' })]),
+        h('div', { 'class': 'app-item is-static' }, [h('span', { text: 'Installed' }), h('small', { text: standalone ? 'Yes' : 'No' })]),
+        !standalone && deferred ? item('Install app', '', install) : null]),
+      installCard(),
+      h('h3', { 'class': 'app-h3', text: 'Your records' }),
+      h('p', { 'class': 'app-note', text: 'Invoices, khata and money records are saved only in this browser on this device. Use “Download a backup” inside each tool regularly, and before clearing browser data or changing phones.' }),
+      h('h3', { 'class': 'app-h3', text: 'About' }),
+      h('div', { 'class': 'app-group' }, [
+        item('More free tools on Infinity', '', null, window.GCO.infinity + '/'),
+        item('Help and guides', '', null, 'https://help.groupchaton.com/'),
+        item('Privacy policy', '', null, window.GCO.infinity + '/p/privacy-policy.html'),
+        h('div', { 'class': 'app-item is-static' }, [h('span', { text: 'Version' }), h('small', { text: (document.querySelector('script[src*="app.js?v="]') || { src: '' }).src.split('v=')[1] || '' })])])]);
   }
   function tool(id) {
     var t = T.find(id);
     if (!t) return home();
-    document.title = t.name + ' · Infinity App';
-    app.innerHTML = '';
-    if (!embed && !only) app.appendChild(h('nav', { 'class': 'app-crumb' }, [h('a', { href: '#', text: '← All toolkits' })]));
-    if (!embed) app.appendChild(h('h1', { 'class': 'app-title', text: t.icon + ' ' + t.name }));
-    if (only && !standalone) app.appendChild(h('p', { 'class': 'app-hint' }, [ios ? 'Install this tool: tap Share, then “Add to Home Screen”.' : 'Install this tool as its own app: use the Install button above, or your browser menu → “Install app”. It opens straight to ' + t.name + ' and works offline.']));
-    if (only) app.appendChild(h('p', { 'class': 'app-more' }, [h('a', { href: window.GCO.infinity + '/', target: '_blank', rel: 'noopener', text: 'More free tools on Infinity →' })]));
-    app.appendChild(h('div', { 'class': 'gco-page', 'data-gco-tool': id }, [h('div', { 'class': 'gco-tool-mount' })]));
+    used(id);
+    screen('tool', t.name, [
+      embed ? null : h('div', { 'class': 'app-tool-head' }, [h('span', { 'class': 'thub-ic', 'aria-hidden': 'true', text: t.icon }), h('p', { text: t.desc })]),
+      only && !standalone ? installCard() : null,
+      h('div', { 'class': 'gco-page', 'data-gco-tool': id }, [h('div', { 'class': 'gco-tool-mount' })]),
+      only ? h('a', { 'class': 'app-card app-link', href: window.GCO.infinity + '/', target: '_blank', rel: 'noopener' }, [h('b', { text: 'More free tools on Infinity' }), h('span', { text: 'Open infinity.groupchaton.com  ›' })]) : null]);
     T.scan();
-    scrollTo(0, 0);
   }
-  function route() { if (only) return tool(only); var id = location.hash.replace(/^#\/?/, ''); if (id) tool(id); else home(); }
-  T.ready.then(function () { route(); addEventListener('hashchange', route); });
+
+  var last = null;
+  function route(refresh) {
+    var id = only || location.hash.replace(/^#\/?/, '');
+    if (refresh && (id && id !== 'all' && id !== 'settings')) return;   // never redraw a tool the user is working in
+    if (!refresh) { if (last !== null && id !== last) depth = id ? depth + 1 : 0; last = id; }
+    if (refresh) root.setAttribute('data-quiet', ''); else root.removeAttribute('data-quiet');   // status updates redraw without the slide-in
+    if (id === 'all') all(); else if (id === 'settings') settings(); else if (id) tool(id); else home();
+    if (!refresh) scrollTo(0, 0);
+  }
+  T.ready.then(function () { route(); addEventListener('hashchange', function () { route(); }); });
 })();

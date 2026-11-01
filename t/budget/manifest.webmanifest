@@ -6,9 +6,18 @@
  "start_url": "/t/budget/",
  "scope": "/t/budget/",
  "display": "standalone",
- "background_color": "#07090F",
- "theme_color": "#07090F",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "launch_handler": {
+  "client_mode": "focus-existing"
+ },
+ "orientation": "any",
+ "background_color": "#05060F",
+ "theme_color": "#05060F",
  "lang": "en",
+ "dir": "ltr",
  "icons": [
   {
    "src": "/assets/brand/favicon-192.png",
@@ -21,6 +30,12 @@
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/app-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
   }
  ]
 }

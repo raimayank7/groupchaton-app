@@ -344,3 +344,8 @@ html[data-theme='light'] .twa-msg.is-me{background:#D9FDD3}
 .tcat-rows{display:grid;gap:8px}
 .tcat-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .tcat-row input{flex:1 1 120px}
+/* narrow phones (360-400px): grid columns default to "as wide as the widest child", which pushed fields past the card edge.
+   Let every tool grid shrink to the screen, and keep form controls inside their column. */
+.tool-app,.tool-app-opts,.tfield{grid-template-columns:minmax(0,1fr)}
+.tool-app>*,.tool-app-opts>*{min-width:0}
+.tool-app input,.tool-app select,.tool-app textarea{max-width:100%;min-width:0;box-sizing:border-box}
