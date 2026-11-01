@@ -1,0 +1,26 @@
+{
+ "name": "WhatsApp Link & QR Generator · Infinity",
+ "short_name": "WhatsApp",
+ "id": "/t/wa-link/",
+ "description": "Make a wa.me chat link with a ready message, and a QR code to print.",
+ "start_url": "/t/wa-link/",
+ "scope": "/t/wa-link/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -298,3 +298,49 @@ html[data-theme='dark'] .tin-c,html[data-theme='black'] .tin-c{color:#4ade80}htm
 .tplaces .tbtn{min-height:34px;font-size:13.5px}
 .tmap{height:360px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
 .tstat-wide{grid-column:1/-1}
+
+/* ---------- WhatsApp tools ---------- */
+.tqr canvas{display:block;width:min(260px,100%);height:auto;border-radius:12px;background:#fff;padding:6px}
+.twa-prev{padding:12px 14px;border-radius:12px 12px 12px 2px;background:#D9FDD3;color:#111B21;max-width:520px;font:15px/1.5 system-ui,sans-serif;white-space:normal;overflow-wrap:anywhere}
+.twa-prev code{font-family:Consolas,monospace;background:rgba(0,0,0,.06);padding:0 4px;border-radius:4px}
+.twa-prev code.pre{display:inline}
+.twa-prev .q{display:inline-block;border-left:3px solid #25D366;padding-left:8px;color:#54656F}
+.twa-chat{display:flex;flex-direction:column;gap:4px;padding:12px;border-radius:14px;background:#0B141A}
+html[data-theme='light'] .twa-chat{background:#EFEAE2}
+.twa-msg{max-width:80%;align-self:flex-start;padding:6px 10px 4px;border-radius:10px;background:#202C33;color:#E9EDEF;font-size:14.5px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+html[data-theme='light'] .twa-msg{background:#fff;color:#111B21}
+.twa-msg.is-me{align-self:flex-end;background:#005C4B}
+html[data-theme='light'] .twa-msg.is-me{background:#D9FDD3}
+.twa-msg b{display:block;font-size:12.5px}
+.twa-msg small{display:block;text-align:right;font-size:11px;opacity:.65}
+.twa-msg img,.twa-msg video{display:block;max-width:100%;max-height:320px;border-radius:8px;margin:2px 0}
+.twa-day,.twa-sys{align-self:center;margin:8px 0;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.08);color:#8696A0;font-size:12.5px;text-align:center}
+.twa-more{align-self:center;margin-top:8px}
+.twa-bars{display:grid;gap:6px}
+.twa-bar{display:grid;grid-template-columns:minmax(80px,160px) 1fr;gap:2px 10px;align-items:center}
+.twa-bar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.twa-bar i{display:block;height:12px;border-radius:6px;background:var(--accent);min-width:2px}
+.twa-bar small{grid-column:2;color:var(--muted);font-size:12.5px}
+.twa-hours{display:flex;align-items:flex-end;gap:3px;height:140px;padding-bottom:18px}
+.twa-hours i{position:relative;flex:1;background:var(--accent);border-radius:4px 4px 0 0}
+.twa-hours small{position:absolute;bottom:-18px;left:0;font-size:11px;color:var(--muted);font-style:normal}
+.twa-emoji,.twa-words{display:flex;flex-wrap:wrap;gap:8px}
+.twa-emoji span{font-size:26px}
+.twa-emoji small,.twa-words span{font-size:13px;color:var(--muted)}
+.twa-words span{padding:4px 10px;border-radius:999px;background:var(--surface-2)}
+.tfit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:720px){.tfit{grid-template-columns:1fr}}
+.tfit-prev{display:grid;place-items:center;min-height:200px;padding:10px;border-radius:14px;background:var(--bg)}
+.tfit-canvas{display:block;max-width:100%;max-height:520px;width:auto;height:auto}
+.tfit-prev.is-circle .tfit-canvas{border-radius:50%}
+.tfit-prev.is-checker{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/20px 20px}
+.tfit-ctl{display:grid;gap:10px}
+.tfonts{display:grid;gap:6px}
+.tfont{display:grid;gap:2px;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:copy;font:inherit}
+.tfont small{color:var(--muted);font-size:12px}
+.tfont span{font-size:18px;overflow-wrap:anywhere}
+.twa-btnprev{position:relative;height:110px;border-radius:12px;border:1px dashed var(--line);background:var(--bg)}
+.tchecks{display:grid;gap:4px}
+.tcat-rows{display:grid;gap:8px}
+.tcat-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tcat-row input{flex:1 1 120px}

@@ -1,0 +1,26 @@
+{
+ "name": "WhatsApp Group Rules Writer · Infinity",
+ "short_name": "WhatsApp",
+ "id": "/t/wa-group-rules/",
+ "description": "Ready group descriptions and rules for family, school, society, business and office groups.",
+ "start_url": "/t/wa-group-rules/",
+ "scope": "/t/wa-group-rules/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

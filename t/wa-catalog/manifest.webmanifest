@@ -1,0 +1,26 @@
+{
+ "name": "WhatsApp Price List Maker · Infinity",
+ "short_name": "WhatsApp",
+ "id": "/t/wa-catalog/",
+ "description": "A neat price list as a WhatsApp message and a picture to share.",
+ "start_url": "/t/wa-catalog/",
+ "scope": "/t/wa-catalog/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

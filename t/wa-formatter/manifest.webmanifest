@@ -1,0 +1,26 @@
+{
+ "name": "WhatsApp Text Formatter · Infinity",
+ "short_name": "WhatsApp",
+ "id": "/t/wa-formatter/",
+ "description": "Format messages with bold, italic, strike, monospace, lists and quotes, with a live preview.",
+ "start_url": "/t/wa-formatter/",
+ "scope": "/t/wa-formatter/",
+ "display": "standalone",
+ "background_color": "#07090F",
+ "theme_color": "#07090F",
+ "lang": "en",
+ "icons": [
+  {
+   "src": "/assets/brand/favicon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/brand/favicon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}

@@ -645,8 +645,9 @@
     var out = [];
     function add(t) { if (t && out.indexOf(t) < 0) out.push(t); }
     $all('#gco-popular a[href]').forEach(function (a) {
-      var m = a.getAttribute('href').match(/\/([a-z0-9-]+)\.html(?:$|[?#])/);
-      if (m) add(T.list.filter(function (x) { return x.slug === m[1]; })[0]);
+      // by the post's address, or by its title when Blogger gave the post a different address
+      var m = a.getAttribute('href').match(/\/([a-z0-9-]+)\.html(?:$|[?#])/), title = a.textContent.trim();
+      add(T.list.filter(function (x) { return (m && x.slug === m[1]) || x.title === title || x.name === title; })[0]);
     });
     STARTER.forEach(function (id) { add(T.find(id)); });
     return out.slice(0, n || 8);
