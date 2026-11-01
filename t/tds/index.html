@@ -12,8 +12,8 @@
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="TDS Calculator">
-<link rel="stylesheet" href="assets/infinity.css?v=2026-11-02.6-0cd189cd">
-<link rel="stylesheet" href="app.css?v=2026-11-02.6-0cd189cd">
+<link rel="stylesheet" href="assets/infinity.css?v=2026-11-02.6-7ce167ef">
+<link rel="stylesheet" href="app.css?v=2026-11-02.6-7ce167ef">
 <script>
   // light / dark before the page paints (same choice as infinity.groupchaton.com)
   (function () { var t = 'dark'; try { t = localStorage.getItem('gct-theme') || 'dark'; } catch (e) {}
@@ -21,6 +21,10 @@
     document.documentElement.setAttribute('data-theme', t);
     if (/[?&]embed=1/.test(location.search)) document.documentElement.classList.add('is-embed'); })();
   window.GCO = { base: '', isApp: true, only: 'tds', infinity: 'https://infinity.groupchaton.com' };
+  // AdSense (Auto ads) when the app is opened on its own; never inside the Infinity posts that embed it (?embed=1),
+  // which carry their own ads. Ads come from the network only: the service worker never saves them for offline use.
+  if (!/[?&]embed=1/.test(location.search)) (function () { var s = document.createElement('script'); s.async = true; s.crossOrigin = 'anonymous';
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5935207738848708'; document.head.appendChild(s); })();
 </script>
 </head>
 <body>
@@ -38,9 +42,9 @@
 <footer class="app-foot">
   <p>Your records are saved only on this device. <a href="https://infinity.groupchaton.com/" target="_blank" rel="noopener">More free tools on Infinity</a> ·
     <a href="https://infinity.groupchaton.com/p/privacy-policy.html" target="_blank" rel="noopener">Privacy</a></p>
-  <p class="app-ver">Version 2026-11-02.6-0cd189cd · <span id="app-offline"></span></p>
+  <p class="app-ver">Version 2026-11-02.6-7ce167ef · <span id="app-offline"></span></p>
 </footer>
-<script src="assets/tools/kit.js?v=2026-11-02.6-0cd189cd"></script>
-<script src="app.js?v=2026-11-02.6-0cd189cd"></script>
+<script src="assets/tools/kit.js?v=2026-11-02.6-7ce167ef"></script>
+<script src="app.js?v=2026-11-02.6-7ce167ef"></script>
 </body>
 </html>
