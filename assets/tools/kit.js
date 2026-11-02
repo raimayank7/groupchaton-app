@@ -9,7 +9,7 @@
   var C = window.GCO || {};
   var BASE = C.base || '';
   // EDIT: bump this after changing any file in assets/tools/, so browsers fetch the new version straight away
-  var VERSION = '2026-11-02.9';
+  var VERSION = '2026-11-02.12';
   var doc = document;
   var T = window.GCOTools = window.GCOTools || {};
 
@@ -19,21 +19,40 @@
   T.find = function (id) { return T.list.filter(function (t) { return t.id === id; })[0]; };
   T.cat = function (id) { return T.cats.filter(function (c) { return c.id === id; })[0] || { id: id, name: id, label: id, icon: '•', color: '#888' }; };
   // every published post, read from the blog's feed page by page (Blogger gives at most 150 per page): tool slug → its address (/yyyy/mm/slug.html)
-  function postPaths(start, acc) {
+  function feedPage(start, acc) {
     return fetch('/feeds/posts/summary?alt=json&max-results=150&start-index=' + start, { credentials: 'omit' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
-        var list = (d && d.feed && d.feed.entry) || [];
-        list.forEach(function (e) {
+        ((d && d.feed && d.feed.entry) || []).forEach(function (e) {
           var link = (e.link || []).filter(function (l) { return l.rel === 'alternate'; })[0];
           if (!link) return;
           var path = link.href.replace(/^https?:\/\/[^/]+/, '');
           acc[path.replace(/^.*\//, '').replace(/\.html$/, '')] = path;
           if (e.title) acc['title:' + e.title.$t] = path;   // posts imported in bulk get their address from the title
         });
-        var total = +((d && d.feed && d.feed.openSearch$totalResults) || {}).$t || 0;
-        return list.length && start - 1 + list.length < total && start < 5000 ? postPaths(start + list.length, acc) : acc;
+        return +((d && d.feed && d.feed.openSearch$totalResults) || {}).$t || 0;
       });
+  }
+  function postPaths() {   // the first page tells the total; the other pages are fetched at the same time
+    var acc = {};
+    return feedPage(1, acc).then(function (total) {
+      var more = [];
+      for (var s = 151; s <= Math.min(total, 6000); s += 150) more.push(feedPage(s, acc));
+      return Promise.all(more).then(function () { return acc; });
+    });
+  }
+  var PKEY = 'gco-tool-paths';   // the last post list, kept in this browser so links are right from the first paint
+  function savedPaths() { try { return JSON.parse(localStorage.getItem(PKEY) || 'null') || null; } catch (e) { return null; } }
+  function applyPaths(paths) {
+    T.list.forEach(function (t) {
+      var p = paths[t.slug] || paths['title:' + t.title];
+      if (p) t.path = p;
+      if (C.isApp) t.path = t.app ? '#' + t.id : (C.infinity || '') + '/search?q=' + encodeURIComponent(t.name);
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll('[data-tool-link]'), function (a) {
+      var t = T.find(a.getAttribute('data-tool-link'));
+      if (t) a.setAttribute('href', t.path);
+    });
   }
   T.ready = fetch(BASE + 'data/tools.json?v=' + Math.floor(Date.now() / 6e5), { credentials: 'omit' })
     .then(function (r) { if (!r.ok) throw new Error('Tool list ' + r.status); return r.json(); })
@@ -43,20 +62,72 @@
       // until the post list arrives, a tool's link is a search for it; then it becomes the post's own address
       T.list.forEach(function (t) { t.path = '/search?q=' + encodeURIComponent(t.name); });
       if (C.isApp) return {};   // app.groupchaton.com: tools open inside the app (#id)
-      return postPaths(1, {}).catch(function () { return {}; });
+      var saved = savedPaths(), fresh = postPaths().then(function (p) {
+        if (Object.keys(p).length) { try { localStorage.setItem(PKEY, JSON.stringify(p)); } catch (e) {} }
+        return p;
+      }).catch(function () { return {}; });
+      if (!saved) return fresh;
+      fresh.then(applyPaths);   // posts added since the last visit get their address when the new list arrives
+      return saved;
     })
-    .then(function (paths) {
-      T.list.forEach(function (t) {
-        var p = paths[t.slug] || paths['title:' + t.title];
-        if (p) t.path = p;
-        if (C.isApp) t.path = t.app ? '#' + t.id : (C.infinity || '') + '/search?q=' + encodeURIComponent(t.name);
-      });
-      Array.prototype.forEach.call(doc.querySelectorAll('[data-tool-link]'), function (a) {
-        var t = T.find(a.getAttribute('data-tool-link'));
-        if (t) a.setAttribute('href', t.path);
-      });
-    })
+    .then(applyPaths)
     .catch(function (e) { if (window.console) console.warn('Infinity: tool list not loaded', e); });
+  if (!C.isApp) {
+    // opening effect: the tapped card dims with a spinner and a thin bar runs along the top until the tool page arrives
+    var fx = doc.createElement('style');
+    fx.textContent = '#gco-go-bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:2147483646;pointer-events:none;' +
+      'background:linear-gradient(90deg,#A04CB3,#d68be6,#A04CB3);box-shadow:0 0 8px #A04CB3;opacity:1;transition:width 8s cubic-bezier(.1,.7,.2,1),opacity .3s}' +
+      '#gco-go-bar.on{width:88%}' +
+      'a.gco-opening{position:relative;pointer-events:none;transform:scale(.98);transition:transform .15s}' +
+      'a.gco-opening::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(127,127,127,.12);animation:gco-fade .2s both}' +
+      'a.gco-opening::before{content:"";position:absolute;z-index:2;top:50%;left:50%;right:auto;bottom:auto;width:22px;height:22px;margin:-11px 0 0 -11px;background:none;opacity:1;' +
+      'box-sizing:border-box;border:3px solid rgba(160,76,179,.25);border-top-color:var(--cc,#A04CB3);border-radius:50%;animation:gco-spin .7s linear infinite}' +
+      '#gco-go-veil{position:fixed;inset:0;z-index:2147483645;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;' +
+      'background:rgba(255,255,255,.86);color:#3b2342;font:600 16px/1.4 system-ui,sans-serif;text-align:center;padding:16px;animation:gco-fade .2s both}' +
+      '#gco-go-veil i{width:34px;height:34px;border:4px solid rgba(160,76,179,.25);border-top-color:#A04CB3;border-radius:50%;animation:gco-spin .7s linear infinite}' +
+      '@media (prefers-color-scheme:dark){html:not([data-theme=light]) #gco-go-veil{background:rgba(18,12,22,.88);color:#f1e6f4}}' +
+      'html[data-theme=dark] #gco-go-veil,body.dark #gco-go-veil{background:rgba(18,12,22,.88);color:#f1e6f4}' +
+      '@keyframes gco-spin{to{transform:rotate(360deg)}}@keyframes gco-fade{from{opacity:0}}' +
+      '@media (prefers-reduced-motion:reduce){#gco-go-bar{transition:none}a.gco-opening{transform:none}a.gco-opening::before,#gco-go-veil i{animation-duration:2s}}';
+    (doc.head || doc.documentElement).appendChild(fx);
+    var goBar = function () {
+      var b = doc.getElementById('gco-go-bar');
+      if (!b) { b = doc.createElement('div'); b.id = 'gco-go-bar'; doc.body.appendChild(b); }
+      b.offsetWidth; b.className = 'on';   // reflow first, so the bar grows from 0
+    };
+    // coming back with the Back button shows the page from memory: clear the effect
+    window.addEventListener('pageshow', function () {
+      var b = doc.getElementById('gco-go-bar'), v = doc.getElementById('gco-go-veil');
+      if (b) b.remove();
+      if (v) v.remove();
+      Array.prototype.forEach.call(doc.querySelectorAll('.gco-opening'), function (a) { a.classList.remove('gco-opening'); });
+    });
+    // a tool link tapped before the post list arrived: wait for it, then open the tool's own page instead of a search
+    doc.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-tool-link]');
+      if (!a || e.defaultPrevented || e.button || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || a.target === '_blank') return;
+      a.classList.add('gco-opening');
+      goBar();
+      if (!/^\/search\?q=/.test(a.getAttribute('href') || '')) return;   // a real address: the browser opens it
+      e.preventDefault();
+      T.ready.then(function () { var t = T.find(a.getAttribute('data-tool-link')); location.href = t ? t.path : a.href; });
+    }, true);
+    // a search that is exactly a tool's name (links from help articles, old bookmarks): go straight to that tool
+    var q = location.pathname === '/search' && /[?&]q=([^&]*)/.exec(location.search);
+    if (q) T.ready.then(function () {
+      var name = decodeURIComponent(q[1].replace(/\+/g, ' ')).trim().toLowerCase();
+      var t = T.list.filter(function (x) { return x.name.toLowerCase() === name || x.title.toLowerCase() === name; })[0];
+      if (!t || /^\/search/.test(t.path)) return;
+      var v = doc.createElement('div');
+      v.id = 'gco-go-veil';
+      v.setAttribute('role', 'status');
+      v.innerHTML = '<i aria-hidden="true"></i>';
+      v.appendChild(doc.createTextNode('Opening ' + t.name + '…'));
+      doc.body.appendChild(v);
+      goBar();
+      location.replace(t.path);
+    });
+  }
 
   /* ---------- libraries (fixed versions) ---------- */
   var CDN = 'https://cdnjs.cloudflare.com/ajax/libs/';
