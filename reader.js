@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.5265f0c';
+  var VERSION = '2026-11-02.a7636fe';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -1051,4 +1051,22 @@
       if (!$('.sheet')) location.reload();
     });
   }
+})();
+
+/* Footer credit (owner, 2026-11-02): a "Designed & Developed by: Nivesh Sahayak" badge linked to niveshsahayak.in.
+   The badge (look, wording, link) comes from Nivesh Sahayak's shared file, so it is changed in one place for every site;
+   until that file loads, the plain text already reads "Designed & Developed by:". Also corrects themes uploaded earlier. */
+;(function () {
+  var RE = /(designed\s*&\s*developed|built)\s+by:?\s*$/i;
+  function fix() {
+    [].forEach.call(document.querySelectorAll('a[href*="niveshsahayak.in"]'), function (a) {
+      var t = a.previousSibling;
+      if (t && t.nodeType === 3 && RE.test(t.nodeValue)) t.nodeValue = t.nodeValue.replace(RE, 'Designed & Developed by: ');
+    });
+    if (!document.querySelector('script[src*="niveshsahayak.in/assets/credit.js"]')) {
+      var s = document.createElement('script'); s.async = true; s.src = 'https://assets.niveshsahayak.in/assets/credit.js';
+      document.head.appendChild(s);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix); else fix();
 })();
