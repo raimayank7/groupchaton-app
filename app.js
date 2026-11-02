@@ -172,7 +172,9 @@
         item('More free tools on Infinity', '', null, window.GCO.infinity + '/'),
         item('Help and guides', '', null, 'https://help.groupchaton.com/'),
         item('Privacy policy', '', null, window.GCO.infinity + '/p/privacy-policy.html'),
-        h('div', { 'class': 'app-item is-static' }, [h('span', { text: 'Version' }), h('small', { text: (document.querySelector('script[src*="app.js?v="]') || { src: '' }).src.split('v=')[1] || '' })])])]);
+        item('Terms of use', '', null, window.GCO.infinity + '/p/terms-of-use.html'),
+        h('div', { 'class': 'app-item is-static' }, [h('span', { text: 'Version' }), h('small', { text: (document.querySelector('script[src*="app.js?v="]') || { src: '' }).src.split('v=')[1] || '' })])]),
+      h('p', { 'class': 'app-note app-copy', text: '© ' + new Date().getFullYear() + ' Infinity by GroupChatOn. All rights reserved. Built by Nivesh Sahayak.' })]);
   }
   function tool(id) {
     var t = T.find(id);
