@@ -467,3 +467,38 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-.03em;font-weight:700}
 .brand-logo{display:block;height:38px;width:auto;max-width:none}
 html[data-theme='light'] .brand-logo.is-dark,html:not([data-theme='light']) .brand-logo.is-light{display:none}
 @media (max-width:520px){.brand-logo{height:30px}}
+
+/* ---------- home hero: feature cards and a search box that fits phones ---------- */
+.inf-feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:980px;margin:30px auto 0;padding:0;list-style:none;text-align:left}
+.inf-feats li{min-width:0}
+.inf-feats li>*,.inf-feats li{display:block}
+.inf-feats li>a,.inf-feats li:not(:has(a)){height:100%;box-sizing:border-box}
+.inf-feats li{border-radius:16px;border:1px solid var(--line);background:var(--surface);padding:14px 16px;transition:border-color .18s,transform .18s}
+.inf-feats li:has(a){padding:0}
+.inf-feats a{padding:14px 16px;border-radius:inherit;color:inherit;text-decoration:none}
+.inf-feats li:has(a):hover{border-color:var(--accent);transform:translateY(-2px)}
+.inf-feats svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block;margin-bottom:8px}
+.inf-feats b{display:block;font:700 15px/1.3 var(--ui);color:var(--ink)}
+.inf-feats span{display:block;margin-top:3px;font:400 13.5px/1.45 var(--ui);color:var(--muted)}
+.inf-feats li:has(a) b::after{content:' \2192';color:var(--accent)}
+.inf-hero .kbar-hero .kbar-short{display:none}
+.inf-hero .kbar-hero span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.inf-hero .kbar-hero .kbar-short b{color:var(--ink);font-family:var(--mono)}
+@media (max-width:860px){.inf-feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){
+  .inf-hero{padding-top:40px}
+  .inf-hero .kbar-hero{height:52px;font-size:15px;padding:0 16px}
+  .inf-hero .kbar-hero .kbar-long,.inf-hero .kbar-hero kbd{display:none}
+  .inf-hero .kbar-hero .kbar-short{display:block}
+  .inf-hero p{font-size:16px}
+}
+@media (max-width:380px){
+  .inf-feats{gap:8px}.inf-feats li,.inf-feats a{padding:12px}.inf-feats li:has(a){padding:0}
+  .inf-feats span{font-size:12.5px}
+  .brand-logo{height:24px}
+  .inf-hero .eyebrow{font-size:11.5px;padding:6px 12px}
+}
+/* Home: the hero already has the search box, so the catalogue's own bar is hidden there (unless it holds a search from a link) */
+.inf-hero~.home-sec .thub-search:placeholder-shown,.inf-hero~.home-sec .thub:has(.thub-search:placeholder-shown)::before{display:none}
+/* the status line only takes space once it has a message */
+.fb-status:empty{display:none}
