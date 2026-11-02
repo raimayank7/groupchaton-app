@@ -316,6 +316,7 @@ def save_promos():
             new = json.loads(r.read().decode('utf-8'))
         if not isinstance(new.get('promos'), list) or not new['promos']:
             raise ValueError('no sponsors in the list')
+        new['promos'] = [x for x in new['promos'] if x.get('family') != 'novels']   # the app is the novels: no card for itself
         for x in new['promos']:   # our own Ko-fi card, worded for readers of the novels (Share's wording is about groups)
             if 'ko-fi.com' in x.get('href', ''):
                 x['title'], x['line'] = 'Enjoying the chapters?', 'Every chapter here is proofread by hand. A coffee on Ko-fi helps keep them coming.'

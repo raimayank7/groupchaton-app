@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.c62e39e';
+  var VERSION = '2026-11-02.b1c85f3';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -310,7 +310,7 @@
   var inIndia = (function () { try { return /^Asia\/(Kolkata|Calcutta)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone); } catch (e) { return false; } })();
   function getPromos() {
     return promos || (promos = fetch('/data/promos.json').then(function (r) { return r.json(); })
-      .then(function (P) { return ((P && P.promos) || []).filter(function (x) { return x.href && ((x.imgs && x.imgs.length) || x.icon) && (inIndia || !x.india); }); })
+      .then(function (P) { return ((P && P.promos) || []).filter(function (x) { return x.href && ((x.imgs && x.imgs.length) || x.icon || x.img_icon) && x.family !== 'novels' && (inIndia || !x.india); }); })
       .catch(function () { promos = null; return []; }));
   }
   function promoFill(d) {
@@ -325,6 +325,7 @@
       d.innerHTML = '';
       if (x.own) d.classList.add('is-own');   // our own card (Ko-fi): labelled "From GroupChatOn", not a sponsored link
       var pic = x.imgs && x.imgs.length ? el('img', { src: x.imgs[Math.floor(Math.random() * x.imgs.length)], alt: x.title || '', loading: 'lazy', width: 336, height: 280 })
+        : x.img_icon ? el('img', { 'class': 'promo-ic is-mark', src: x.img_icon, alt: '', width: 64, height: 64, loading: 'lazy' })
         : el('span', { 'class': 'promo-ic', 'aria-hidden': 'true', html: PROMO_ICONS[x.icon] || '' });
       d.appendChild(el('a', { 'class': 'promo-card', href: x.href, target: '_blank', rel: x.own ? 'noopener' : 'sponsored noopener' }, [
         pic,
