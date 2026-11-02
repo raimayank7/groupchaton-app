@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.a7636fe';
+  var VERSION = '2026-11-02.450c160';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -277,16 +277,17 @@
     es.forEach(function (e) { if (e.isIntersecting) { adObs.unobserve(e.target); fillAd(e.target); } });
   }, { rootMargin: '500px 0px' }) : null;
   function adSlot(kind, slot) {
-    if (!slot || !navigator.onLine) return null;
+    if (!slot) return null;   // offline too: the space then shows a sponsor card
     var d = el('div', { 'class': 'ad-slot ' + kind, 'data-slot': slot, 'data-kind': kind });
     if (adObs) adObs.observe(d); else setTimeout(function () { fillAd(d); }, 0);
     return d;
   }
   function fillAd(d) {
+    if (!navigator.onLine || adsBlocked) return promoFill(d);   // no Google ad possible: a sponsor card instead
     if (!adsLoaded) {
       adsLoaded = true;
       var sc = el('script', { async: true, crossorigin: 'anonymous', src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AD_CLIENT });
-      sc.onerror = function () { html.classList.add('no-ads'); };   // blocked or offline: no empty "Advertisement" boxes
+      sc.onerror = function () { adsBlocked = true; [].forEach.call(doc.querySelectorAll('.ad-slot:not(.is-promo)'), promoFill); };   // blocked or offline
       doc.head.appendChild(sc);
     }
     var ins = el('ins', { 'class': 'adsbygoogle', style: 'display:block', 'data-ad-client': AD_CLIENT, 'data-ad-slot': d.getAttribute('data-slot') });
@@ -295,9 +296,38 @@
     d.appendChild(ins);
     if (window.MutationObserver) new MutationObserver(function (m, o) {
       var st = ins.getAttribute('data-ad-status');
-      if (st === 'unfilled') { d.classList.add('is-empty'); o.disconnect(); } else if (st === 'filled') o.disconnect();
+      if (st === 'unfilled') { promoFill(d); o.disconnect(); } else if (st === 'filled') o.disconnect();
     }).observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+    // no answer from Google after a while (slow, filtered network): the sponsor card takes the space
+    setTimeout(function () { if (!ins.getAttribute('data-ad-status') && !ins.querySelector('iframe')) promoFill(d); }, 8000);
+  }
+
+  /* ---------------- sponsor cards: fill an ad space that stays empty (offline, blocked, no ad) ----------------
+     The list is data/promos.json (copied hourly from Share's sponsor list); the offline script keeps it and its pictures. */
+  var adsBlocked = false, promos = null, promoUsed = [];
+  var inIndia = (function () { try { return /^Asia\/(Kolkata|Calcutta)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone); } catch (e) { return false; } })();
+  function getPromos() {
+    return promos || (promos = fetch('/data/promos.json').then(function (r) { return r.json(); })
+      .then(function (P) { return ((P && P.promos) || []).filter(function (x) { return x.href && x.imgs && x.imgs.length && (inIndia || !x.india); }); })
+      .catch(function () { promos = null; return []; }));
+  }
+  function promoFill(d) {
+    if (!d || d.classList.contains('is-promo')) return;
+    d.classList.add('is-promo');
+    getPromos().then(function (list) {
+      if (!list.length) { d.classList.add('is-empty'); return; }
+      var fresh = list.filter(function (x) { return promoUsed.indexOf(x.href) < 0; });
+      if (!fresh.length) { promoUsed = []; fresh = list; }
+      var x = fresh[Math.floor(Math.random() * fresh.length)];
+      promoUsed.push(x.href);
+      d.innerHTML = '';
+      d.appendChild(el('a', { 'class': 'promo-card', href: x.href, target: '_blank', rel: 'sponsored noopener' }, [
+        el('img', { src: x.imgs[Math.floor(Math.random() * x.imgs.length)], alt: x.title || '', loading: 'lazy', width: 336, height: 280 }),
+        el('b', { text: x.title || '' }),
+        x.line ? el('span', { text: x.line }) : null,
+        el('em', { text: x.cta || 'Learn more' })]));
+    });
   }
 
   /* ---------------- install ---------------- */

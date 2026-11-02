@@ -4,15 +4,36 @@
    - data/novels.json: fresh when online (3 s), the saved copy when offline
    - chapters (/c/…json): the saved copy first, refreshed in the background; every opened chapter is kept
    - fonts and cover pictures: saved the first time they are used
+   - sponsor cards (data/promos.json + every sponsor picture): saved at install and whenever the list is fetched,
+     so a sponsor card can fill an empty ad space offline too
    It replaces the old "Infinity App" service worker of this address: its caches are removed when this one starts.
    (Records saved by the old Infinity App are in IndexedDB/localStorage, never in these caches, so they are not touched.)
    Designed & Developed by Nivesh Sahayak. See LICENSE. */
-var VERSION = '2026-11-02.a7636fe';
-var SHELL = 'gcr-shell-' + VERSION, CHAPTERS = 'gcr-chapters', DATA = 'gcr-data', EXT = 'gcr-ext', IMG = 'gcr-img';
+var VERSION = '2026-11-02.450c160';
+var SHELL = 'gcr-shell-' + VERSION, CHAPTERS = 'gcr-chapters', DATA = 'gcr-data', EXT = 'gcr-ext', IMG = 'gcr-img', SPON = 'gcr-sponsor';
+
+// the sponsor list and all its pictures; pictures of sponsors that were removed are dropped
+function saveSponsors(res) {
+  return caches.open(SPON).then(function (c) {
+    return (res ? Promise.resolve(res) : fetch('/data/promos.json', { cache: 'no-cache' })).then(function (r) {
+      if (!r || !r.ok) return;
+      return c.put('/data/promos.json', r.clone()).then(function () { return r.json(); }).then(function (P) {
+        var imgs = [];
+        ((P && P.promos) || []).forEach(function (x) { (x.imgs || []).forEach(function (u) { imgs.push(u); }); });
+        return c.keys().then(function (ks) {
+          ks.forEach(function (k) { if (/^https?:/.test(k.url) && !/\/data\/promos\.json$/.test(k.url) && imgs.indexOf(k.url) < 0) c.delete(k); });
+          return Promise.all(imgs.map(function (u) {
+            return c.match(u).then(function (hit) { return hit || fetch(new Request(u, { mode: 'no-cors' })).then(function (ir) { return c.put(u, ir); }); }).catch(function () {});
+          }));
+        });
+      });
+    }).catch(function () {});
+  });
+}
 var FILES = [
  "/",
- "/reader.js?v=2026-11-02.a7636fe",
- "/reader.css?v=2026-11-02.a7636fe",
+ "/reader.js?v=2026-11-02.450c160",
+ "/reader.css?v=2026-11-02.450c160",
  "/app.webmanifest",
  "/brand/logo-light.png",
  "/brand/logo-dark.png",
@@ -23,10 +44,10 @@ var FILES = [
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(SHELL).then(function (c) { return c.addAll(FILES.map(function (f) { return new Request(f, { cache: 'reload' }); })); })
-    .then(function () { return self.skipWaiting(); }));
+    .then(function () { saveSponsors(); return self.skipWaiting(); }));
 });
 self.addEventListener('activate', function (e) {
-  var keep = [SHELL, CHAPTERS, DATA, EXT, IMG];
+  var keep = [SHELL, CHAPTERS, DATA, EXT, IMG, SPON];
   var fromOldApp = false;
   e.waitUntil(caches.keys().then(function (keys) {
     fromOldApp = keys.some(function (k) { return /^gco-app-/.test(k); });
@@ -65,6 +86,11 @@ self.addEventListener('fetch', function (e) {
         .catch(function () { return caches.match('/data/novels.json').then(function (hit) { return hit || fetch(req); }); }));
       return;
     }
+    if (p === '/data/promos.json') {   // sponsor list: fresh when online (its pictures saved), saved copy offline
+      e.respondWith(timeout(fetch(req, { cache: 'no-cache' }), 3000).then(function (r) { if (r.ok) saveSponsors(r.clone()); return r; })
+        .catch(function () { return caches.open(SPON).then(function (c) { return c.match('/data/promos.json'); }).then(function (hit) { return hit || fetch(req); }); }));
+      return;
+    }
     if (/^\/c\/.+\.json$/.test(p)) {
       e.respondWith(caches.open(CHAPTERS).then(function (c) {
         return c.match(p).then(function (hit) {
@@ -93,13 +119,13 @@ self.addEventListener('fetch', function (e) {
   }
   // cover pictures and pictures inside chapters: saved the first time (at most 300 kept)
   if (/^blogger\.googleusercontent\.com$|\.bp\.blogspot\.com$/.test(url.hostname) && req.destination === 'image') {
-    e.respondWith(caches.open(IMG).then(function (c) {
+    e.respondWith(caches.open(SPON).then(function (sc) { return sc.match(req.url); }).then(function (spon) { return spon || caches.open(IMG).then(function (c) {
       return c.match(req).then(function (hit) {
         return hit || fetch(req).then(function (r) {
           if (r.ok || r.type === 'opaque') { c.put(req, r.clone()); c.keys().then(function (ks) { if (ks.length > 300) c.delete(ks[0]); }); }
           return r;
         });
       });
-    }));
+    }); }));
   }
 });

@@ -297,10 +297,35 @@ def main():
         pass
     with open(os.path.join(ROOT, 'data', 'novels.json'), 'w', encoding='utf-8', newline='\n') as f:
         json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
+    save_promos()
     print(f'done: {len(done)} read, {failed} failed')
     if failed > max(20, len(todo) // 5):
         sys.exit('Too many chapters failed.')
 
+
+
+PROMOS = 'https://share.groupchaton.com/promos.json'   # the sponsor list Share uses (same sponsors as the novels site)
+
+
+def save_promos():
+    """Copies the sponsor list into data/promos.json, so the app can show sponsor cards where an ad space stays
+    empty (offline, blocked, no ad) and keep them for offline. Written only when it changed; on any error the old copy stays."""
+    fp = os.path.join(ROOT, 'data', 'promos.json')
+    try:
+        with urllib.request.urlopen(urllib.request.Request(PROMOS, headers=UA), timeout=30) as r:
+            new = json.loads(r.read().decode('utf-8'))
+        if not isinstance(new.get('promos'), list) or not new['promos']:
+            raise ValueError('no sponsors in the list')
+        try:
+            if json.load(open(fp, encoding='utf-8')) == new:
+                return
+        except Exception:
+            pass
+        with open(fp, 'w', encoding='utf-8', newline='\n') as f:
+            json.dump(new, f, ensure_ascii=False, separators=(',', ':'))
+        print('sponsors: %d saved' % len(new['promos']))
+    except Exception as e:
+        print('sponsors: kept the old list (%s)' % e)
 
 if __name__ == '__main__':
     main()
