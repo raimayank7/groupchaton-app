@@ -157,7 +157,7 @@ GCOTools.register('crossword', function (spot, T) {
     return { placed: placed, skipped: skipped, W: W, H: H, cells: cells, num: num };
   }
   // the best of a few shuffled tries: fewest words left out, then the smallest grid
-  function best(items) { var b = null; for (var t = 0; t < 12; t++) { var l = layout(K.shuffle(items)); if (!b || l.skipped.length < b.skipped.length || (l.skipped.length === b.skipped.length && l.W * l.H < b.W * b.H)) b = l; } return b; }
+  function best(items) { var b = null; for (var t = 0; t < 40 && !(t >= 12 && !b.skipped.length); t++) { var l = layout(K.shuffle(items)); if (!b || l.skipped.length < b.skipped.length || (l.skipped.length === b.skipped.length && l.W * l.H < b.W * b.H)) b = l; } return b; }
   var set = 'animals', L = null, inputs = {};
   var own = h('textarea', { rows: '5', placeholder: 'One per line: WORD - clue\nSUN - It shines in the day', 'aria-label': 'Your words and clues' });
   own.value = T.store.get('cw-own', 'SUN - It shines in the day\nRAIN - Water falling from clouds\nSNOW - Cold white flakes in winter\nWIND - Moving air that flies kites');

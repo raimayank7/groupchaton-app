@@ -9,7 +9,7 @@
   var C = window.GCO || {};
   var BASE = C.base || '';
   // EDIT: bump this after changing any file in assets/tools/, so browsers fetch the new version straight away
-  var VERSION = '2026-11-02.7';
+  var VERSION = '2026-11-02.9';
   var doc = document;
   var T = window.GCOTools = window.GCOTools || {};
 
@@ -18,9 +18,9 @@
   T.cats = [];
   T.find = function (id) { return T.list.filter(function (t) { return t.id === id; })[0]; };
   T.cat = function (id) { return T.cats.filter(function (c) { return c.id === id; })[0] || { id: id, name: id, label: id, icon: '•', color: '#888' }; };
-  // every published post, read from the blog's feed 500 at a time: tool slug → its address (/yyyy/mm/slug.html)
+  // every published post, read from the blog's feed page by page (Blogger gives at most 150 per page): tool slug → its address (/yyyy/mm/slug.html)
   function postPaths(start, acc) {
-    return fetch('/feeds/posts/summary?alt=json&max-results=500&start-index=' + start, { credentials: 'omit' })
+    return fetch('/feeds/posts/summary?alt=json&max-results=150&start-index=' + start, { credentials: 'omit' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         var list = (d && d.feed && d.feed.entry) || [];
@@ -31,7 +31,8 @@
           acc[path.replace(/^.*\//, '').replace(/\.html$/, '')] = path;
           if (e.title) acc['title:' + e.title.$t] = path;   // posts imported in bulk get their address from the title
         });
-        return list.length === 500 ? postPaths(start + 500, acc) : acc;
+        var total = +((d && d.feed && d.feed.openSearch$totalResults) || {}).$t || 0;
+        return list.length && start - 1 + list.length < total && start < 5000 ? postPaths(start + list.length, acc) : acc;
       });
   }
   T.ready = fetch(BASE + 'data/tools.json?v=' + Math.floor(Date.now() / 6e5), { credentials: 'omit' })
