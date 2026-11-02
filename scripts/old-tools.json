@@ -1,0 +1,2438 @@
+{
+"pdf-merge": [
+"merge-pdf",
+"Merge PDF"
+],
+"pdf-split": [
+"split-pdf",
+"Split PDF"
+],
+"pdf-organize": [
+"pdf-organizer",
+"PDF Organizer"
+],
+"pdf-to-image": [
+"pdf-to-image",
+"PDF to Image"
+],
+"pdf-to-text": [
+"pdf-to-text",
+"PDF to Text"
+],
+"image-to-pdf": [
+"image-to-pdf",
+"Image to PDF"
+],
+"text-to-pdf": [
+"text-to-pdf",
+"Text to PDF"
+],
+"html-to-pdf": [
+"html-to-pdf",
+"HTML to PDF"
+],
+"image-convert": [
+"image-converter",
+"Image Converter"
+],
+"image-compress": [
+"image-compressor",
+"Image Compressor"
+],
+"ocr": [
+"image-to-text",
+"Image to Text (OCR)"
+],
+"qr": [
+"qr-code-generator",
+"QR Code Generator"
+],
+"shorten": [
+"url-shortener",
+"URL Shortener"
+],
+"whatsapp-direct": [
+"whatsapp-direct-message",
+"WhatsApp Direct Message"
+],
+"zip": [
+"zip-unzip",
+"Zip & Unzip"
+],
+"tts": [
+"text-to-speech",
+"Text to Speech"
+],
+"stt": [
+"speech-to-text",
+"Speech to Text"
+],
+"word-count": [
+"word-counter",
+"Word Counter"
+],
+"case": [
+"case-converter",
+"Case Converter"
+],
+"password": [
+"password-generator",
+"Password Generator"
+],
+"dedupe": [
+"remove-duplicate-lines",
+"Remove Duplicate Lines"
+],
+"sort-lines": [
+"sort-lines",
+"Sort Lines"
+],
+"find-replace": [
+"find-and-replace",
+"Find and Replace"
+],
+"text-diff": [
+"text-compare",
+"Text Compare (Diff)"
+],
+"slug": [
+"slug-generator",
+"Slug Generator"
+],
+"text-cleaner": [
+"text-cleaner",
+"Text Cleaner"
+],
+"reverse-text": [
+"reverse-text",
+"Reverse Text"
+],
+"repeat-text": [
+"text-repeater",
+"Text Repeater"
+],
+"html-to-text": [
+"html-to-text",
+"HTML to Text"
+],
+"fancy-text": [
+"fancy-text-generator",
+"Fancy Text Generator"
+],
+"lorem": [
+"lorem-ipsum-generator",
+"Lorem Ipsum Generator"
+],
+"json-format": [
+"json-formatter",
+"JSON Formatter & Validator"
+],
+"json-to-csv": [
+"json-to-csv",
+"JSON to CSV"
+],
+"csv-to-json": [
+"csv-to-json",
+"CSV to JSON"
+],
+"base64": [
+"base64-encode-decode",
+"Base64 Encode / Decode"
+],
+"url-encode": [
+"url-encode-decode",
+"URL Encode / Decode"
+],
+"html-entities": [
+"html-entities",
+"HTML Entities Encode / Decode"
+],
+"regex": [
+"regex-tester",
+"Regex Tester"
+],
+"jwt": [
+"jwt-decoder",
+"JWT Decoder"
+],
+"minify": [
+"code-minifier",
+"Code Minifier (JS, CSS, HTML)"
+],
+"markdown": [
+"markdown-to-html",
+"Markdown to HTML"
+],
+"yaml-json": [
+"yaml-to-json",
+"YAML ↔ JSON Converter"
+],
+"color-convert": [
+"color-converter",
+"Color Converter & Contrast Checker"
+],
+"hash": [
+"hash-generator",
+"Hash Generator (MD5, SHA-256)"
+],
+"uuid": [
+"uuid-generator",
+"UUID / GUID Generator"
+],
+"timestamp": [
+"unix-timestamp-converter",
+"Unix Timestamp Converter"
+],
+"number-base": [
+"number-base-converter",
+"Number Base Converter"
+],
+"data-size": [
+"digital-storage-calculator",
+"Digital Storage Calculator"
+],
+"percentage": [
+"percentage-calculator",
+"Percentage Calculator"
+],
+"age": [
+"age-calculator",
+"Age Calculator"
+],
+"date-diff": [
+"days-between-dates",
+"Days Between Dates"
+],
+"simple-interest": [
+"simple-interest-calculator",
+"Simple Interest Calculator"
+],
+"compound-interest": [
+"compound-interest-calculator",
+"Compound Interest Calculator"
+],
+"discount": [
+"discount-calculator",
+"Discount Calculator"
+],
+"tip": [
+"tip-calculator",
+"Tip Calculator and Bill Splitter"
+],
+"gst": [
+"gst-calculator",
+"GST Calculator (India)"
+],
+"vat": [
+"vat-calculator",
+"VAT Calculator"
+],
+"sales-tax": [
+"sales-tax-calculator",
+"Sales Tax Calculator (US)"
+],
+"bmi": [
+"bmi-calculator",
+"BMI Calculator"
+],
+"bmr": [
+"bmr-calculator",
+"BMR Calculator"
+],
+"body-fat": [
+"body-fat-calculator",
+"Body Fat Calculator"
+],
+"pregnancy": [
+"pregnancy-due-date-calculator",
+"Pregnancy Due Date Calculator"
+],
+"ovulation": [
+"ovulation-calculator",
+"Ovulation Calculator"
+],
+"water-intake": [
+"water-intake-calculator",
+"Water Intake Calculator"
+],
+"gpa": [
+"gpa-calculator",
+"GPA and CGPA Calculator"
+],
+"grade": [
+"final-grade-calculator",
+"Final Grade Calculator"
+],
+"average": [
+"average-calculator",
+"Average Calculator"
+],
+"ratio": [
+"ratio-calculator",
+"Ratio Calculator"
+],
+"salary": [
+"salary-calculator",
+"Salary and Hourly Wage Calculator"
+],
+"inflation": [
+"inflation-calculator",
+"Inflation Calculator"
+],
+"fuel-cost": [
+"fuel-cost-calculator",
+"Fuel Cost Calculator"
+],
+"electricity": [
+"electricity-bill-calculator",
+"Electricity Bill Calculator"
+],
+"profit-margin": [
+"profit-margin-calculator",
+"Profit Margin Calculator"
+],
+"break-even": [
+"break-even-calculator",
+"Break-even Calculator"
+],
+"roi": [
+"roi-calculator",
+"ROI Calculator"
+],
+"time-calc": [
+"hours-minutes-calculator",
+"Hours and Minutes Calculator"
+],
+"love": [
+"love-calculator",
+"Love Calculator"
+],
+"application-generator": [
+"application-generator",
+"Application Generator"
+],
+"letter-generator": [
+"letter-generator",
+"Letter Generator"
+],
+"money-manager": [
+"money-manager",
+"Money Manager"
+],
+"book-keeper": [
+"book-keeper",
+"Book Keeper and Statement Generator"
+],
+"invoice": [
+"invoice-generator",
+"Invoice Generator"
+],
+"quotation": [
+"quotation-generator",
+"Quotation Generator"
+],
+"receipt": [
+"receipt-maker",
+"Receipt Maker"
+],
+"proforma-invoice": [
+"proforma-invoice-generator",
+"Proforma Invoice Generator"
+],
+"delivery-challan": [
+"delivery-challan-generator",
+"Delivery Challan Generator"
+],
+"purchase-order": [
+"purchase-order-generator",
+"Purchase Order Generator"
+],
+"fillable-form": [
+"fillable-form-generator",
+"Fillable Form Generator"
+],
+"emi": [
+"emi-calculator",
+"Loan EMI Calculator"
+],
+"car-loan": [
+"car-loan-calculator",
+"Car Loan Calculator"
+],
+"home-loan": [
+"home-loan-prepayment-calculator",
+"Home Loan Prepayment Calculator"
+],
+"mortgage": [
+"mortgage-calculator",
+"Mortgage Calculator"
+],
+"sip": [
+"sip-calculator",
+"SIP Calculator"
+],
+"step-up-sip": [
+"step-up-sip-calculator",
+"Step-up SIP Calculator"
+],
+"lumpsum": [
+"lumpsum-calculator",
+"Lump Sum Investment Calculator"
+],
+"swp": [
+"swp-calculator",
+"SWP Calculator"
+],
+"cagr": [
+"cagr-calculator",
+"CAGR Calculator"
+],
+"xirr": [
+"xirr-calculator",
+"XIRR Calculator"
+],
+"npv": [
+"npv-irr-calculator",
+"NPV and IRR Calculator"
+],
+"fd": [
+"fd-calculator",
+"FD Calculator"
+],
+"rd": [
+"rd-calculator",
+"RD Calculator"
+],
+"ppf": [
+"ppf-calculator",
+"PPF Calculator"
+],
+"retirement": [
+"retirement-calculator",
+"Retirement Calculator"
+],
+"goal": [
+"goal-planner",
+"Goal Planner"
+],
+"emergency-fund": [
+"emergency-fund-calculator",
+"Emergency Fund Calculator"
+],
+"net-worth": [
+"net-worth-calculator",
+"Net Worth Calculator"
+],
+"budget": [
+"budget-calculator",
+"Budget Calculator (50/30/20)"
+],
+"currency-profit": [
+"stock-profit-calculator",
+"Stock and Crypto Profit Calculator"
+],
+"dividend": [
+"dividend-yield-calculator",
+"Dividend Yield Calculator"
+],
+"hra": [
+"hra-calculator",
+"HRA Exemption Calculator"
+],
+"gratuity": [
+"gratuity-calculator",
+"Gratuity Calculator"
+],
+"epf": [
+"epf-calculator",
+"EPF Calculator"
+],
+"tds": [
+"tds-calculator",
+"TDS Calculator"
+],
+"income-tax-in": [
+"income-tax-calculator-india",
+"Income Tax Calculator (India)"
+],
+"uk-tax": [
+"uk-income-tax-calculator",
+"UK Income Tax Calculator"
+],
+"us-tax": [
+"us-federal-income-tax-calculator",
+"US Federal Income Tax Calculator"
+],
+"paycheck": [
+"take-home-pay-calculator",
+"Take-home Pay Calculator"
+],
+"overtime": [
+"overtime-calculator",
+"Overtime Pay Calculator"
+],
+"freelance-rate": [
+"freelance-hourly-rate-calculator",
+"Freelance Rate Calculator"
+],
+"loan-compare": [
+"loan-comparison-calculator",
+"Loan Comparison Calculator"
+],
+"rent-vs-buy": [
+"rent-vs-buy-calculator",
+"Rent vs Buy Calculator"
+],
+"depreciation": [
+"depreciation-calculator",
+"Depreciation Calculator"
+],
+"credit-card": [
+"credit-card-payoff-calculator",
+"Credit Card Payoff Calculator"
+],
+"ssy": [
+"sukanya-samriddhi-calculator",
+"Sukanya Samriddhi Calculator"
+],
+"nsc": [
+"nsc-calculator",
+"NSC Calculator"
+],
+"kvp": [
+"kvp-calculator",
+"Kisan Vikas Patra Calculator"
+],
+"scss": [
+"scss-calculator",
+"Senior Citizens Savings Scheme Calculator"
+],
+"pomis": [
+"post-office-monthly-income-scheme-calculator",
+"Post Office MIS Calculator"
+],
+"po-td": [
+"post-office-time-deposit-calculator",
+"Post Office Time Deposit Calculator"
+],
+"po-rd": [
+"post-office-rd-calculator",
+"Post Office RD Calculator"
+],
+"nps": [
+"nps-calculator",
+"NPS Calculator"
+],
+"apy": [
+"atal-pension-yojana-calculator",
+"Atal Pension Yojana Calculator"
+],
+"lic": [
+"lic-maturity-calculator",
+"LIC Maturity Calculator"
+],
+"statistics": [
+"statistics-calculator",
+"Statistics and Regression Calculator"
+],
+"probability": [
+"probability-calculator",
+"Probability Calculator"
+],
+"permutation": [
+"permutation-combination-calculator",
+"Permutation and Combination Calculator"
+],
+"quadratic": [
+"quadratic-equation-solver",
+"Quadratic Equation Solver"
+],
+"lcm-gcd": [
+"lcm-hcf-calculator",
+"LCM and HCF Calculator"
+],
+"prime": [
+"prime-number-checker",
+"Prime Number Checker"
+],
+"square-root": [
+"square-root-calculator",
+"Square Root Calculator"
+],
+"exponent": [
+"exponent-calculator",
+"Exponent Calculator"
+],
+"logarithm": [
+"logarithm-calculator",
+"Logarithm Calculator"
+],
+"percent-change": [
+"percentage-change-calculator",
+"Percentage Change Calculator"
+],
+"rounding": [
+"rounding-calculator",
+"Rounding Calculator"
+],
+"big-number": [
+"big-number-calculator",
+"Big Number Calculator"
+],
+"decimal-fraction": [
+"decimal-to-fraction-calculator",
+"Decimal to Fraction Converter"
+],
+"long-division": [
+"long-division-calculator",
+"Long Division Calculator"
+],
+"triangle": [
+"triangle-calculator",
+"Triangle Calculator"
+],
+"trig": [
+"trigonometry-calculator",
+"Trigonometry Calculator"
+],
+"vector": [
+"vector-calculator",
+"Vector Calculator"
+],
+"matrix": [
+"matrix-calculator",
+"Matrix Calculator"
+],
+"fraction": [
+"fraction-calculator",
+"Fraction Calculator"
+],
+"calorie": [
+"calorie-calculator",
+"Calorie Calculator"
+],
+"macro": [
+"macro-calculator",
+"Macro Calculator"
+],
+"protein": [
+"protein-calculator",
+"Protein Intake Calculator"
+],
+"heart-rate": [
+"heart-rate-zones-calculator",
+"Heart Rate Zone Calculator"
+],
+"pace": [
+"running-pace-calculator",
+"Running Pace Calculator"
+],
+"calories-burned": [
+"calories-burned-calculator",
+"Calories Burned Calculator"
+],
+"sleep": [
+"sleep-calculator",
+"Sleep Calculator"
+],
+"period": [
+"period-tracker-calculator",
+"Period Calculator"
+],
+"bac": [
+"blood-alcohol-calculator",
+"Blood Alcohol Calculator"
+],
+"waist-hip": [
+"waist-to-hip-ratio-calculator",
+"Waist-to-hip Ratio Calculator"
+],
+"lean-mass": [
+"lean-body-mass-calculator",
+"Lean Body Mass Calculator"
+],
+"dose": [
+"child-medicine-dose-calculator",
+"Child Medicine Dose Calculator"
+],
+"concrete": [
+"concrete-calculator",
+"Concrete Calculator"
+],
+"paint": [
+"paint-calculator",
+"Paint Calculator"
+],
+"tile": [
+"tile-calculator",
+"Tile Calculator"
+],
+"wallpaper": [
+"wallpaper-calculator",
+"Wallpaper Calculator"
+],
+"brick": [
+"brick-calculator",
+"Brick Calculator"
+],
+"roof": [
+"roof-pitch-calculator",
+"Roof Pitch Calculator"
+],
+"ac-size": [
+"ac-tonnage-calculator",
+"AC Size Calculator"
+],
+"solar": [
+"solar-panel-calculator",
+"Solar Panel Calculator"
+],
+"inverter": [
+"inverter-battery-calculator",
+"Inverter and Battery Calculator"
+],
+"water-tank": [
+"water-tank-capacity-calculator",
+"Water Tank Capacity Calculator"
+],
+"recipe-scale": [
+"recipe-scaler",
+"Recipe Scaler"
+],
+"split-bill": [
+"split-expenses-calculator",
+"Split Expenses Calculator"
+],
+"dog-age": [
+"dog-age-calculator",
+"Dog and Cat Age Calculator"
+],
+"travel-cost": [
+"trip-cost-calculator",
+"Trip Cost Calculator"
+],
+"unit-price": [
+"unit-price-calculator",
+"Unit Price Calculator"
+],
+"work-days": [
+"working-days-calculator",
+"Working Days Calculator"
+],
+"age-difference": [
+"age-difference-calculator",
+"Age Difference Calculator"
+],
+"birthday": [
+"birthday-calculator",
+"Birthday Calculator"
+],
+"life-cover": [
+"term-insurance-cover-calculator",
+"Life Insurance Cover Calculator"
+],
+"health-cover": [
+"health-insurance-cover-calculator",
+"Health Insurance Cover Calculator"
+],
+"health-claim": [
+"health-insurance-claim-calculator",
+"Health Claim Calculator"
+],
+"car-insurance": [
+"car-insurance-calculator",
+"Car Insurance Calculator"
+],
+"bike-insurance": [
+"bike-insurance-calculator",
+"Bike Insurance Calculator"
+],
+"home-insurance": [
+"home-insurance-calculator",
+"Home Insurance Calculator"
+],
+"term-vs-endowment": [
+"term-vs-endowment-calculator",
+"Term vs Endowment Calculator"
+],
+"premium-mode": [
+"premium-payment-mode-calculator",
+"Premium Payment Mode Calculator"
+],
+"annuity": [
+"annuity-pension-calculator",
+"Annuity Calculator"
+],
+"ohms-law": [
+"ohms-law-calculator",
+"Ohm's Law Calculator"
+],
+"resistor": [
+"resistor-color-code-calculator",
+"Resistor Colour Code Calculator"
+],
+"voltage-drop": [
+"voltage-drop-calculator",
+"Voltage Drop Calculator"
+],
+"power-calc": [
+"electrical-power-calculator",
+"Electrical Power Calculator"
+],
+"battery-life": [
+"battery-life-calculator",
+"Battery Life Calculator"
+],
+"wire-size": [
+"wire-size-calculator",
+"Wire Size Calculator"
+],
+"molar-mass": [
+"molar-mass-calculator",
+"Molar Mass Calculator"
+],
+"molarity": [
+"molarity-calculator",
+"Molarity & Dilution Calculator"
+],
+"half-life": [
+"half-life-calculator",
+"Half-Life Calculator"
+],
+"projectile": [
+"projectile-motion-calculator",
+"Projectile Motion Calculator"
+],
+"force": [
+"force-work-power-calculator",
+"Force, Work & Power Calculator"
+],
+"kinetic": [
+"kinetic-energy-calculator",
+"Kinetic & Potential Energy Calculator"
+],
+"gear-ratio": [
+"gear-ratio-calculator",
+"Gear Ratio Calculator"
+],
+"beam-load": [
+"beam-deflection-calculator",
+"Beam Load Calculator"
+],
+"dew-point": [
+"dew-point-calculator",
+"Dew Point Calculator"
+],
+"wind-chill": [
+"wind-chill-heat-index-calculator",
+"Wind Chill & Heat Index Calculator"
+],
+"sound": [
+"decibel-calculator",
+"Decibel Calculator"
+],
+"lens": [
+"lens-focal-length-calculator",
+"Lens Calculator"
+],
+"basic-calc": [
+"online-calculator",
+"Calculator"
+],
+"scientific": [
+"scientific-calculator",
+"Scientific Calculator"
+],
+"graphing": [
+"graphing-calculator",
+"Graphing Calculator"
+],
+"derivative": [
+"derivative-calculator",
+"Derivative & Integral Calculator"
+],
+"equation": [
+"equation-solver",
+"Equation Solver"
+],
+"unit-convert": [
+"unit-converter",
+"Unit Converter"
+],
+"temperature": [
+"temperature-converter",
+"Temperature Converter"
+],
+"energy": [
+"energy-power-converter",
+"Energy & Power Converter"
+],
+"pressure": [
+"pressure-converter",
+"Pressure Converter"
+],
+"angle": [
+"angle-converter",
+"Angle Converter"
+],
+"fuel-economy": [
+"fuel-economy-converter",
+"Fuel Economy Converter"
+],
+"land-area": [
+"land-area-converter",
+"Land Area Converter"
+],
+"distance-convert": [
+"distance-converter",
+"Distance Converter"
+],
+"weight-convert": [
+"weight-converter",
+"Weight Converter"
+],
+"cooking": [
+"cooking-measurement-converter",
+"Cooking Measurement Converter"
+],
+"speed-pace": [
+"pace-speed-converter",
+"Pace ↔ Speed Converter"
+],
+"height-convert": [
+"height-converter",
+"Height Converter"
+],
+"mass-weight": [
+"mass-to-weight-calculator",
+"Mass to Weight Calculator"
+],
+"density": [
+"density-calculator",
+"Density Calculator"
+],
+"speed-distance-time": [
+"speed-distance-time-calculator",
+"Speed, Distance & Time Calculator"
+],
+"area-calc": [
+"area-calculator",
+"Area Calculator"
+],
+"volume-calc": [
+"volume-calculator",
+"Volume Calculator"
+],
+"perimeter": [
+"perimeter-calculator",
+"Perimeter Calculator"
+],
+"ideal-weight": [
+"ideal-weight-calculator",
+"Ideal Weight Calculator"
+],
+"steps-distance": [
+"steps-to-km-calculator",
+"Steps to Distance Calculator"
+],
+"pythagoras": [
+"pythagoras-calculator",
+"Pythagoras Calculator"
+],
+"scale": [
+"scale-converter",
+"Map & Model Scale Converter"
+],
+"date-format": [
+"date-converter",
+"Date Converter"
+],
+"time-zone": [
+"time-zone-converter",
+"Time Zone Converter"
+],
+"currency": [
+"currency-converter",
+"Currency Converter"
+],
+"ruler": [
+"online-ruler",
+"Online Ruler"
+],
+"protractor": [
+"online-protractor",
+"Online Protractor"
+],
+"elevation": [
+"elevation-finder",
+"Elevation Finder"
+],
+"distance-map": [
+"distance-between-places",
+"Distance Between Places"
+],
+"wa-link": [
+"whatsapp-link-generator",
+"WhatsApp Link & QR Generator"
+],
+"wa-bulk-links": [
+"whatsapp-bulk-link-generator",
+"Bulk WhatsApp Links"
+],
+"wa-formatter": [
+"whatsapp-text-formatter",
+"WhatsApp Text Formatter"
+],
+"wa-fonts": [
+"whatsapp-fancy-fonts",
+"WhatsApp Fancy Fonts"
+],
+"wa-chat-viewer": [
+"whatsapp-chat-viewer",
+"WhatsApp Chat Viewer"
+],
+"wa-chat-stats": [
+"whatsapp-chat-analyzer",
+"WhatsApp Chat Analyzer"
+],
+"wa-chat-pdf": [
+"whatsapp-chat-to-pdf",
+"WhatsApp Chat to PDF"
+],
+"wa-dp": [
+"whatsapp-dp-maker",
+"WhatsApp DP Maker"
+],
+"wa-status": [
+"whatsapp-status-size",
+"WhatsApp Status Sizer"
+],
+"wa-sticker": [
+"whatsapp-sticker-maker",
+"WhatsApp Sticker Maker"
+],
+"wa-button": [
+"whatsapp-button-for-website",
+"WhatsApp Button for Website"
+],
+"wa-blank": [
+"whatsapp-blank-message",
+"Blank WhatsApp Message"
+],
+"wa-group-rules": [
+"whatsapp-group-rules",
+"WhatsApp Group Rules Writer"
+],
+"wa-number-format": [
+"phone-number-formatter",
+"Phone Number Formatter"
+],
+"wa-catalog": [
+"whatsapp-price-list-maker",
+"WhatsApp Price List Maker"
+],
+"morse": [
+"morse-code-translator",
+"Morse Code Translator"
+],
+"braille": [
+"braille-translator",
+"Braille Translator"
+],
+"roman-numerals": [
+"roman-numerals-converter",
+"Roman Numerals Converter"
+],
+"number-to-words": [
+"number-to-words-converter",
+"Number to Words"
+],
+"nato": [
+"nato-phonetic-alphabet",
+"NATO Phonetic Alphabet"
+],
+"line-numbers": [
+"add-line-numbers",
+"Add Line Numbers"
+],
+"text-split": [
+"text-splitter",
+"Text Splitter"
+],
+"word-frequency": [
+"word-frequency-counter",
+"Word Frequency Counter"
+],
+"readability": [
+"readability-checker",
+"Readability Checker"
+],
+"card-check": [
+"credit-card-validator",
+"Card Number Checker"
+],
+"iban": [
+"iban-validator",
+"IBAN Validator"
+],
+"encrypt-text": [
+"encrypt-decrypt-text",
+"Encrypt / Decrypt Text"
+],
+"2fa": [
+"2fa-code-generator",
+"2FA Code Generator"
+],
+"escape-string": [
+"escape-unescape-string",
+"Escape / Unescape String"
+],
+"cron": [
+"cron-expression-explainer",
+"Cron Expression Explainer"
+],
+"http-status": [
+"http-status-codes",
+"HTTP Status Codes"
+],
+"user-agent": [
+"what-is-my-user-agent",
+"What Is My User Agent"
+],
+"css-gradient": [
+"css-gradient-generator",
+"CSS Gradient Generator"
+],
+"box-shadow": [
+"css-box-shadow-generator",
+"Box Shadow Generator"
+],
+"meta-tags": [
+"meta-tag-generator",
+"Meta Tag Generator"
+],
+"robots-txt": [
+"robots-txt-generator",
+"robots.txt Generator"
+],
+"htaccess": [
+"htaccess-redirect-generator",
+".htaccess Redirect Generator"
+],
+"chmod": [
+"chmod-calculator",
+"chmod Calculator"
+],
+"subnet": [
+"ip-subnet-calculator",
+"IP Subnet Calculator"
+],
+"diff-json": [
+"json-compare",
+"JSON Compare"
+],
+"xml-format": [
+"xml-formatter",
+"XML Formatter"
+],
+"json-to-ts": [
+"json-to-typescript",
+"JSON to TypeScript, Go and Python"
+],
+"px-rem": [
+"px-to-rem-converter",
+"PX to REM Converter"
+],
+"regex-library": [
+"regex-patterns",
+"Regex Pattern Library"
+],
+"random-number": [
+"random-number-generator",
+"Random Number Generator"
+],
+"random-picker": [
+"random-name-picker-wheel",
+"Random Name Picker Wheel"
+],
+"dice": [
+"dice-roller",
+"Dice Roller"
+],
+"coin-flip": [
+"coin-flip",
+"Coin Flip"
+],
+"yes-no": [
+"yes-or-no-decider",
+"Yes or No Decider"
+],
+"tally": [
+"tally-counter",
+"Tally Counter"
+],
+"day-of-week": [
+"what-day-is-this-date",
+"What Day Was This Date"
+],
+"week-number": [
+"week-number-of-year",
+"Week Number"
+],
+"leap-year": [
+"leap-year-checker",
+"Leap Year Checker"
+],
+"days-until": [
+"days-until-countdown",
+"Days Until Countdown"
+],
+"age-planets": [
+"age-on-other-planets",
+"Age on Other Planets"
+],
+"team-maker": [
+"random-team-generator",
+"Random Team Generator"
+],
+"secret-santa": [
+"secret-santa-generator",
+"Secret Santa Generator"
+],
+"username": [
+"username-generator",
+"Username Generator"
+],
+"color-palette": [
+"color-palette-generator",
+"Colour Palette Generator"
+],
+"image-resize": [
+"image-resizer",
+"Image Resizer"
+],
+"image-crop": [
+"crop-image",
+"Crop Image"
+],
+"image-rotate": [
+"rotate-image",
+"Rotate and Flip Image"
+],
+"svg-to-png": [
+"svg-to-png-converter",
+"SVG to PNG Converter"
+],
+"image-to-base64": [
+"image-to-base64",
+"Image to Base64"
+],
+"favicon": [
+"favicon-generator",
+"Favicon Generator"
+],
+"image-watermark": [
+"add-watermark-to-photo",
+"Watermark Photos"
+],
+"image-filters": [
+"photo-filters-editor",
+"Photo Filters and Adjustments"
+],
+"meme": [
+"meme-generator",
+"Meme Generator"
+],
+"signature-maker": [
+"signature-maker",
+"Signature Maker"
+],
+"json-check": [
+"json-validator",
+"JSON Validator"
+],
+"xml-check": [
+"xml-validator",
+"XML Validator"
+],
+"seo-check": [
+"seo-checker",
+"On-Page SEO Checker"
+],
+"html-playground": [
+"html-css-js-playground",
+"HTML, CSS and JS Playground"
+],
+"js-console": [
+"javascript-console",
+"JavaScript Console"
+],
+"specificity": [
+"css-specificity-calculator",
+"CSS Specificity Calculator"
+],
+"selector-test": [
+"css-selector-tester",
+"CSS Selector Tester"
+],
+"border-radius": [
+"border-radius-generator",
+"Border Radius Generator"
+],
+"clip-path": [
+"css-clip-path-maker",
+"CSS Clip-Path Maker"
+],
+"css-animation": [
+"css-animation-generator",
+"CSS Animation Generator"
+],
+"flexbox": [
+"flexbox-playground",
+"Flexbox Playground"
+],
+"css-grid": [
+"css-grid-generator",
+"CSS Grid Generator"
+],
+"html-table": [
+"html-table-generator",
+"HTML Table Generator"
+],
+"js-to-json": [
+"javascript-object-to-json",
+"JS Object to JSON"
+],
+"keycode": [
+"javascript-key-code",
+"JavaScript Key Code Finder"
+],
+"html-tags": [
+"html-tags-reference",
+"HTML Tags Reference"
+],
+"css-props": [
+"css-properties-reference",
+"CSS Properties Reference"
+],
+"html-form": [
+"html-form-builder",
+"HTML Form Builder"
+],
+"html-email": [
+"email-html-checker",
+"Email HTML Checker"
+],
+"code-explain": [
+"error-message-explainer",
+"Error Message Explainer"
+],
+"git-cheatsheet": [
+"git-commands-helper",
+"Git Command Helper"
+],
+"sitemap": [
+"xml-sitemap-generator",
+"XML Sitemap Generator"
+],
+"lorem-image": [
+"placeholder-image-generator",
+"Placeholder Image Generator"
+],
+"api-tester": [
+"api-request-tester",
+"API Request Tester"
+],
+"utm": [
+"utm-link-builder",
+"UTM Link Builder"
+],
+"link-in-bio": [
+"link-in-bio-page-maker",
+"Link-in-Bio Page Maker"
+],
+"email-link": [
+"mailto-link-generator",
+"Mailto, Tel and SMS Link Maker"
+],
+"telegram-link": [
+"telegram-link-generator",
+"Telegram and Signal Link Maker"
+],
+"unicode-converter": [
+"kruti-dev-to-unicode",
+"Kruti Dev to Unicode Converter"
+],
+"char-map": [
+"special-characters",
+"Special Characters"
+],
+"text-to-handwriting": [
+"text-to-handwriting",
+"Text to Handwriting"
+],
+"anagram": [
+"anagram-solver",
+"Anagram Solver and Word Unscrambler"
+],
+"stock-register": [
+"stock-register",
+"Stock Register"
+],
+"attendance": [
+"attendance-register",
+"Attendance Register"
+],
+"salary-register": [
+"salary-register",
+"Staff Salary Register"
+],
+"milk-hisab": [
+"milk-hisab",
+"Milk and Daily Hisab"
+],
+"rent-tracker": [
+"rent-tracker",
+"Rent Tracker for Landlords"
+],
+"lend-borrow": [
+"lend-borrow-tracker",
+"Lend and Borrow Tracker"
+],
+"bill-reminders": [
+"bill-reminders",
+"Bill and Renewal Reminders"
+],
+"customer-book": [
+"customer-book",
+"Customer Book (Mini CRM)"
+],
+"shagun-register": [
+"shagun-register",
+"Shagun and Gift Register"
+],
+"kitty-tracker": [
+"kitty-tracker",
+"Kitty and Committee Tracker"
+],
+"portfolio": [
+"portfolio-tracker",
+"Investment Portfolio Tracker"
+],
+"health-log": [
+"health-log",
+"BP, Sugar and Weight Log"
+],
+"medicine-schedule": [
+"medicine-schedule",
+"Medicine Schedule and Reminders"
+],
+"vehicle-log": [
+"vehicle-log",
+"Vehicle Fuel and Service Log"
+],
+"diary": [
+"private-diary",
+"Private Diary (Encrypted)"
+],
+"workout-log": [
+"workout-log",
+"Gym and Workout Log"
+],
+"reading-log": [
+"reading-log",
+"Books and Reading Log"
+],
+"recipe-book": [
+"recipe-book",
+"My Recipe Book"
+],
+"study-planner": [
+"study-planner",
+"Study Planner and Exam Countdown"
+],
+"my-data": [
+"my-data-backup",
+"My Data: Backup Everything"
+],
+"abc-learn": [
+"learn-abc-alphabet-for-kids",
+"Learn the ABC"
+],
+"letter-trace": [
+"letter-tracing-online",
+"Letter Tracing"
+],
+"varnamala": [
+"hindi-varnamala-with-sounds",
+"Hindi Varnamala"
+],
+"gurmukhi": [
+"punjabi-gurmukhi-painti-with-sounds",
+"Punjabi Gurmukhi Letters"
+],
+"alphabets-world": [
+"alphabets-of-the-world",
+"Alphabets of the World"
+],
+"phonics": [
+"phonics-for-kids-letter-sounds-blending",
+"Phonics: Sounds and Blending"
+],
+"sight-words": [
+"sight-words-flashcards",
+"Sight Words Flashcards"
+],
+"spelling-game": [
+"spelling-game-listen-and-type",
+"Spelling Game"
+],
+"count-123": [
+"counting-1-to-100-for-kids",
+"Counting 1 to 100"
+],
+"number-trace": [
+"number-tracing-online",
+"Number Tracing"
+],
+"number-names": [
+"number-names-in-many-languages",
+"Number Names in Many Languages"
+],
+"shapes-colors": [
+"shapes-and-colours-for-kids",
+"Shapes and Colours"
+],
+"math-practice": [
+"maths-practice-for-kids",
+"Maths Practice"
+],
+"times-tables": [
+"times-tables-quiz",
+"Times Tables"
+],
+"clock-learn": [
+"learn-to-tell-the-time-clock",
+"Learn to Read a Clock"
+],
+"money-learn": [
+"learn-coins-and-notes-for-kids",
+"Learn Coins and Notes"
+],
+"memory-match": [
+"memory-matching-game-for-kids",
+"Memory Matching Game"
+],
+"odd-one-out": [
+"odd-one-out-game-for-kids",
+"Odd One Out"
+],
+"animals": [
+"animals-names-sounds-for-kids",
+"Animals and Their Names"
+],
+"body-parts": [
+"body-parts-for-kids",
+"Body Parts"
+],
+"flags-quiz": [
+"world-flags-and-capitals-quiz",
+"World Flags and Capitals Quiz"
+],
+"planets": [
+"solar-system-explorer-for-kids",
+"Solar System Explorer"
+],
+"coloring": [
+"online-colouring-pages-for-kids",
+"Colouring Pages and Drawing Pad"
+],
+"story-reader": [
+"story-reader-read-aloud-for-kids",
+"Story Reader"
+],
+"rhymes": [
+"nursery-rhymes-read-along",
+"Rhymes Reader"
+],
+"worksheet": [
+"printable-worksheets-for-kids",
+"Printable Worksheets"
+],
+"word-search": [
+"word-search-maker-for-kids",
+"Word Search Maker"
+],
+"crossword": [
+"crossword-maker-for-kids",
+"Crossword Maker"
+],
+"days-months": [
+"days-months-seasons-for-kids",
+"Days, Months and Seasons"
+],
+"opposites": [
+"opposites-and-pairs-for-kids",
+"Opposites and Pairs"
+],
+"typing-tutor": [
+"typing-tutor-online",
+"Typing Tutor"
+],
+"typing-test": [
+"typing-speed-test-wpm",
+"Typing Speed Test"
+],
+"typing-falling": [
+"falling-words-typing-game",
+"Falling Words Typing Game"
+],
+"typing-race": [
+"typing-race-game",
+"Typing Race"
+],
+"typing-space": [
+"space-typing-game",
+"Space Typing Game"
+],
+"typing-balloons": [
+"balloon-pop-typing-game-kids",
+"Balloon Pop Typing (Kids)"
+],
+"typing-keys": [
+"typing-finger-chart",
+"Typing Finger Guide"
+],
+"typing-hindi": [
+"hindi-typing-practice-inscript-remington",
+"Hindi Typing Practice"
+],
+"typing-punjabi": [
+"punjabi-typing-practice-gurmukhi",
+"Punjabi Typing Practice"
+],
+"typing-layouts": [
+"keyboard-layout-typing-practice",
+"Keyboard Layout Practice"
+],
+"typing-code": [
+"code-typing-practice",
+"Code Typing Practice"
+],
+"typing-numbers": [
+"number-pad-typing-practice-10-key",
+"Number Pad (10-Key) Practice"
+],
+"typing-custom": [
+"custom-text-typing-practice",
+"Practise With Your Own Text"
+],
+"typing-certificate": [
+"typing-speed-certificate",
+"Typing Certificate"
+],
+"typing-daily": [
+"daily-typing-challenge",
+"Daily Typing Challenge"
+],
+"riddle-daily": [
+"riddle-of-the-day",
+"Riddle of the Day"
+],
+"riddles-kids": [
+"easy-riddles-for-kids",
+"Riddles for Kids"
+],
+"riddles-tricky": [
+"tricky-riddles-with-hints",
+"Tricky Riddles"
+],
+"riddles-math": [
+"math-riddles-number-puzzles",
+"Maths Riddles"
+],
+"riddles-logic": [
+"logic-puzzles-lateral-thinking",
+"Logic Puzzles"
+],
+"riddles-hindi": [
+"hindi-paheliyan-with-answers",
+"Hindi Riddles (पहेलियाँ)"
+],
+"riddles-punjabi": [
+"punjabi-bujartan-with-answers",
+"Punjabi Riddles (ਬੁਝਾਰਤਾਂ)"
+],
+"riddles-picture": [
+"picture-riddles-spot-the-difference",
+"Picture Riddles"
+],
+"riddle-quiz": [
+"riddle-quiz-with-timer",
+"Riddle Quiz"
+],
+"riddle-share": [
+"share-riddle-as-image",
+"Share a Riddle as an Image"
+],
+"emoji-riddles": [
+"emoji-riddles-guess-the-word",
+"Emoji Riddles"
+],
+"brain-teasers": [
+"brain-teasers-for-adults",
+"Brain Teasers"
+],
+"sudoku": [
+"sudoku-online-solver",
+"Sudoku: Play and Solve"
+],
+"sudoku-print": [
+"printable-sudoku",
+"Printable Sudoku"
+],
+"crossword-play": [
+"daily-crossword",
+"Daily Crossword"
+],
+"word-search-play": [
+"word-search-online",
+"Word Search"
+],
+"nonogram": [
+"nonogram-picture-logic-puzzle",
+"Nonogram Picture Puzzles"
+],
+"kakuro": [
+"kakuro-online",
+"Kakuro"
+],
+"logic-grid": [
+"logic-grid-puzzles",
+"Logic Grid Puzzles"
+],
+"sliding-puzzle": [
+"sliding-tile-puzzle",
+"Sliding Tile Puzzle"
+],
+"jigsaw": [
+"jigsaw-puzzle-from-photo",
+"Jigsaw Puzzle Maker"
+],
+"hanoi": [
+"tower-of-hanoi",
+"Tower of Hanoi"
+],
+"maze": [
+"maze-generator-solver",
+"Maze Generator and Solver"
+],
+"mines": [
+"mines-clear-the-field",
+"Mines: Clear the Field"
+],
+"tic-tac-toe": [
+"tic-tac-toe-online",
+"Tic-Tac-Toe"
+],
+"four-in-row": [
+"four-in-a-row-game",
+"Four in a Row"
+],
+"checkers": [
+"checkers-online",
+"Checkers"
+],
+"chess": [
+"chess-vs-computer",
+"Chess"
+],
+"solitaire": [
+"solitaire-klondike",
+"Solitaire"
+],
+"memory-cards": [
+"memory-card-matching-game",
+"Memory Card Match"
+],
+"word-ladder": [
+"word-ladder-game",
+"Word Ladder"
+],
+"number-merge": [
+"number-merge-puzzle",
+"Number Merge"
+],
+"math-puzzle": [
+"daily-maths-puzzle",
+"Daily Maths Puzzle"
+],
+"reaction": [
+"reaction-time-test",
+"Reaction Time Test"
+],
+"brain-train": [
+"brain-training-games",
+"Brain Training"
+],
+"trivia": [
+"trivia-quiz-general-knowledge",
+"Trivia Quiz"
+],
+"pictionary": [
+"draw-and-guess-word-picker",
+"Draw and Guess Word Picker"
+],
+"snake-ladders": [
+"snakes-and-ladders-online",
+"Snakes and Ladders"
+],
+"ludo": [
+"ludo-online-2-4-players",
+"Ludo"
+],
+"scorekeeper": [
+"scorekeeper-any-game",
+"Scorekeeper"
+],
+"flashlight": [
+"screen-flashlight",
+"Screen Light"
+],
+"mirror": [
+"online-mirror",
+"Online Mirror"
+],
+"magnifier": [
+"magnifying-glass-online",
+"Magnifier"
+],
+"bubble-level": [
+"bubble-level-online",
+"Spirit Level"
+],
+"compass": [
+"online-compass",
+"Compass"
+],
+"sound-meter": [
+"sound-level-meter",
+"Sound Level Meter"
+],
+"random-letter": [
+"random-letter-generator",
+"Random Letter Generator"
+],
+"bracket": [
+"tournament-bracket-maker",
+"Tournament Bracket Maker"
+],
+"emoji-search": [
+"emoji-search",
+"Emoji Search"
+],
+"symbols": [
+"copy-paste-symbols",
+"Copy and Paste Symbols"
+],
+"kaomoji": [
+"kaomoji-text-faces",
+"Kaomoji"
+],
+"invisible-char": [
+"invisible-character",
+"Invisible Character"
+],
+"char-limit": [
+"character-limit-checker",
+"Character Limit Checker"
+],
+"timer-fullscreen": [
+"big-fullscreen-clock-timer",
+"Big Full-Screen Clock and Timer"
+],
+"breathing": [
+"breathing-exercise",
+"Breathing Exercise"
+],
+"white-noise": [
+"white-noise-generator",
+"White Noise"
+],
+"meditation": [
+"meditation-timer",
+"Meditation Timer"
+],
+"eye-chart": [
+"eye-test-chart",
+"Eye Test Chart"
+],
+"color-blind": [
+"color-blindness-test",
+"Colour Vision Test"
+],
+"hearing-test": [
+"hearing-frequency-test",
+"Hearing Frequency Test"
+],
+"screen-info": [
+"my-screen-resolution",
+"My Screen Resolution"
+],
+"battery": [
+"battery-status-checker",
+"Battery Status"
+],
+"vibration": [
+"vibration-test",
+"Vibration Tester"
+],
+"grocery-list": [
+"grocery-list-maker",
+"Grocery and Packing List"
+],
+"expense": [
+"daily-expense-tracker",
+"Daily Expense Tracker"
+],
+"habit": [
+"habit-tracker",
+"Habit Tracker"
+],
+"water-reminder": [
+"water-drinking-reminder",
+"Water Reminder"
+],
+"shift-planner": [
+"shift-roster-planner",
+"Shift Roster Planner"
+],
+"time-card": [
+"time-card-calculator",
+"Time Card Calculator"
+],
+"baby-names": [
+"baby-name-ideas",
+"Baby Name Ideas"
+],
+"gift-ideas": [
+"gift-idea-generator",
+"Gift Idea Picker"
+],
+"what-to-eat": [
+"what-should-i-eat",
+"What Should I Eat?"
+],
+"stamp-maker": [
+"rubber-stamp-maker",
+"Rubber Stamp Maker"
+],
+"label-print": [
+"address-label-printer",
+"Address Label Printer"
+],
+"sticky-note": [
+"online-sticky-notes",
+"Sticky Notes"
+],
+"clipboard-clean": [
+"paste-as-plain-text",
+"Paste as Plain Text"
+],
+"name-initials": [
+"initials-monogram-maker",
+"Initials and Monogram Maker"
+],
+"festival-calendar": [
+"festivals-holidays-calendar",
+"Festivals and Holidays Calendar"
+],
+"calendar-reminder": [
+"calendar-reminder-maker",
+"Calendar Reminder Maker"
+],
+"maps-link": [
+"map-directions-link-maker",
+"Map and Directions Link Maker"
+],
+"event-invite": [
+"event-invitation-maker",
+"Event Invitation Maker"
+],
+"install-app": [
+"install-as-app",
+"Install as an App"
+],
+"stopwatch": [
+"online-stopwatch-timer",
+"Stopwatch and Timer"
+],
+"pomodoro": [
+"pomodoro-timer",
+"Pomodoro Timer"
+],
+"countdown": [
+"countdown-to-date",
+"Countdown to a Date"
+],
+"alarm": [
+"online-alarm-clock",
+"Online Alarm Clock"
+],
+"world-clock": [
+"world-clock",
+"World Clock"
+],
+"calendar": [
+"calendar-with-holidays",
+"Calendar with Holidays"
+],
+"notepad": [
+"online-notepad",
+"Online Notepad"
+],
+"todo": [
+"to-do-list",
+"To-Do List"
+],
+"flashcards": [
+"flashcards-maker",
+"Flashcards"
+],
+"periodic-table": [
+"periodic-table",
+"Periodic Table"
+],
+"multiplication": [
+"multiplication-tables",
+"Multiplication Tables"
+],
+"drawing": [
+"online-drawing-board",
+"Drawing Board"
+],
+"screen-test": [
+"dead-pixel-screen-test",
+"Dead Pixel Test"
+],
+"keyboard-test": [
+"keyboard-tester",
+"Keyboard Tester"
+],
+"sunrise": [
+"sunrise-sunset-prayer-times",
+"Sunrise, Sunset and Prayer Times"
+],
+"moon-phase": [
+"moon-phase-today",
+"Moon Phase"
+],
+"voice-recorder": [
+"online-voice-recorder",
+"Voice Recorder"
+],
+"screen-recorder": [
+"online-screen-recorder",
+"Screen Recorder"
+],
+"webcam-recorder": [
+"webcam-video-recorder",
+"Webcam Recorder"
+],
+"audio-speed": [
+"change-audio-speed-pitch",
+"Change Audio Speed and Pitch"
+],
+"video-frames": [
+"extract-frames-from-video",
+"Extract Frames from Video"
+],
+"subtitle-convert": [
+"srt-vtt-subtitle-converter",
+"Subtitle Converter"
+],
+"metronome": [
+"online-metronome",
+"Metronome"
+],
+"tuner": [
+"online-guitar-tuner",
+"Guitar and Instrument Tuner"
+],
+"tone-generator": [
+"online-tone-generator",
+"Tone Generator"
+],
+"mic-test": [
+"microphone-test",
+"Microphone Test"
+],
+"webcam-test": [
+"webcam-test",
+"Webcam Test"
+],
+"image-blur": [
+"blur-face-number-plate",
+"Blur Faces and Number Plates"
+],
+"passport-photo": [
+"passport-size-photo-maker",
+"Passport Photo Maker"
+],
+"color-picker-image": [
+"image-color-picker",
+"Colour Picker from Image"
+],
+"image-collage": [
+"photo-collage-maker",
+"Photo Collage Maker"
+],
+"screenshot-frame": [
+"screenshot-mockup-frame",
+"Screenshot Mock-up Frames"
+],
+"resume": [
+"resume-builder",
+"Resume Builder"
+],
+"letterhead": [
+"letterhead-business-card-maker",
+"Letterhead and Business Card Maker"
+],
+"hashtag": [
+"hashtag-generator",
+"Hashtag Generator"
+],
+"fake-data": [
+"test-data-generator",
+"Test Data Generator"
+],
+"cover-letter": [
+"cover-letter-generator",
+"Cover Letter Generator"
+],
+"calendar-maker": [
+"printable-calendar-maker",
+"Printable Calendar Maker"
+],
+"certificate": [
+"certificate-maker",
+"Certificate Maker"
+],
+"poll": [
+"quick-poll-decision-maker",
+"Quick Poll and Decision Maker"
+],
+"credit-note": [
+"credit-note-debit-note-maker",
+"Credit Note and Debit Note Maker"
+],
+"gst-register": [
+"gst-sales-purchase-register",
+"GST Sales and Purchase Register"
+],
+"affidavit": [
+"affidavit-format",
+"Affidavit and Declaration Formats"
+],
+"rent-agreement": [
+"rent-agreement-format",
+"Rent Agreement Draft"
+],
+"fd-rd": [
+"fd-rd-calculator",
+"FD and RD Calculator"
+],
+"shoe-size": [
+"shoe-size-converter",
+"Shoe and Clothing Size Converter"
+],
+"height-percentile": [
+"child-height-weight-percentile",
+"Child Height and Weight Percentile"
+],
+"file-hash": [
+"file-checksum-calculator",
+"File Checksum Calculator"
+],
+"file-type": [
+"file-type-checker",
+"What Type Is This File?"
+],
+"split-file": [
+"split-join-files",
+"Split and Join Files"
+],
+"encrypt-file": [
+"encrypt-file-with-password",
+"Encrypt a File with a Password"
+],
+"pdf-compress": [
+"compress-pdf",
+"Compress PDF"
+],
+"pdf-watermark": [
+"add-watermark-to-pdf",
+"Add Watermark to PDF"
+],
+"pdf-page-numbers": [
+"add-page-numbers-to-pdf",
+"Add Page Numbers to PDF"
+],
+"pdf-sign": [
+"sign-pdf",
+"Sign PDF"
+],
+"pdf-fill": [
+"fill-pdf-form",
+"Fill PDF Form"
+],
+"pdf-unlock": [
+"remove-pdf-password",
+"Remove PDF Password"
+],
+"pdf-protect": [
+"password-protect-pdf",
+"Password Protect PDF"
+],
+"pdf-crop": [
+"crop-pdf",
+"Crop PDF"
+],
+"pdf-redact": [
+"redact-pdf",
+"Redact PDF"
+],
+"pdf-metadata": [
+"edit-pdf-metadata",
+"Edit PDF Metadata"
+],
+"pdf-extract-images": [
+"extract-images-from-pdf",
+"Extract Images from PDF"
+],
+"pdf-grayscale": [
+"pdf-to-black-and-white",
+"PDF to Black and White"
+],
+"pdf-flatten": [
+"flatten-pdf",
+"Flatten PDF"
+],
+"pdf-compare": [
+"compare-pdf",
+"Compare PDF"
+],
+"pdf-ocr": [
+"make-pdf-searchable-ocr",
+"Make Scanned PDF Searchable (OCR)"
+],
+"pdf-n-up": [
+"multiple-pages-per-sheet-pdf",
+"Pages per Sheet (N-up)"
+],
+"pdf-to-word": [
+"pdf-to-word",
+"PDF to Word"
+],
+"word-to-pdf": [
+"word-to-pdf",
+"Word to PDF"
+],
+"excel-to-pdf": [
+"excel-to-pdf",
+"Excel to PDF"
+],
+"heic-to-jpg": [
+"heic-to-jpg",
+"HEIC to JPG"
+],
+"bg-remove": [
+"remove-background-from-image",
+"Remove Background"
+],
+"exif-viewer": [
+"exif-viewer-remove-photo-location",
+"EXIF Viewer and Remover"
+],
+"image-upscale": [
+"ai-image-upscaler",
+"AI Image Upscaler"
+],
+"gif-maker": [
+"gif-maker",
+"GIF Maker"
+],
+"video-to-mp3": [
+"video-to-mp3",
+"Video to MP3"
+],
+"video-convert": [
+"video-converter",
+"Video Converter"
+],
+"video-compress": [
+"compress-video",
+"Compress Video"
+],
+"video-trim": [
+"trim-video",
+"Trim Video"
+],
+"video-to-gif": [
+"video-to-gif",
+"Video to GIF"
+],
+"video-mute": [
+"remove-audio-from-video",
+"Remove Audio from Video"
+],
+"audio-convert": [
+"audio-converter",
+"Audio Converter"
+],
+"audio-trim": [
+"audio-trimmer-ringtone-maker",
+"Audio Trimmer and Ringtone Maker"
+],
+"audio-join": [
+"join-audio-files",
+"Join Audio Files"
+],
+"html-check": [
+"html-checker",
+"HTML Checker"
+],
+"css-check": [
+"css-checker",
+"CSS Checker"
+],
+"js-check": [
+"javascript-checker",
+"JavaScript Checker (ESLint)"
+],
+"ts-check": [
+"typescript-checker",
+"TypeScript Checker"
+],
+"python-check": [
+"python-syntax-checker",
+"Python Checker"
+],
+"sql-check": [
+"sql-syntax-checker",
+"SQL Checker"
+],
+"yaml-check": [
+"yaml-validator",
+"YAML Validator"
+],
+"markdown-check": [
+"markdown-linter",
+"Markdown Checker"
+],
+"a11y-check": [
+"accessibility-checker",
+"Accessibility Checker"
+],
+"python-run": [
+"run-python-online",
+"Run Python"
+],
+"sql-run": [
+"sql-playground",
+"SQL Playground"
+],
+"lua-run": [
+"run-lua-online",
+"Run Lua"
+],
+"ruby-run": [
+"run-ruby-online",
+"Run Ruby"
+],
+"emmet": [
+"emmet-expander",
+"Emmet Expander"
+],
+"code-beautify": [
+"code-beautifier",
+"Code Beautifier"
+],
+"sql-format": [
+"sql-formatter",
+"SQL Formatter"
+],
+"svg-optimize": [
+"svg-optimizer",
+"SVG Optimiser"
+],
+"ip-lookup": [
+"what-is-my-ip",
+"What Is My IP"
+],
+"dns-lookup": [
+"dns-lookup",
+"DNS Lookup"
+],
+"transliterate": [
+"transliteration-tool",
+"Transliteration"
+],
+"qr-scan": [
+"qr-code-scanner",
+"QR Code Scanner"
+],
+"barcode": [
+"barcode-generator",
+"Barcode Generator"
+],
+"wifi-qr": [
+"wifi-qr-code-generator",
+"Wi-Fi QR Code"
+],
+"vcard-qr": [
+"contact-qr-code-generator",
+"Contact QR Code (vCard)"
+],
+"upi-qr": [
+"upi-qr-code-generator",
+"UPI Payment QR"
+],
+"csv-viewer": [
+"csv-excel-viewer",
+"CSV & Excel Viewer"
+],
+"excel-to-csv": [
+"excel-to-csv-converter",
+"Excel ↔ CSV Converter"
+],
+"docx-to-text": [
+"word-to-text-converter",
+"Word to Text"
+],
+"epub-reader": [
+"epub-reader",
+"EPUB Reader"
+],
+"rename-files": [
+"bulk-file-renamer",
+"Bulk File Renamer"
+],
+"password-strength": [
+"password-strength-checker",
+"Password Strength Checker"
+],
+"breach-check": [
+"password-leak-checker",
+"Was My Password Leaked?"
+],
+"graph": [
+"graph-plotter",
+"Graph Plotter"
+],
+"speed-test": [
+"internet-speed-test",
+"Internet Speed Test"
+]
+}

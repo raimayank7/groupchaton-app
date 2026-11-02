@@ -1,95 +1,99 @@
-/* Infinity App service worker: keeps the app on the device so it opens and works without internet.
-   - the app's own files: saved when the app is installed (list below), then served from the device
-   - data/tools.json: fresh from the network when online, the saved copy when offline
-   - libraries and fonts from CDNs (PDF, QR, ZIP…): saved the first time they are used
+/* GroupChatOn app service worker: opens instantly and keeps chapters for reading without internet.
+   - the app itself (shell, styles, script, icons): saved on install, served from the device, refreshed by new versions
+   - every screen (/, /novel/…, /read/…): the saved app shell, so links work offline too
+   - data/novels.json: fresh when online (3 s), the saved copy when offline
+   - chapters (/c/…json): the saved copy first, refreshed in the background; every opened chapter is kept
+   - fonts and cover pictures: saved the first time they are used
+   It replaces the old "Infinity App" service worker of this address: its caches are removed when this one starts.
+   (Records saved by the old Infinity App are in IndexedDB/localStorage, never in these caches, so they are not touched.)
    Designed & Developed by Nivesh Sahayak. See LICENSE. */
-var VERSION = '2026-11-02.14-2dbe380a';
-var CORE = 'gco-app-' + VERSION, EXT = 'gco-app-ext';
+var VERSION = '2026-11-02.aa5326a';
+var SHELL = 'gcr-shell-' + VERSION, CHAPTERS = 'gcr-chapters', DATA = 'gcr-data', EXT = 'gcr-ext', IMG = 'gcr-img';
 var FILES = [
- "./",
- "index.html",
- "app.js?v=2026-11-02.14-2dbe380a",
- "app.css?v=2026-11-02.14-2dbe380a",
- "manifest.webmanifest",
- "data/tools.json",
- "assets/infinity.css?v=2026-11-02.14-2dbe380a",
- "assets/tools/kit.js?v=2026-11-02.14-2dbe380a",
- "assets/tools/tools.css",
- "assets/brand/favicon-32.png",
- "assets/brand/favicon-192.png",
- "assets/brand/favicon-512.png",
- "assets/brand/apple-touch-icon.png",
- "assets/tools/_invoice.js",
- "assets/tools/attendance.js",
- "assets/tools/bill-reminders.js",
- "assets/tools/book-keeper.js",
- "assets/tools/credit-note.js",
- "assets/tools/customer-book.js",
- "assets/tools/delivery-challan.js",
- "assets/tools/diary.js",
- "assets/tools/gst-register.js",
- "assets/tools/health-log.js",
- "assets/tools/invoice.js",
- "assets/tools/kitty-tracker.js",
- "assets/tools/lend-borrow.js",
- "assets/tools/medicine-schedule.js",
- "assets/tools/milk-hisab.js",
- "assets/tools/money-manager.js",
- "assets/tools/my-data.js",
- "assets/tools/portfolio.js",
- "assets/tools/proforma-invoice.js",
- "assets/tools/purchase-order.js",
- "assets/tools/quotation.js",
- "assets/tools/reading-log.js",
- "assets/tools/receipt.js",
- "assets/tools/recipe-book.js",
- "assets/tools/rent-tracker.js",
- "assets/tools/salary-register.js",
- "assets/tools/shagun-register.js",
- "assets/tools/stock-register.js",
- "assets/tools/study-planner.js",
- "assets/tools/vehicle-log.js",
- "assets/tools/workout-log.js"
+ "/",
+ "/reader.js?v=2026-11-02.aa5326a",
+ "/reader.css?v=2026-11-02.aa5326a",
+ "/app.webmanifest",
+ "/brand/logo-light.png",
+ "/brand/logo-dark.png",
+ "/brand/favicon-32.png",
+ "/brand/favicon-192.png",
+ "/brand/apple-touch-icon.png"
 ];
 
 self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(CORE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
+  e.waitUntil(caches.open(SHELL).then(function (c) { return c.addAll(FILES.map(function (f) { return new Request(f, { cache: 'reload' }); })); })
+    .then(function () { return self.skipWaiting(); }));
 });
 self.addEventListener('activate', function (e) {
+  var keep = [SHELL, CHAPTERS, DATA, EXT, IMG];
   e.waitUntil(caches.keys().then(function (keys) {
-    return Promise.all(keys.filter(function (k) { return k !== CORE && k !== EXT; }).map(function (k) { return caches.delete(k); }));
+    return Promise.all(keys.filter(function (k) { return keep.indexOf(k) < 0; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
+
+function put(name, req, res) { var copy = res.clone(); caches.open(name).then(function (c) { c.put(req, copy); }); return res; }
+function timeout(p, ms) { return new Promise(function (ok, fail) { var t = setTimeout(function () { fail(new Error('slow')); }, ms); p.then(function (r) { clearTimeout(t); ok(r); }, function (x) { clearTimeout(t); fail(x); }); }); }
+
 self.addEventListener('fetch', function (e) {
   var req = e.request, url = new URL(req.url);
   if (req.method !== 'GET') return;
   if (url.origin === location.origin) {
-    if (req.mode === 'navigate') {   // pages: fresh when online; offline, the saved copy of that page (a single-tool app), else the app shell
-      var shell = function () {
-        return caches.match(req, { ignoreSearch: true }).then(function (r) { return r || caches.match('./', { ignoreSearch: true }); }).then(function (r) { return r || caches.match('index.html'); });
-      };
-      e.respondWith(fetch(req).then(function (r) {
-        if (r.ok) { var copy = r.clone(); caches.open(EXT).then(function (c) { c.put(req.url.split('?')[0], copy); }); return r; }
-        return shell().then(function (c) { return c || r; });
-      }, shell));
+    var p = url.pathname;
+    // the old tool addresses are small redirect pages to Infinity: always from the network
+    if (/^\/t\//.test(p)) {
+      if (req.mode === 'navigate') e.respondWith(fetch(req).catch(function () { return caches.match('/', { cacheName: SHELL }); }));
       return;
     }
-    if (/\/data\/tools\.json$/.test(url.pathname)) {   // the tool list: network first
-      e.respondWith(fetch(req).then(function (r) { var copy = r.clone(); caches.open(CORE).then(function (c) { c.put('data/tools.json', copy); }); return r; })
-        .catch(function () { return caches.match('data/tools.json'); }));
+    if (req.mode === 'navigate' && !/\.(?!html$)\w+$/.test(p)) {   // every app screen is the same page: the saved shell, refreshed in the background
+      e.respondWith(caches.open(SHELL).then(function (c) {
+        return c.match('/').then(function (hit) {
+          var live = fetch('/', { cache: 'no-cache' }).then(function (r) { if (r.ok) c.put('/', r.clone()); return r; });
+          if (hit) { e.waitUntil(live.catch(function () {})); return hit; }
+          return live.then(function (r) { return r.ok ? r : fetch(req); }).catch(function () { return fetch(req); });
+        });
+      }));
       return;
     }
-    e.respondWith(caches.match(req, { ignoreSearch: true }).then(function (hit) {   // files carry ?v=…; the saved copy is the same version
-      return hit || fetch(req).then(function (r) { if (r.ok) { var copy = r.clone(); caches.open(CORE).then(function (c) { c.put(req, copy); }); } return r; });
+    if (p === '/data/novels.json') {
+      e.respondWith(timeout(fetch(req, { cache: 'no-cache' }), 3000).then(function (r) { return r.ok ? put(DATA, '/data/novels.json', r) : r; })
+        .catch(function () { return caches.match('/data/novels.json').then(function (hit) { return hit || fetch(req); }); }));
+      return;
+    }
+    if (/^\/c\/.+\.json$/.test(p)) {
+      e.respondWith(caches.open(CHAPTERS).then(function (c) {
+        return c.match(p).then(function (hit) {
+          var live = fetch(p).then(function (r) { if (r.ok) c.put(p, r.clone()); return r; });
+          if (hit) { e.waitUntil(live.catch(function () {})); return hit; }
+          return live;
+        });
+      }));
+      return;
+    }
+    e.respondWith(caches.match(req).then(function (hit) {
+      return hit || fetch(req).then(function (r) { if (r.ok && /^\/brand\//.test(p)) put(SHELL, req, r); return r; });
     }));
     return;
   }
-  // libraries and fonts: use the saved copy, refresh it in the background
-  if (/^(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net|fonts\.googleapis\.com|fonts\.gstatic\.com|unpkg\.com)$/.test(url.hostname)) {
+  // fonts: saved copy, refreshed in the background
+  if (/^fonts\.(googleapis|gstatic)\.com$/.test(url.hostname)) {
     e.respondWith(caches.open(EXT).then(function (c) {
       return c.match(req).then(function (hit) {
-        var live = fetch(req).then(function (r) { if (r.ok || r.type === 'opaque') c.put(req, r.clone()); return r; }).catch(function () { return hit; });
-        return hit || live;
+        var live = fetch(req).then(function (r) { if (r.ok || r.type === 'opaque') c.put(req, r.clone()); return r; });
+        if (hit) { e.waitUntil(live.catch(function () {})); return hit; }
+        return live;
+      });
+    }));
+    return;
+  }
+  // cover pictures and pictures inside chapters: saved the first time (at most 300 kept)
+  if (/^blogger\.googleusercontent\.com$|\.bp\.blogspot\.com$/.test(url.hostname) && req.destination === 'image') {
+    e.respondWith(caches.open(IMG).then(function (c) {
+      return c.match(req).then(function (hit) {
+        return hit || fetch(req).then(function (r) {
+          if (r.ok || r.type === 'opaque') { c.put(req, r.clone()); c.keys().then(function (ks) { if (ks.length > 300) c.delete(ks[0]); }); }
+          return r;
+        });
       });
     }));
   }
