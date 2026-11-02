@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.07c10b8';
+  var VERSION = '2026-11-02.5265f0c';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -502,7 +502,7 @@
       el('div', { 'class': 'links', style: 'justify-content:center' }, [
         el('a', { href: WWW + '/', text: 'www.groupchaton.com' }), el('a', { href: WWW + '/p/privacy-policy.html', text: 'Privacy policy' }),
         el('a', { href: WWW + '/p/disclaimer.html', text: 'Disclaimer' }), el('a', { href: WWW + '/p/contact-us.html', text: 'Contact' })]),
-      el('p', { html: '© ' + new Date().getFullYear() + ' GroupChatOn. All rights reserved. · Built by <a href="https://www.niveshsahayak.in/">Nivesh Sahayak</a>' })]);
+      el('p', { html: '© ' + new Date().getFullYear() + ' GroupChatOn. All rights reserved. · Designed &amp; Developed by: <a href="https://www.niveshsahayak.in/" rel="noopener" target="_blank">Nivesh Sahayak</a>' })]);
   }
   // Blogger serves any size of a picture: ask for a small one instead of the 1600px original
   function coverUrl(u, w) { return (u || '').replace(/\/(s\d+(-c)?|w\d+(-h\d+)?(-[a-z]+)*)\/([^/]+)$/, '/w' + w + '/$5'); }
@@ -962,7 +962,7 @@
         el('p', {}, ['Record tools (invoices, khata, money manager…) are on ', el('a', { href: INF + '/', text: 'Infinity' }), '.']),
         el('div', { 'class': 'links' }, [el('a', { href: WWW + '/p/privacy-policy.html', text: 'Privacy policy' }), el('a', { href: WWW + '/p/disclaimer.html', text: 'Disclaimer' }),
           el('a', { href: WWW + '/p/contact-us.html', text: 'Contact us' }), el('a', { href: WWW + '/p/about-us.html', text: 'About GroupChatOn' })]),
-        el('p', { 'class': 'copy', html: '© ' + new Date().getFullYear() + ' GroupChatOn. All rights reserved.<br>Built by <a href="https://www.niveshsahayak.in/">Nivesh Sahayak</a>' })]));
+        el('p', { 'class': 'copy', html: '© ' + new Date().getFullYear() + ' GroupChatOn. All rights reserved.<br>Designed &amp; Developed by: <a href="https://www.niveshsahayak.in/" rel="noopener" target="_blank">Nivesh Sahayak</a>' })]));
       if (!DATA) loadData().then(function () { if (route.name === 'settings') render(); }).catch(function () {});
       return w;
     });
