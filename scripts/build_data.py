@@ -289,6 +289,12 @@ def main():
             'novels': sorted(novels, key=lambda n: max((c[2] for c in n['chapters']), default=''), reverse=True),
             'latest': [[x[1], x[2], x[3], x[0]] for x in latest]}
     os.makedirs(os.path.join(ROOT, 'data'), exist_ok=True)
+    try:  # nothing new: keep the old time stamp, so the hourly run has nothing to commit
+        prev = json.load(open(os.path.join(ROOT, 'data', 'novels.json'), encoding='utf-8'))
+        if {k: v for k, v in prev.items() if k != 'built'} == {k: v for k, v in data.items() if k != 'built'}:
+            data['built'] = prev['built']
+    except Exception:
+        pass
     with open(os.path.join(ROOT, 'data', 'novels.json'), 'w', encoding='utf-8', newline='\n') as f:
         json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
     print(f'done: {len(done)} read, {failed} failed')
