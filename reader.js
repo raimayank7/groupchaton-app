@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.450c160';
+  var VERSION = '2026-11-02.c62e39e';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -306,10 +306,11 @@
   /* ---------------- sponsor cards: fill an ad space that stays empty (offline, blocked, no ad) ----------------
      The list is data/promos.json (copied hourly from Share's sponsor list); the offline script keeps it and its pictures. */
   var adsBlocked = false, promos = null, promoUsed = [];
+  var PROMO_ICONS = { coffee: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M7 2v3M11 2v3M15 2v3"/></svg>' };
   var inIndia = (function () { try { return /^Asia\/(Kolkata|Calcutta)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone); } catch (e) { return false; } })();
   function getPromos() {
     return promos || (promos = fetch('/data/promos.json').then(function (r) { return r.json(); })
-      .then(function (P) { return ((P && P.promos) || []).filter(function (x) { return x.href && x.imgs && x.imgs.length && (inIndia || !x.india); }); })
+      .then(function (P) { return ((P && P.promos) || []).filter(function (x) { return x.href && ((x.imgs && x.imgs.length) || x.icon) && (inIndia || !x.india); }); })
       .catch(function () { promos = null; return []; }));
   }
   function promoFill(d) {
@@ -322,11 +323,14 @@
       var x = fresh[Math.floor(Math.random() * fresh.length)];
       promoUsed.push(x.href);
       d.innerHTML = '';
-      d.appendChild(el('a', { 'class': 'promo-card', href: x.href, target: '_blank', rel: 'sponsored noopener' }, [
-        el('img', { src: x.imgs[Math.floor(Math.random() * x.imgs.length)], alt: x.title || '', loading: 'lazy', width: 336, height: 280 }),
+      if (x.own) d.classList.add('is-own');   // our own card (Ko-fi): labelled "From GroupChatOn", not a sponsored link
+      var pic = x.imgs && x.imgs.length ? el('img', { src: x.imgs[Math.floor(Math.random() * x.imgs.length)], alt: x.title || '', loading: 'lazy', width: 336, height: 280 })
+        : el('span', { 'class': 'promo-ic', 'aria-hidden': 'true', html: PROMO_ICONS[x.icon] || '' });
+      d.appendChild(el('a', { 'class': 'promo-card', href: x.href, target: '_blank', rel: x.own ? 'noopener' : 'sponsored noopener' }, [
+        pic,
         el('b', { text: x.title || '' }),
         x.line ? el('span', { text: x.line }) : null,
-        el('em', { text: x.cta || 'Learn more' })]));
+        el('em', { text: x.cta || 'Learn more' }), x.small ? el('small', { text: x.small }) : null]));
     });
   }
 
