@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.ff96b96';
+  var VERSION = '2026-11-02.64b3a90';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -552,7 +552,7 @@
     return Promise.all([loadData(), oldRecords()]).then(function (r) {
       var d = r[0], w = el('div', { 'class': 'wrap' });
       if (hasOld(r[1]) && !store.get('gco-app-old-hide', false)) w.appendChild(oldBanner(r[1]));
-      w.appendChild(el('div', { 'class': 'hello' }, [el('div', {}, [el('h1', { text: 'GroupChatOn' }), el('p', { text: 'Korean web novels, translated. ' + plural(d.novels.reduce(function (a, n) { return a + n.chapters.length; }, 0), 'chapter') + ' to read.' })]),
+      w.appendChild(el('div', { 'class': 'hello' }, [el('div', {}, [el('h1', { text: 'Read Korean web novels' }), el('p', { text: 'Translated into English. ' + plural(d.novels.reduce(function (a, n) { return a + n.chapters.length; }, 0), 'chapter') + ' to read, free.' })]),
         navigator.onLine ? null : el('span', { 'class': 'offline-pill', text: 'Offline' })]));
       // continue reading: the most recent book
       var h = hist(), last = Object.keys(h).map(function (k) { return [k, h[k]]; }).filter(function (x) { return d.byId[x[0]]; }).sort(function (a, b) { return b[1].at - a[1].at; })[0];
