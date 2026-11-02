@@ -63,7 +63,8 @@
   body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--ui);-webkit-font-smoothing:antialiased}
   .top{position:sticky;top:0;z-index:40;height:calc(var(--top) + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);background:var(--bg);border-bottom:1px solid var(--line)}
   .top-in{display:flex;align-items:center;gap:8px;max-width:1120px;height:var(--top);margin:0 auto;padding:0 12px}
-  .logo{display:flex;align-items:center;height:44px;flex:0 0 auto}.logo img{height:30px;width:auto;display:block}
+  .logo{display:flex;align-items:center;height:52px;flex:0 0 auto}.logo img{height:44px;width:auto;display:block}
+  @media (max-width:520px){.logo img{height:34px}}
   .logo .logo-dark,html[data-theme='dark'] .logo .logo-light,html[data-theme='black'] .logo .logo-light{display:none}
   html[data-theme='dark'] .logo .logo-dark,html[data-theme='black'] .logo .logo-dark{display:block}
   .wrap{max-width:1120px;margin:0 auto;padding:20px 16px 110px}
@@ -75,7 +76,7 @@
   #main{outline:0}
   #main.is-in{animation:fadein .25s ease-out}@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 </style>
-<link rel="stylesheet" href="/reader.css?v=2026-11-02.b1c85f3">
+<link rel="stylesheet" href="/reader.css?v=2026-11-02.ff96b96">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -98,6 +99,6 @@
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <noscript><div class="wrap"><p>The GroupChatOn app needs JavaScript. You can read every novel on <a href="https://www.groupchaton.com/">www.groupchaton.com</a>.</p></div></noscript>
-<script src="/reader.js?v=2026-11-02.b1c85f3" defer></script>
+<script src="/reader.js?v=2026-11-02.ff96b96" defer></script>
 </body>
 </html>
