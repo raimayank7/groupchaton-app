@@ -7,12 +7,12 @@
    It replaces the old "Infinity App" service worker of this address: its caches are removed when this one starts.
    (Records saved by the old Infinity App are in IndexedDB/localStorage, never in these caches, so they are not touched.)
    Designed & Developed by Nivesh Sahayak. See LICENSE. */
-var VERSION = '2026-11-02.aa5326a';
+var VERSION = '2026-11-02.07c10b8';
 var SHELL = 'gcr-shell-' + VERSION, CHAPTERS = 'gcr-chapters', DATA = 'gcr-data', EXT = 'gcr-ext', IMG = 'gcr-img';
 var FILES = [
  "/",
- "/reader.js?v=2026-11-02.aa5326a",
- "/reader.css?v=2026-11-02.aa5326a",
+ "/reader.js?v=2026-11-02.07c10b8",
+ "/reader.css?v=2026-11-02.07c10b8",
  "/app.webmanifest",
  "/brand/logo-light.png",
  "/brand/logo-dark.png",
@@ -27,9 +27,14 @@ self.addEventListener('install', function (e) {
 });
 self.addEventListener('activate', function (e) {
   var keep = [SHELL, CHAPTERS, DATA, EXT, IMG];
+  var fromOldApp = false;
   e.waitUntil(caches.keys().then(function (keys) {
+    fromOldApp = keys.some(function (k) { return /^gco-app-/.test(k); });
     return Promise.all(keys.filter(function (k) { return keep.indexOf(k) < 0; }).map(function (k) { return caches.delete(k); }));
-  }).then(function () { return self.clients.claim(); }));
+  }).then(function () { return self.clients.claim(); }).then(function () {
+    // replacing the old Infinity App: pages it already showed are reloaded once so they become the reading app
+    if (fromOldApp) return self.clients.matchAll({ type: 'window' }).then(function (cs) { cs.forEach(function (c) { if (c.navigate) c.navigate(c.url).catch(function () {}); }); });
+  }));
 });
 
 function put(name, req, res) { var copy = res.clone(); caches.open(name).then(function (c) { c.put(req, copy); }); return res; }
