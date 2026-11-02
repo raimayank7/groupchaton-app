@@ -5,6 +5,8 @@
 .gco-tool-mount{margin:8px 0 8px}
 .tool-app{display:grid;gap:16px;padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow);font:15px/1.5 var(--ui);color:var(--ink)}
 @media (max-width:480px){.tool-app{padding:14px;border-radius:16px}}
+/* Bold text keeps the colour of the box it sits in: the article rule .post-body b paints it the theme ink, which vanished on white paper and pastel tiles in dark mode */
+.tool-app :is(b,strong){color:inherit}
 .tool-app h3{margin:0;font:700 17px/1.3 var(--ui)}
 .tool-app p{margin:0}
 .trow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
@@ -203,8 +205,15 @@ html[data-theme='dark'] .tin-c,html[data-theme='black'] .tin-c{color:#4ade80}htm
 @media (max-width:640px){.titems-edit .trow-item{grid-template-columns:1fr 1fr;padding:8px;border:1px solid var(--line);border-radius:12px}.titems-edit .trow-item>:first-child{grid-column:1/-1}}
 
 .tpaper *{color:inherit}
+.tpaper{color-scheme:light}
+.tpaper :is(p,li,summary,th,td){color:inherit}
+.tpaper a{color:#1d4ed8}
+.tpaper pre{background:#f3f4f6}
 .tpaper b,.tpaper strong{font-weight:700}
-.tool-app input[type='date'],.tool-app input[type='month'],.tool-app input[type='time']{color-scheme:light dark}
+/* Date, month, time, email and password fields get the same field look as text boxes; before, the browser drew them itself (dark grey with dark text in light mode on a dark-mode phone) */
+.tool-app :is(input[type='date'],input[type='month'],input[type='time'],input[type='datetime-local'],input[type='week'],input[type='email'],input[type='password']){min-height:44px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:15px/1.45 var(--ui);box-sizing:border-box}
+.tool-app :is(input[type='date'],input[type='month'],input[type='time'],input[type='datetime-local'],input[type='week']){color-scheme:dark}
+html[data-theme='light'] .tool-app :is(input[type='date'],input[type='month'],input[type='time'],input[type='datetime-local'],input[type='week']){color-scheme:light}
 
 /* ---------- record tools shown from the Infinity app inside a post ---------- */
 .tapp-frame{display:block;width:100%;height:900px;border:0;border-radius:20px;background:transparent;color-scheme:normal}
@@ -373,9 +382,9 @@ html[data-theme='light'] .tbtn-wa:not(.tbtn-primary){border-color:rgba(29,168,81
 
 /* Small icon buttons (✕ delete, pin, row actions) keep a visible edge */
 .titem button{border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);min-width:30px;min-height:30px}
-/* Plain buttons a tool did not style still look like buttons (any class or inline style wins over this) */
-:where(.tool-app) button:where(:not([class]):not([style])){min-height:36px;padding:0 12px;border-radius:10px;border:1px solid color-mix(in srgb,var(--ink) 24%,transparent);background:color-mix(in srgb,var(--ink) 9%,var(--bg));color:var(--ink);font:600 14px/1 var(--ui);cursor:pointer}
-html[data-theme='light'] :where(.tool-app) button:where(:not([class]):not([style])){background:#fff}
+/* Plain buttons a tool did not style still look like buttons (any class or inline style wins over this); buttons inside a .tpaper preview keep the page's own look */
+:where(.tool-app) button:where(:not([class]):not([style]):not(.tpaper *)){min-height:36px;padding:0 12px;border-radius:10px;border:1px solid color-mix(in srgb,var(--ink) 24%,transparent);background:color-mix(in srgb,var(--ink) 9%,var(--bg));color:var(--ink);font:600 14px/1 var(--ui);cursor:pointer}
+html[data-theme='light'] :where(.tool-app) button:where(:not([class]):not([style]):not(.tpaper *)){background:#fff}
 /* Segmented choices and tabs: a visible track, the chosen one stands out */
 .tseg{background:color-mix(in srgb,var(--ink) 8%,transparent);border:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}
 .tseg button[aria-pressed='true']{background:var(--accent);color:var(--accent-ink);box-shadow:0 1px 4px color-mix(in srgb,var(--accent) 40%,transparent)}
@@ -396,3 +405,5 @@ html[data-theme='light'] .tcheck input[type='checkbox']:not(:checked){background
 .tool-app input[type='file']::file-selector-button{margin-right:10px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--ink) 26%,transparent);background:color-mix(in srgb,var(--ink) 11%,var(--bg));color:var(--ink);font:600 13.5px var(--ui);cursor:pointer}
 html[data-theme='light'] .tool-app input[type='file']::file-selector-button{background:#fff;border-color:rgba(40,36,110,.24)}
 html[data-theme='light'] a.tbtn:not(.tbtn-primary){color:var(--ink)}
+/* Link buttons: the theme's link colours (a, a:hover) are the accent itself, which hid the label on an accent button */
+html a.tbtn-primary,html a.tbtn-primary:hover{color:var(--accent-ink)}

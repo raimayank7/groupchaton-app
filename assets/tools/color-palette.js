@@ -20,7 +20,11 @@ GCOTools.register('color-palette', function (spot, T) {
     if (kind === 'complementary') out = [hsl2hex(H, S, Math.min(92, L + 25)), out[0], hsl2hex(H, S, Math.max(8, L - 25)), out[1], hsl2hex(H + 180, S, Math.min(92, L + 25))];
     return out;
   }
-  function ink(x) { var n = parseInt(x.slice(1), 16), y = (0.299 * (n >> 16 & 255) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)); return y > 150 ? '#111' : '#fff'; }
+  function ink(x) {   // whichever of dark or white text has the higher contrast (WCAG luminance)
+    var n = parseInt(x.slice(1), 16), L = [n >> 16 & 255, n >> 8 & 255, n & 255].map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    L = 0.2126 * L[0] + 0.7152 * L[1] + 0.0722 * L[2];
+    return (L + 0.05) / 0.0556 > 1.05 / (L + 0.05) ? '#111' : '#fff';   // 0.0556 = luminance of #111 + 0.05
+  }
   var base = h('input', { type: 'color', value: T.store.get('palette-base', '#3b82f6'), style: 'width:64px;height:44px;padding:2px', 'aria-label': 'Base colour' });
   var kind = T.select([['analogous', 'Analogous (calm, side by side)'], ['complementary', 'Complementary (strong contrast)'], ['triadic', 'Triadic (lively, balanced)'],
     ['split', 'Split complementary'], ['tetradic', 'Tetradic (four colours)'], ['mono', 'Monochrome (one colour, light to dark)']], 'analogous');

@@ -3,17 +3,17 @@
    - data/tools.json: fresh from the network when online, the saved copy when offline
    - libraries and fonts from CDNs (PDF, QR, ZIP…): saved the first time they are used
    Designed & Developed by Nivesh Sahayak. See LICENSE. */
-var VERSION = '2026-11-02.12-6bf306a6';
+var VERSION = '2026-11-02.14-2dbe380a';
 var CORE = 'gco-app-' + VERSION, EXT = 'gco-app-ext';
 var FILES = [
  "./",
  "index.html",
- "app.js?v=2026-11-02.12-6bf306a6",
- "app.css?v=2026-11-02.12-6bf306a6",
+ "app.js?v=2026-11-02.14-2dbe380a",
+ "app.css?v=2026-11-02.14-2dbe380a",
  "manifest.webmanifest",
  "data/tools.json",
- "assets/infinity.css?v=2026-11-02.12-6bf306a6",
- "assets/tools/kit.js?v=2026-11-02.12-6bf306a6",
+ "assets/infinity.css?v=2026-11-02.14-2dbe380a",
+ "assets/tools/kit.js?v=2026-11-02.14-2dbe380a",
  "assets/tools/tools.css",
  "assets/brand/favicon-32.png",
  "assets/brand/favicon-192.png",

@@ -81,7 +81,7 @@ GCOTools.register('html-tags', function (spot, T) {
     var r = find(q.value, grp.value); list.innerHTML = '';
     note.textContent = r.length + ' tag' + (r.length === 1 ? '' : 's');
     r.forEach(function (t) {
-      var demo = h('div', { style: 'padding:10px;border-radius:10px;background:#fff;color:#111;overflow:auto;max-height:180px' }); demo.innerHTML = t[3].replace(/<iframe[^>]*>/, '<span>(an embedded page shows here)</span>').replace(/<\/iframe>/, '');
+      var demo = h('div', { 'class': 'tpaper', style: 'padding:10px;border-radius:10px;background:#fff;color:#111;overflow:auto;max-height:180px' }); demo.innerHTML = t[3].replace(/<iframe[^>]*>/, '<span>(an embedded page shows here)</span>').replace(/<\/iframe>/, '');
       Array.prototype.forEach.call(demo.querySelectorAll('audio,video,img,canvas,svg,table,pre'), function (x) { x.style.maxWidth = '100%'; });
       list.appendChild(h('details', { style: 'border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg)' }, [
         h('summary', { style: 'cursor:pointer' }, [h('code', { text: '<' + t[0] + '>' }), ' ', h('small', { text: t[1] })]),

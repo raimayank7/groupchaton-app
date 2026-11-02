@@ -9,7 +9,7 @@
   var C = window.GCO || {};
   var BASE = C.base || '';
   // EDIT: bump this after changing any file in assets/tools/, so browsers fetch the new version straight away
-  var VERSION = '2026-11-02.12';
+  var VERSION = '2026-11-02.14';
   var doc = document;
   var T = window.GCOTools = window.GCOTools || {};
 
@@ -61,6 +61,7 @@
       T.list = db.tools || [];
       // until the post list arrives, a tool's link is a search for it; then it becomes the post's own address
       T.list.forEach(function (t) { t.path = '/search?q=' + encodeURIComponent(t.name); });
+      if (C.static) { T.list.forEach(function (t) { t.path = '/' + t.slug + '/'; }); return {}; }   // the static site: every tool is /<slug>/
       if (C.isApp) return {};   // app.groupchaton.com: tools open inside the app (#id)
       var saved = savedPaths(), fresh = postPaths().then(function (p) {
         if (Object.keys(p).length) { try { localStorage.setItem(PKEY, JSON.stringify(p)); } catch (e) {} }
@@ -662,7 +663,10 @@
       [h('span', { 'aria-hidden': 'true', text: '★' }), h('span', { text: fav ? ' Favourite' : ' Add to favourites' })]);
     var kids = [star];
     var appBase = C.isApp ? location.origin + '/' : C.appUrl ? C.appUrl.replace(/\/?$/, '/') : '';
-    if (appBase) kids.push(h('a', { 'class': 'tbtn tbtn-sm', href: appBase + 't/' + id + '/', target: C.isApp ? null : '_blank', rel: 'noopener',
+    if (C.static && !(window.matchMedia && matchMedia('(display-mode: standalone)').matches))   // Infinity itself installs as the app (infinity.js)
+      kids.push(h('a', { 'class': 'tbtn tbtn-sm', href: '/#install', 'data-install': '1', title: 'Install Infinity on your phone or computer: every tool, works offline' },
+        [h('span', { 'aria-hidden': 'true', text: '⬇' }), ' Install app']));
+    else if (appBase) kids.push(h('a', { 'class': 'tbtn tbtn-sm', href: appBase + 't/' + id + '/', target: C.isApp ? null : '_blank', rel: 'noopener',
       title: 'Opens this tool on its own, ready to install on your phone or computer' }, [h('span', { 'aria-hidden': 'true', text: '⬇' }), ' Install as app']));
     spot.parentNode.insertBefore(h('div', { 'class': 'tbar' }, kids), spot);
   }
@@ -740,7 +744,7 @@
     T.ready.then(function () {
       var label = (location.pathname.match(/^\/search\/label\/([^/?#]+)/) || [])[1];
       label = label ? decodeURIComponent(label).replace(/\+/g, ' ') : '';
-      var cat = (T.cats.filter(function (c) { return c.label === label; })[0] || {}).id || 'all';
+      var cat = C.cat || (T.cats.filter(function (c) { return c.label === label; })[0] || {}).id || 'all';
       var q = h('input', { type: 'search', 'class': 'thub-search', placeholder: 'Search ' + T.list.length + ' free tools…', 'aria-label': 'Search tools', enterkeyhint: 'search' });
       var startQ = new URLSearchParams(location.search).get('q');
       if (startQ && !label) q.value = startQ;

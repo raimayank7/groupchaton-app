@@ -24,7 +24,7 @@ GCOTools.register('html-form', function (spot, T) {
     return L.join('\n');
   }
   var fields = T.store.get('form-fields', null) || [{ label: 'Full name', type: 'text', req: true, ph: '' }, { label: 'Email', type: 'email', req: true, ph: 'you@example.com' }, { label: 'Message', type: 'textarea', req: false, ph: '' }];
-  var rows = h('div', { style: 'display:grid;gap:8px' }), out = h('textarea', { rows: '10', 'class': 'tout tmono', readonly: true, 'aria-label': 'Form HTML' }), prev = h('div', { style: 'padding:14px;border-radius:12px;background:#fff;color:#111' });
+  var rows = h('div', { style: 'display:grid;gap:8px' }), out = h('textarea', { rows: '10', 'class': 'tout tmono', readonly: true, 'aria-label': 'Form HTML' }), prev = h('div', { 'class': 'tpaper', style: 'padding:14px;border-radius:12px;background:#fff;color:#111' });
   var action = h('input', { type: 'url', placeholder: 'https://formspree.io/f/… (where answers go)' }), method = T.select([['post', 'POST'], ['get', 'GET']], 'post'), btn = h('input', { type: 'text', value: 'Send' }), css = h('input', { type: 'checkbox', checked: true });
   function save() { T.store.set('form-fields', fields); }
   function drawRows() {
