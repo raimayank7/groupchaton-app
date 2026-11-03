@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-02.64b3a90';
+  var VERSION = '2026-11-03.c270377';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -536,7 +536,7 @@
     return el('footer', { 'class': 'foot' }, [
       el('div', { 'class': 'links', style: 'justify-content:center' }, [
         el('a', { href: WWW + '/', text: 'www.groupchaton.com' }), el('a', { href: WWW + '/p/privacy-policy.html', text: 'Privacy policy' }),
-        el('a', { href: WWW + '/p/disclaimer.html', text: 'Disclaimer' }), el('a', { href: WWW + '/p/contact-us.html', text: 'Contact' })]),
+        el('a', { href: WWW + '/p/disclaimer.html', text: 'Disclaimer' }), el('a', { href: WWW + '/p/contact-us.html?from=app', text: 'Contact' })]),
       el('p', { html: '© ' + new Date().getFullYear() + ' GroupChatOn. All rights reserved. · Designed &amp; Developed by: <a href="https://www.niveshsahayak.in/" rel="noopener" target="_blank">Nivesh Sahayak</a>' })]);
   }
   // Blogger serves any size of a picture: ask for a small one instead of the 1600px original
@@ -996,7 +996,7 @@
         el('p', { text: 'The app shows the same novels and chapters as www.groupchaton.com and checks for new chapters by itself. Your library, reading position and settings stay in this browser only.' }),
         el('p', {}, ['Record tools (invoices, khata, money manager…) are on ', el('a', { href: INF + '/', text: 'Infinity' }), '.']),
         el('div', { 'class': 'links' }, [el('a', { href: WWW + '/p/privacy-policy.html', text: 'Privacy policy' }), el('a', { href: WWW + '/p/disclaimer.html', text: 'Disclaimer' }),
-          el('a', { href: WWW + '/p/contact-us.html', text: 'Contact us' }), el('a', { href: WWW + '/p/about-us.html', text: 'About GroupChatOn' })]),
+          el('a', { href: WWW + '/p/contact-us.html?from=app', text: 'Contact us' }), el('a', { href: WWW + '/p/about-us.html', text: 'About GroupChatOn' })]),
         el('p', { 'class': 'copy', html: '© ' + new Date().getFullYear() + ' GroupChatOn. All rights reserved.<br>Designed &amp; Developed by: <a href="https://www.niveshsahayak.in/" rel="noopener" target="_blank">Nivesh Sahayak</a>' })]));
       if (!DATA) loadData().then(function () { if (route.name === 'settings') render(); }).catch(function () {});
       return w;
