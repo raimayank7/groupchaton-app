@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-03.c270377';
+  var VERSION = '2026-11-04.2e2bd78';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -296,11 +296,11 @@
     d.appendChild(ins);
     if (window.MutationObserver) new MutationObserver(function (m, o) {
       var st = ins.getAttribute('data-ad-status');
-      if (st === 'unfilled') { promoFill(d); o.disconnect(); } else if (st === 'filled') o.disconnect();
+      if (/^unfill/.test(st || '')) { promoFill(d); o.disconnect(); } else if (st === 'filled') o.disconnect();
     }).observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-    // no answer from Google after a while (slow, filtered network): the sponsor card takes the space
-    setTimeout(function () { if (!ins.getAttribute('data-ad-status') && !ins.querySelector('iframe')) promoFill(d); }, 8000);
+    // no real ad after a while (ad blocker with a fake ad script, slow or filtered network): the sponsor card takes the space
+    setTimeout(function () { if (ins.getAttribute('data-ad-status') !== 'filled') promoFill(d); }, 8000);
   }
 
   /* ---------------- sponsor cards: fill an ad space that stays empty (offline, blocked, no ad) ----------------
@@ -315,7 +315,8 @@
   }
   function promoFill(d) {
     if (!d || d.classList.contains('is-promo')) return;
-    d.classList.add('is-promo');
+    // ad blockers hide every box named ad-slot, so the box changes its name before the card goes in
+    d.classList.remove('ad-slot'); d.classList.add('pk-slot', 'is-promo');
     getPromos().then(function (list) {
       if (!list.length) { d.classList.add('is-empty'); return; }
       var fresh = list.filter(function (x) { return promoUsed.indexOf(x.href) < 0; });
