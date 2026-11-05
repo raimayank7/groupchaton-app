@@ -7,7 +7,7 @@
    Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE. */
 (function () {
   'use strict';
-  var VERSION = '2026-11-04.2e2bd78';
+  var VERSION = '2026-11-05.31a972d';
   var WWW = 'https://www.groupchaton.com', INF = 'https://infinity.groupchaton.com';
   var AD_CLIENT = 'ca-pub-5935207738848708', ADS = { top: '2358914532', inArticle: '2020003182', end: '2358914532', home: '3496736383' };
   var CH_CACHE = 'gcr-chapters';
@@ -325,6 +325,7 @@
       promoUsed.push(x.href);
       d.innerHTML = '';
       if (x.own) d.classList.add('is-own');   // our own card (Ko-fi): labelled "From GroupChatOn", not a sponsored link
+      if (x.tag) d.setAttribute('data-tag', x.tag); else d.removeAttribute('data-tag');   // its own label (e.g. "From Nivesh Sahayak")
       var pic = x.imgs && x.imgs.length ? el('img', { src: x.imgs[Math.floor(Math.random() * x.imgs.length)], alt: x.title || '', loading: 'lazy', width: 336, height: 280 })
         : x.img_icon ? el('img', { 'class': 'promo-ic is-mark', src: x.img_icon, alt: '', width: 64, height: 64, loading: 'lazy' })
         : el('span', { 'class': 'promo-ic', 'aria-hidden': 'true', html: PROMO_ICONS[x.icon] || '' });
