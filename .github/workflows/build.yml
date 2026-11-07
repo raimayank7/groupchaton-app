@@ -2,7 +2,7 @@ name: Chapters + publish
 # Designed & Developed by Nivesh Sahayak (https://www.niveshsahayak.in/). All rights reserved: see LICENSE.
 
 # Every hour: read new and edited chapters from www.groupchaton.com into data/novels.json and c/…,
-# then publish the app to GitHub Pages (app.groupchaton.com). Also publishes whenever main changes.
+# then publish the app to GitHub Pages (novel.groupchaton.com). Also publishes whenever main changes.
 
 on:
   schedule:

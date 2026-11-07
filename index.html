@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GroupChatOn: read Korean web novels in the app</title>
-<meta name="description" content="The GroupChatOn app: read every novel from www.groupchaton.com, follow your favourites, continue where you stopped and keep chapters for offline reading. Free.">
-<link rel="canonical" id="canon" href="https://app.groupchaton.com/">
+<meta name="description" content="The GroupChatOn app: read every novel, follow your favourites, continue where you stopped and keep chapters for offline reading. Free.">
+<link rel="canonical" id="canon" href="https://novel.groupchaton.com/">
 <script>
   /* before the first paint: reading theme, font size and the right canonical address for this screen.
      Settings use the same names as www.groupchaton.com's Aa sheet. Designed & Developed by Nivesh Sahayak. */
@@ -22,11 +22,11 @@
     d.style.setProperty('--rd-measure', ({ s: '600px', m: '700px', l: '820px' })[s.width] || '700px');
     if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) d.classList.add('is-installed');
     var p = location.pathname, m = p.match(/^\/read\/(\d{4}\/\d{2}\/[\w.-]+?)\/?$/), c = document.getElementById('canon');
-    // the blog is the page Google should show; the app's own copies point there
-    if (m) c.href = 'https://www.groupchaton.com/' + m[1] + '.html';
+    // read pages are canonical here; other screens are noindex
+    if (m) c.href = 'https://novel.groupchaton.com/read/' + m[1] + '/';
     else if (p !== '/' && p !== '/index.html') {
       var r = document.createElement('meta'); r.name = 'robots'; r.content = 'noindex'; document.head.appendChild(r);
-      if (/^\/novel\//.test(p)) c.href = 'https://www.groupchaton.com/';
+      if (/^\/novel\//.test(p)) c.href = 'https://novel.groupchaton.com/';
     }
   })();
 </script>
@@ -45,10 +45,10 @@
 <meta property="og:site_name" content="GroupChatOn">
 <meta property="og:title" content="GroupChatOn: the reading app">
 <meta property="og:description" content="Read every GroupChatOn novel in the app: follow novels, continue where you stopped, read offline.">
-<meta property="og:url" content="https://app.groupchaton.com/">
-<meta property="og:image" content="https://app.groupchaton.com/brand/share-banner.jpg">
+<meta property="og:url" content="https://novel.groupchaton.com/">
+<meta property="og:image" content="https://novel.groupchaton.com/brand/share-banner.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GroupChatOn","url":"https://app.groupchaton.com/","applicationCategory":"BookApplication","operatingSystem":"Any (installs from the browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Read every novel from www.groupchaton.com: follow novels, continue where you stopped and read offline.","publisher":{"@id":"https://www.groupchaton.com/#org"}},{"@type":"Organization","@id":"https://www.groupchaton.com/#org","name":"GroupChatOn","url":"https://www.groupchaton.com/","logo":"https://app.groupchaton.com/brand/favicon-512.png"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GroupChatOn","url":"https://novel.groupchaton.com/","applicationCategory":"BookApplication","operatingSystem":"Any (installs from the browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Read every GroupChatOn novel: follow novels, continue where you stopped and read offline.","publisher":{"@id":"https://www.groupchaton.com/#org"}},{"@type":"Organization","@id":"https://www.groupchaton.com/#org","name":"GroupChatOn","url":"https://www.groupchaton.com/","logo":"https://novel.groupchaton.com/brand/favicon-512.png"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Literata:ital,opsz,wght@0,7..72,400..800;1,7..72,400&display=swap">

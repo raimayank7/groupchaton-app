@@ -1,4 +1,4 @@
-/* GroupChatOn app (app.groupchaton.com): the reading app for www.groupchaton.com.
+/* GroupChatOn app (novel.groupchaton.com): the reading app for www.groupchaton.com.
    - Novels and chapter lists: /data/novels.json (built every hour from the blog by scripts/build_data.py)
    - Chapter text: /c/<yyyy>/<mm>/<name>.json; every opened or downloaded chapter stays on the device (service worker)
    - Brand-new chapters: Blogger's own feed (JSONP), so they show up before the next hourly build
@@ -462,7 +462,7 @@
   function setMeta(title, desc, canon) {
     doc.title = title ? title + ' · GroupChatOn' : 'GroupChatOn: read Korean web novels in the app';
     var d = $('meta[name="description"]'); if (d && desc) d.setAttribute('content', desc);
-    var c = $('#canon'); if (c) c.href = canon || 'https://app.groupchaton.com/';
+    var c = $('#canon'); if (c) c.href = canon || 'https://novel.groupchaton.com/';
     var r = $('meta[name="robots"]');
     var index = route.name === 'home' || route.name === 'read';   // chapters: canonical to the blog, no noindex
     if (index && r) r.remove();
@@ -1012,11 +1012,11 @@
       w.appendChild(el('h1', { text: 'Your records from the old Infinity App' }));
       var names = Object.keys(o.vaults);
       if (!names.length) {
-        w.appendChild(el('div', { 'class': 'empty' }, [el('p', { text: 'There are no Infinity App records on this device. If you kept records on another phone or browser, open app.groupchaton.com there to save them.' }),
+        w.appendChild(el('div', { 'class': 'empty' }, [el('p', { text: 'There are no Infinity App records on this device. If you kept records on another phone or browser, open novel.groupchaton.com there to save them.' }),
           el('a', { 'class': 'btn', href: INF + '/', text: 'Open Infinity' })]));
         return w;
       }
-      w.appendChild(el('p', { text: 'app.groupchaton.com is now the GroupChatOn reading app. The record tools (money manager, khata, invoices, registers and logs) now live on Infinity, which installs as its own app. Your records are still safe on this device; nothing has been deleted. Move them in two steps:' }));
+      w.appendChild(el('p', { text: 'novel.groupchaton.com is now the GroupChatOn reading app. The record tools (money manager, khata, invoices, registers and logs) now live on Infinity, which installs as its own app. Your records are still safe on this device; nothing has been deleted. Move them in two steps:' }));
       var ul = el('ul', { 'class': 'list rec-list', style: 'margin:16px 0' });
       names.forEach(function (n) {
         var c = recCount(o.vaults[n]);

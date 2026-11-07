@@ -1,8 +1,7 @@
-# GroupChatOn app: only the home page is meant for search engines.
-# Chapters and novels are on www.groupchaton.com; the app's copies point there (canonical).
+# GroupChatOn novel app: home and read pages are indexed; chapter data and tool redirects are not.
 User-agent: *
 Allow: /
 Disallow: /c/
 Disallow: /t/
 Disallow: /search/
-Sitemap: https://app.groupchaton.com/sitemap.xml
+Sitemap: https://novel.groupchaton.com/sitemap.xml

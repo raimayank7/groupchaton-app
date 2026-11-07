@@ -13,7 +13,7 @@ from html.parser import HTMLParser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.environ.get('SITE_URL', 'https://www.groupchaton.com')
 SERIES = os.environ.get('SERIES_URL', 'https://assets.groupchaton.com/data/series.json')
-UA = {'User-Agent': 'GroupChatOn app build (+https://app.groupchaton.com)'}
+UA = {'User-Agent': 'GroupChatOn app build (+https://novel.groupchaton.com)'}
 
 
 def get(url, tries=4):

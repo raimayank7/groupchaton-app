@@ -1,6 +1,6 @@
 # GroupChatOn app
 
-The installable reading app for www.groupchaton.com, at https://app.groupchaton.com: every novel and chapter of the blog,
+The installable reading app for www.groupchaton.com, at https://novel.groupchaton.com: every novel and chapter of the blog,
 a library of followed novels, continue-where-you-stopped, reading settings (Light / Sepia / Dark / Black, font, size,
 spacing) and offline reading. Until 2 Nov 2026 this address was the "Infinity App" of record tools; those tools now live
 on https://infinity.groupchaton.com, and the app helps people move their old records there (`/old-records/`).
